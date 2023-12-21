@@ -9,6 +9,7 @@ import {FormProps} from "./types";
 
 import styles from './styles.module.sass'
 import {Point2D} from "../../functions/types";
+import Button from "../button";
 
 const SketchForm: React.FC = () => {
     const [formState, setFormState] = useState<FormProps>()
@@ -65,6 +66,10 @@ const SketchForm: React.FC = () => {
                     formState={formState}
                     onChangeFormState={handleFormChange}
                 />
+                <div className={styles.buttonsContainer}>
+                    <Button variant={'primary'}>{'Сохранить'}</Button>
+                    <Button>{'Отмена'}</Button>
+                </div>
             </div>
         </div>
     )
