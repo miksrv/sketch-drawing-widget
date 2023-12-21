@@ -100,7 +100,7 @@ const Sketch3DViewer: React.FC = () => {
 
     return (
         <Canvas
-            style={{width: '500px', height: '500px'}}
+            style={{width: '500px', height: '403px'}}
             // camera={{ position: [0, 0, 5], fov: 75, near: 0.1, far: 10 }}
             // camera={{ position: [averagePosition.x, averagePosition.y, averagePosition.z + 5], fov: 75, near: 0.1, far: 10 }}
             camera={{position: [centerX, centerY, cameraDistance], fov: 75, near: 0.1, far: 1000}}

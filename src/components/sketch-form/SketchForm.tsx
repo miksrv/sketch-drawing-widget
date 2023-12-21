@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import Sketch2DEditor from "./components/sketch-2d-editor";
 import Sketch3DViewer from "./components/sketch-3d-viewer";
 import FormEditor from "./components/form-editor";
+import Tabs, {Tab} from "../tabs/Tabs";
 
 import {FormProps} from "./types";
 
@@ -43,10 +44,24 @@ const SketchForm: React.FC = () => {
 
     return (
         <div className={styles.section}>
-            <Sketch2DEditor
-                drawing={drawing}
-                onSketchEdit={handleSketchEdit}
-            />
+            <div>
+
+                <Tabs>
+                    <Tab label={'Эскиз'}>
+                        <Sketch2DEditor
+                            drawing={drawing}
+                            onSketchEdit={handleSketchEdit}
+                        />
+                    </Tab>
+                    <Tab label={'3D Модель'}>
+                        <Sketch3DViewer />
+                    </Tab>
+                    <Tab label={'Развертка'} disable={true}>
+
+                    </Tab>
+                </Tabs>
+
+            </div>
             <FormEditor
                 formState={formState}
                 onChangeFormState={handleFormChange}
