@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import Sketch2DEditor from "./components/sketch-2d-editor";
 import Sketch3DViewer from "./components/sketch-3d-viewer";
 import FormEditor from "./components/form-editor";
+import Message from "./components/message";
 import Tabs, {Tab} from "../tabs/Tabs";
 
 import {FormProps} from "./types";
@@ -58,8 +59,8 @@ const SketchForm: React.FC = () => {
 
                 </Tab>
             </Tabs>
-            <div>
-                <div>Режим редактирования (нажмите ESC)</div>
+            <div style={{ width: '100%' }}>
+                <Message content={drawing ? 'Режим редактирования (нажмите ESC)' : 'Режим просмотра'}/>
                 <FormEditor
                     formState={formState}
                     onChangeFormState={handleFormChange}

@@ -185,7 +185,7 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
 
     return (
         <canvas
-            className={styles.section}
+            className={drawing ? styles.draw : styles.view}
             id={'Sketch2DEditor'}
             height={400}
             width={500}
