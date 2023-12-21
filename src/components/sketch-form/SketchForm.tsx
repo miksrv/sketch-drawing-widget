@@ -22,21 +22,18 @@ const SketchForm: React.FC = () => {
     }
 
     useEffect(() => {
-        // Функция-обработчик для отслеживания нажатия на клавишу
         const handleKeyPress = (event: KeyboardEvent) => {
             if (event.key === 'Escape') {
-                setDrawing(false); // устанавливаем drawing в false при нажатии на ESC
+                setDrawing(false);
             }
         };
 
-        // Добавляем событие для прослушивания клавиатуры при монтировании компонента
         window.addEventListener('keydown', handleKeyPress);
 
-        // Убираем слушатель события при размонтировании компонента
         return () => {
             window.removeEventListener('keydown', handleKeyPress);
         };
-    }, []); // Пустой массив зависимостей означает, что useEffect будет вызван один раз при монтировании компонента
+    }, []);
 
     useEffect(() => {
         setDrawing(true)
@@ -44,28 +41,30 @@ const SketchForm: React.FC = () => {
 
     return (
         <div className={styles.section}>
+            <Tabs>
+                <Tab label={'Эскиз'}>
+                    <Sketch2DEditor
+                        drawing={drawing}
+                        sketch={formState?.sketch}
+                        onSketchEdit={handleSketchEdit}
+                    />
+                </Tab>
+                <Tab label={'3D Модель'}>
+                    <Sketch3DViewer
+                        sketch={formState?.sketch}
+                    />
+                </Tab>
+                <Tab label={'Развертка'} disable={true}>
+
+                </Tab>
+            </Tabs>
             <div>
-
-                <Tabs>
-                    <Tab label={'Эскиз'}>
-                        <Sketch2DEditor
-                            drawing={drawing}
-                            onSketchEdit={handleSketchEdit}
-                        />
-                    </Tab>
-                    <Tab label={'3D Модель'}>
-                        <Sketch3DViewer />
-                    </Tab>
-                    <Tab label={'Развертка'} disable={true}>
-
-                    </Tab>
-                </Tabs>
-
+                <div>Режим редактирования (нажмите ESC)</div>
+                <FormEditor
+                    formState={formState}
+                    onChangeFormState={handleFormChange}
+                />
             </div>
-            <FormEditor
-                formState={formState}
-                onChangeFormState={handleFormChange}
-            />
         </div>
     )
 }

@@ -2,28 +2,24 @@ import React, {useRef} from "react";
 import * as THREE from "three";
 import {OrbitControls, Text} from "@react-three/drei";
 import {Canvas} from "@react-three/fiber";
+import {Point2D} from "../../../../functions/types";
 
-const Sketch3DViewer: React.FC = () => {
-    // This reference gives us direct access to the THREE.Mesh object
-    // const groupRef = useRef<any>();
+interface Sketch3DViewerProps {
+    sketch?: Point2D[]
+}
+
+const Sketch3DViewer: React.FC<Sketch3DViewerProps> = ({ sketch }) => {
     const ref = useRef<any>()
     const groupRef = useRef<any>();
-    // Hold state for hovered and clicked events
 
-    const points2D = [
-        { "x": 84, "y": 113 },
-        { "x": 83, "y": 297 },
-        { "x": 344, "y": 299 },
-        { "x": 407, "y": 200 }
-    ];
+    const points2D = sketch || []
 
-    const height = 5; // Выберите желаемую высоту
-    const depth = 100; // Глубина
+    const height = 5;
+    const depth = 100;
 
     // const geometries = create3DModelFrom2D(points2D, height);
 
     // Вычислите среднюю позицию объектов
-
     const geometries = points2D.map(({ x, y }) => ({ x, y, z: height }));
 
     // const averagePosition = calculateAveragePosition(geometries);
@@ -84,13 +80,14 @@ const Sketch3DViewer: React.FC = () => {
                 <bufferGeometry attach="geometry" {...geometry} />
                 <meshBasicMaterial attach="material" {...material} />
                 <Text
-                    position={[0, 0, height + 50]} // Позиция текста над прямоугольником
+                    position={[0, 0, height + 50]}
                     // rotation={quaternion}
-                    anchorX="center" // Выравнивание текста по центру
-                    anchorY="middle"
-                    fontSize={20}
+                    anchorX={'center'}
+                    anchorY={'middle'}
+                    fontSize={17}
+                    color={'#000000'}
                 >
-                    {length.toFixed(2)} mm
+                    {`${length.toFixed(0)} mm`}
                 </Text>
             </mesh>
         );
@@ -112,7 +109,7 @@ const Sketch3DViewer: React.FC = () => {
 
             {/*{lines}*/}
 
-            <group ref={groupRef} position={[-250, -220, 0]}>
+            <group ref={groupRef} position={[centerY - 450, centerX - 450, 0]}>
                 {rectangles}
 
                 {geometries.map((geometry, index) => (

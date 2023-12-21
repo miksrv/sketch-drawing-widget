@@ -5,14 +5,23 @@ import {Point2D} from "../../../../functions/types";
 
 interface Sketch2DEditorProps {
     drawing?: boolean
+    sketch?: Point2D[]
     onSketchEdit?: (sketch?: Point2D[]) => void
 }
 
 const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
-    const {drawing, onSketchEdit} = props
+    const {drawing, sketch, onSketchEdit} = props
 
-    const [points, setPoints] = useState<{ x: number; y: number }[]>([]);
+    const [points, setPoints] = useState<Point2D[]>(sketch || []);
     const [tempPoint, setTempPoint] = useState({ x: 0, y: 0 });
+
+    useEffect(() => {
+        if (sketch) {
+            setPoints(sketch)
+            draw()
+            drawInfo()
+        }
+    }, []);
 
     useEffect(() => {
         const canvas = document.getElementById('Sketch2DEditor') as HTMLCanvasElement;
@@ -116,11 +125,11 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
 
                 ctx.font = '14px Arial';
                 ctx.fillStyle = '#000';
-                ctx.fillText(`Distance: ${distance.toFixed(2)} mm`, tempPoint.x + 10, tempPoint.y - 10);
+                ctx.fillText(`Длина: ${distance.toFixed(0)} мм`, tempPoint.x + 10, tempPoint.y - 10);
 
                 if (points.length > 1) {
                     const angle = getAngle(points[points.length - 2], points[points.length - 1], tempPoint);
-                    ctx.fillText(`Angle: ${angle.toFixed(2)} degrees`, tempPoint.x + 10, tempPoint.y + 10);
+                    ctx.fillText(`Угол: ${angle.toFixed(0)}°`, tempPoint.x + 10, tempPoint.y + 10);
                 }
             }
 
@@ -134,7 +143,7 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
 
                 ctx.font = '12px Arial';
                 ctx.fillStyle = '#000';
-                ctx.fillText(`${length.toFixed(2)} mm`, midPoint.x, midPoint.y);
+                ctx.fillText(`${length.toFixed(0)} мм`, midPoint.x, midPoint.y);
 
                 if (i > 1 && i < points.length) {
                     // Угол между двумя прямыми
@@ -142,7 +151,7 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
                     const currentLine = { start: startPoint, end: endPoint };
                     const angle = getAngleBetweenLines(prevLine, currentLine);
 
-                    ctx.fillText(`${angle.toFixed(2)} degrees`, startPoint.x + 10, startPoint.y + 10);
+                    ctx.fillText(`${angle.toFixed(0)}°`, startPoint.x + 10, startPoint.y + 10);
                 }
             }
         }
