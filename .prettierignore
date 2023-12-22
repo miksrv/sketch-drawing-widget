@@ -1,0 +1,10 @@
+.next
+.vscode
+.github
+*.json
+*.topojson
+node_modules
+out
+coverage
+public
+jsdoc

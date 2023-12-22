@@ -23,6 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "jsdoc": "jsdoc -c jsdoc.json",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -44,6 +45,17 @@
     ]
   },
   "devDependencies": {
-    "@types/three": "^0.159.0"
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/three": "^0.159.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jest": "^27.6.0",
+    "eslint-plugin-prettier": "^5.1.1",
+    "eslint-plugin-sort-keys": "^2.3.5",
+    "eslint-plugin-testing-library": "^6.2.0",
+    "jsdoc": "^4.0.2",
+    "jsdoc-plugin-typescript": "^2.2.1",
+    "prettier": "^3.1.1"
   }
 }

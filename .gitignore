@@ -129,6 +129,10 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# JSDoc
+jsdoc
+
 # IDE
 .idea
 .git
+.DC_Store
