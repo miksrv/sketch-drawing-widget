@@ -51,6 +51,6 @@ interface TabProps {
     children: React.ReactNode
 }
 
-export const Tab: React.FC<TabProps> = ({ children }) => <>children</>
+export const Tab: React.FC<TabProps> = ({ children }) => <>{children}</>
 
 export default Tabs

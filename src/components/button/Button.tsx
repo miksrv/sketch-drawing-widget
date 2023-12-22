@@ -14,7 +14,7 @@ import styles from './styles.module.sass'
  * @property {boolean} [disabled] - Whether the button is disabled.
  */
 
-interface InputProps extends React.ButtonHTMLAttributes<any> {
+interface InputProps extends React.ButtonHTMLAttributes<unknown> {
     children?: string
     variant?: 'primary' | 'default'
 }

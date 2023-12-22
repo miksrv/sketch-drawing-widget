@@ -1,9 +1,8 @@
 import * as THREE from 'three'
+import { Point2D } from '@/src/functions/types'
 import { OrbitControls, Text } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import React, { useRef } from 'react'
-
-import { Point2D } from '../../../../functions/types'
 
 interface Sketch3DViewerProps {
     sketch?: Point2D[]
@@ -139,7 +138,6 @@ const Sketch3DViewer: React.FC<Sketch3DViewerProps> = ({ sketch }) => {
                 {geometries.map((geometry, index) => (
                     <mesh
                         key={index}
-                        // @ts-ignore
                         ref={ref}
                         position={[geometry.x, geometry.y, geometry.z - 5]}
                     >
@@ -149,60 +147,6 @@ const Sketch3DViewer: React.FC<Sketch3DViewerProps> = ({ sketch }) => {
                 ))}
             </group>
 
-            {/*{geometries.map((geometry, index) => (*/}
-            {/*    <mesh*/}
-            {/*        key={index}*/}
-            {/*        // @ts-ignore*/}
-            {/*        ref={ref}*/}
-            {/*        position={[-1.2, 0, 0]}*/}
-            {/*        scale={1}*/}
-            {/*    >*/}
-            {/*        <bufferGeometry attach="geometry">*/}
-            {/*            <bufferAttribute attach="attributes-position" array={geometry.positions} count={geometry.positions.length / 3} itemSize={3} />*/}
-            {/*            <bufferAttribute attach="attributes-normal" array={geometry.normals} count={geometry.normals.length / 3} itemSize={3} />*/}
-            {/*            <bufferAttribute attach="attributes-color" array={geometry.colors} count={geometry.colors.length / 3} itemSize={3} />*/}
-            {/*            <bufferAttribute attach="index" array={geometry.indices} count={geometry.indices.length} itemSize={1} />*/}
-            {/*        </bufferGeometry>*/}
-            {/*        <meshStandardMaterial vertexColors={true} color={hovered ? 'hotpink' : 'orange'} />*/}
-            {/*    </mesh>*/}
-            {/*))}*/}
-
-            {/*<mesh*/}
-            {/*    // @ts-ignore*/}
-            {/*    ref={ref}*/}
-            {/*    position={[-1.2, 0, 0]}*/}
-            {/*    scale={clicked ? 1.5 : 1}*/}
-            {/*    onClick={(event) => click(!clicked)}*/}
-            {/*    onPointerOver={(event) => (event.stopPropagation(), hover(true))}*/}
-            {/*    onPointerOut={(event) => hover(false)}>*/}
-            {/*    <bufferGeometry>*/}
-            {/*        <bufferAttribute*/}
-            {/*            attach='attributes-position'*/}
-            {/*            array={positions}*/}
-            {/*            count={positions.length / 3}*/}
-            {/*            itemSize={3}*/}
-            {/*        />*/}
-            {/*        <bufferAttribute*/}
-            {/*            attach='attributes-color'*/}
-            {/*            array={colors}*/}
-            {/*            count={colors.length / 3}*/}
-            {/*            itemSize={3}*/}
-            {/*        />*/}
-            {/*        <bufferAttribute*/}
-            {/*            attach='attributes-normal'*/}
-            {/*            array={normals}*/}
-            {/*            count={normals.length / 3}*/}
-            {/*            itemSize={3}*/}
-            {/*        />*/}
-            {/*        <bufferAttribute*/}
-            {/*            attach="index"*/}
-            {/*            array={indices}*/}
-            {/*            count={indices.length}*/}
-            {/*            itemSize={1}*/}
-            {/*        />*/}
-            {/*    </bufferGeometry>*/}
-            {/*    <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'}/>*/}
-            {/*</mesh>*/}
             <OrbitControls
                 enableZoom={true}
                 enablePan={true}
