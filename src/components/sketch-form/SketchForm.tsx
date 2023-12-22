@@ -10,6 +10,7 @@ import {FormProps} from "./types";
 import styles from './styles.module.sass'
 import {Point2D} from "../../functions/types";
 import Button from "../button";
+import Sketch2DScan from "./components/sketch-2d-scan";
 
 const SketchForm: React.FC = () => {
     const [formState, setFormState] = useState<FormProps>()
@@ -56,8 +57,10 @@ const SketchForm: React.FC = () => {
                         sketch={formState?.sketch}
                     />
                 </Tab>
-                <Tab label={'Развертка'} disable={true}>
-
+                <Tab label={'Развертка'}>
+                    <Sketch2DScan
+                        sketch={formState?.sketch}
+                    />
                 </Tab>
             </Tabs>
             <div style={{ width: '100%' }}>

@@ -55,6 +55,8 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
         };
     }, [points, tempPoint]);
 
+    console.log(JSON.stringify(points))
+
     const draw = () => {
         const canvas = document.getElementById('Sketch2DEditor') as HTMLCanvasElement;
         const ctx = canvas.getContext('2d');

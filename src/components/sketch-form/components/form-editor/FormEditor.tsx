@@ -4,6 +4,7 @@ import Input from "../../../input";
 
 import styles from './styles.module.sass'
 import {FormProps} from "../../types";
+import {encodeCoordinates} from "../../../../functions/geometry";
 
 interface FormEditor {
     formState?: FormProps
@@ -24,7 +25,7 @@ const FormEditor: React.FC<FormEditor> = (props) => {
                 }}
             />
             <Input
-                value={JSON.stringify(formState?.sketch)}
+                value={encodeCoordinates(formState?.sketch || [])}
                 label={'Код профиля'}
                 readOnly={true}
             />
