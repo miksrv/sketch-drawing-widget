@@ -1,4 +1,4 @@
-import {Point2D} from "../../functions/types";
+import { Point2D } from '../../functions/types'
 
 export interface FormProps {
     title?: string

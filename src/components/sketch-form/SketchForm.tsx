@@ -1,46 +1,45 @@
-import React, {useEffect, useState} from "react";
-import Sketch2DEditor from "./components/sketch-2d-editor";
-import Sketch3DViewer from "./components/sketch-3d-viewer";
-import FormEditor from "./components/form-editor";
-import Message from "./components/message";
-import Tabs, {Tab} from "../tabs/Tabs";
+import React, { useEffect, useState } from 'react'
 
-import {FormProps} from "./types";
-
+import { Point2D } from '../../functions/types'
+import Button from '../button'
+import Tabs, { Tab } from '../tabs/Tabs'
+import FormEditor from './components/form-editor'
+import Message from './components/message'
+import Sketch2DEditor from './components/sketch-2d-editor'
+import Sketch2DScan from './components/sketch-2d-scan'
+import Sketch3DViewer from './components/sketch-3d-viewer'
 import styles from './styles.module.sass'
-import {Point2D} from "../../functions/types";
-import Button from "../button";
-import Sketch2DScan from "./components/sketch-2d-scan";
+import { FormProps } from './types'
 
 const SketchForm: React.FC = () => {
     const [formState, setFormState] = useState<FormProps>()
-    const [drawing, setDrawing] = useState<boolean>(false);
+    const [drawing, setDrawing] = useState<boolean>(false)
 
     const handleSketchEdit = (sketch?: Point2D[]) => {
-        setFormState({ ...formState, sketch: sketch})
+        setFormState({ ...formState, sketch: sketch })
     }
 
     const handleFormChange = (name: keyof FormProps, value: string) => {
-        setFormState({ ...formState, [name]: value})
+        setFormState({ ...formState, [name]: value })
     }
 
     useEffect(() => {
         const handleKeyPress = (event: KeyboardEvent) => {
             if (event.key === 'Escape') {
-                setDrawing(false);
+                setDrawing(false)
             }
-        };
+        }
 
-        window.addEventListener('keydown', handleKeyPress);
+        window.addEventListener('keydown', handleKeyPress)
 
         return () => {
-            window.removeEventListener('keydown', handleKeyPress);
-        };
-    }, []);
+            window.removeEventListener('keydown', handleKeyPress)
+        }
+    }, [])
 
     useEffect(() => {
         setDrawing(true)
-    }, []);
+    }, [])
 
     return (
         <div className={styles.section}>
@@ -53,18 +52,20 @@ const SketchForm: React.FC = () => {
                     />
                 </Tab>
                 <Tab label={'3D Модель'}>
-                    <Sketch3DViewer
-                        sketch={formState?.sketch}
-                    />
+                    <Sketch3DViewer sketch={formState?.sketch} />
                 </Tab>
                 <Tab label={'Развертка'}>
-                    <Sketch2DScan
-                        sketch={formState?.sketch}
-                    />
+                    <Sketch2DScan sketch={formState?.sketch} />
                 </Tab>
             </Tabs>
             <div style={{ width: '100%' }}>
-                <Message content={drawing ? 'Режим редактирования (нажмите ESC)' : 'Режим просмотра'}/>
+                <Message
+                    content={
+                        drawing
+                            ? 'Режим редактирования (нажмите ESC)'
+                            : 'Режим просмотра'
+                    }
+                />
                 <FormEditor
                     formState={formState}
                     onChangeFormState={handleFormChange}

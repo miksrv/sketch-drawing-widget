@@ -1,4 +1,4 @@
-import {Point2D} from "./types";
+import { Point2D } from './types'
 
 /**
  * Checks if lines intersect in two-dimensional space.
@@ -7,23 +7,25 @@ import {Point2D} from "./types";
  * @returns {boolean} Returns true if at least two lines intersect; otherwise, returns false.
  */
 export const doLinesIntersect = (lines: Point2D[]): boolean => {
-    const numLines = lines.length;
+    const numLines = lines.length
 
     for (let i = 0; i < numLines - 2; i += 2) {
-        const line1Start = lines[i];
-        const line1End = lines[i + 1];
+        const line1Start = lines[i]
+        const line1End = lines[i + 1]
 
         for (let j = i + 2; j < numLines; j += 2) {
-            const line2Start = lines[j];
-            const line2End = lines[j + 1];
+            const line2Start = lines[j]
+            const line2End = lines[j + 1]
 
-            if (doSegmentsIntersect(line1Start, line1End, line2Start, line2End)) {
-                return true;
+            if (
+                doSegmentsIntersect(line1Start, line1End, line2Start, line2End)
+            ) {
+                return true
             }
         }
     }
 
-    return false;
+    return false
 }
 
 /**
@@ -35,12 +37,18 @@ export const doLinesIntersect = (lines: Point2D[]): boolean => {
  * @param {Point2D} seg2End - Ending point of the second line segment.
  * @returns {boolean} Returns true if the line segments intersect; otherwise, returns false.
  */
-export const doSegmentsIntersect = (seg1Start: Point2D, seg1End: Point2D, seg2Start: Point2D, seg2End: Point2D): boolean => {
+export const doSegmentsIntersect = (
+    seg1Start: Point2D,
+    seg1End: Point2D,
+    seg2Start: Point2D,
+    seg2End: Point2D
+): boolean => {
     const orientation = (p: Point2D, q: Point2D, r: Point2D): number => {
-        const val = (q?.y - p?.y) * (r?.x - q?.x) - (q?.x - p?.x) * (r?.y - q?.y);
-        if (val === 0) return 0; // Collinear
-        return val > 0 ? 1 : 2; // Clockwise or counterclockwise
-    };
+        const val =
+            (q?.y - p?.y) * (r?.x - q?.x) - (q?.x - p?.x) * (r?.y - q?.y)
+        if (val === 0) return 0 // Collinear
+        return val > 0 ? 1 : 2 // Clockwise or counterclockwise
+    }
 
     const onSegment = (p: Point2D, q: Point2D, r: Point2D): boolean => {
         return (
@@ -48,13 +56,13 @@ export const doSegmentsIntersect = (seg1Start: Point2D, seg1End: Point2D, seg2St
             q.x >= Math.min(p.x, r.x) &&
             q.y <= Math.max(p.y, r.y) &&
             q.y >= Math.min(p.y, r.y)
-        );
-    };
+        )
+    }
 
-    const o1 = orientation(seg1Start, seg1End, seg2Start);
-    const o2 = orientation(seg1Start, seg1End, seg2End);
-    const o3 = orientation(seg2Start, seg2End, seg1Start);
-    const o4 = orientation(seg2Start, seg2End, seg1End);
+    const o1 = orientation(seg1Start, seg1End, seg2Start)
+    const o2 = orientation(seg1Start, seg1End, seg2End)
+    const o3 = orientation(seg2Start, seg2End, seg1Start)
+    const o4 = orientation(seg2Start, seg2End, seg1End)
 
     if (
         (o1 !== o2 && o3 !== o4) ||
@@ -63,44 +71,47 @@ export const doSegmentsIntersect = (seg1Start: Point2D, seg1End: Point2D, seg2St
         (o3 === 0 && onSegment(seg2Start, seg1Start, seg2End)) ||
         (o4 === 0 && onSegment(seg2Start, seg1End, seg2End))
     ) {
-        return true;
+        return true
     }
 
-    return false;
+    return false
 }
 
 export const encodeCoordinates = (coordinates: Point2D[]): string =>
-    coordinates?.map(coord => `${coord.x},${coord.y}`).join(',')
+    coordinates?.map((coord) => `${coord.x},${coord.y}`).join(',')
 
 export const decodeCoordinates = (encodedString: string): Point2D[] => {
-    const parts = encodedString.split(',');
-    const coordinates = [];
+    const parts = encodedString.split(',')
+    const coordinates = []
     for (let i = 0; i < parts.length; i += 2) {
         coordinates.push({
             x: parseFloat(parts[i]),
             y: parseFloat(parts[i + 1])
-        });
+        })
     }
 
-    return coordinates;
+    return coordinates
 }
 
 export const transformPoints = (points: Point2D[]) => {
-    let transformed = [];
+    const transformed = []
 
     // Устанавливаем начальную точку
-    transformed.push({ x: 10, y: points[0].y });
+    transformed.push({ x: 10, y: points[0].y })
 
     for (let i = 0; i < points.length - 1; i++) {
         // Вычисляем разницу x между текущим и следующим элементами
-        let diffX = Math.abs(points[i].x - points[i + 1].x);
+        const diffX = Math.abs(points[i].x - points[i + 1].x)
 
         // Добавляем новый объект в массив с этой разницей и текущей y координатой
-        transformed.push({ x: diffX, y: points[i].y });
+        transformed.push({ x: diffX, y: points[i].y })
 
         // Добавляем новый объект с x увеличенным на 300 и текущей y координатой
-        transformed.push({ x: transformed[transformed.length - 1].x + 300, y: points[i].y });
+        transformed.push({
+            x: transformed[transformed.length - 1].x + 300,
+            y: points[i].y
+        })
     }
 
-    return transformed;
-};
+    return transformed
+}

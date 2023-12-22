@@ -3,10 +3,9 @@
  *
  * @module Button
  */
+import React from 'react'
 
-import React from "react";
-
-import styles from './styles.module.sass';
+import styles from './styles.module.sass'
 
 /**
  * @typedef {Object} InputProps - Props for the Button component.
@@ -16,8 +15,8 @@ import styles from './styles.module.sass';
  */
 
 interface InputProps extends React.ButtonHTMLAttributes<any> {
-    children?: string;
-    variant?: 'primary' | 'default';
+    children?: string
+    variant?: 'primary' | 'default'
 }
 
 /**
@@ -37,6 +36,6 @@ const Button: React.FC<InputProps> = (props: InputProps): JSX.Element => (
     >
         {props.children}
     </button>
-);
+)
 
-export default Button;
+export default Button

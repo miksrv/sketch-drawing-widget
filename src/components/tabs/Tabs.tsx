@@ -1,13 +1,15 @@
-import React, {useState} from "react";
+import React, { useState } from 'react'
 
 import styles from './styles.module.sass'
 
 interface TabsProps {
-    children: React.ReactNode;
+    children: React.ReactNode
 }
 
 const Tabs: React.FC<TabsProps> = ({ children }) => {
-    const [activeTab, setActiveTab] = useState<string>((children as React.ReactElement<TabProps>[])[0].props.label);
+    const [activeTab, setActiveTab] = useState<string>(
+        (children as React.ReactElement<TabProps>[])[0].props.label
+    )
 
     return (
         <div className={styles.tabs}>
@@ -24,7 +26,9 @@ const Tabs: React.FC<TabsProps> = ({ children }) => {
                         className={
                             child.props.disable
                                 ? styles.disable
-                                : activeTab === child.props.label ? styles.active : undefined
+                                : activeTab === child.props.label
+                                  ? styles.active
+                                  : undefined
                         }
                     >
                         {child.props.label}
@@ -33,20 +37,20 @@ const Tabs: React.FC<TabsProps> = ({ children }) => {
             </div>
             <div className={styles.tabContent}>
                 {(children as React.ReactElement<TabProps>[]).map((child) => {
-                    if (child.props.label !== activeTab) return undefined;
-                    return child.props.children;
+                    if (child.props.label !== activeTab) return undefined
+                    return child.props.children
                 })}
             </div>
         </div>
-    );
-};
-
-interface TabProps {
-    label: string;
-    disable?: boolean
-    children: React.ReactNode;
+    )
 }
 
-export const Tab: React.FC<TabProps> = ({ children }) => <>children</>;
+interface TabProps {
+    label: string
+    disable?: boolean
+    children: React.ReactNode
+}
+
+export const Tab: React.FC<TabProps> = ({ children }) => <>children</>
 
 export default Tabs

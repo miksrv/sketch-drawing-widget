@@ -1,10 +1,9 @@
-import React from "react";
+import React from 'react'
 
-import Input from "../../../input";
-
+import { encodeCoordinates } from '../../../../functions/geometry'
+import Input from '../../../input'
+import { FormProps } from '../../types'
 import styles from './styles.module.sass'
-import {FormProps} from "../../types";
-import {encodeCoordinates} from "../../../../functions/geometry";
 
 interface FormEditor {
     formState?: FormProps
@@ -12,7 +11,7 @@ interface FormEditor {
 }
 
 const FormEditor: React.FC<FormEditor> = (props) => {
-    const {formState, onChangeFormState} = props
+    const { formState, onChangeFormState } = props
 
     return (
         <div className={styles.section}>

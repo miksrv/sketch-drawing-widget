@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react'
 
 import styles from './styles.module.sass'
 
 interface ContainerProps {
-    children?: React.ReactNode;
+    children?: React.ReactNode
     title?: string
 }
 
@@ -15,11 +15,7 @@ const Container: React.FC<ContainerProps> = ({ title, children }) => (
                 <hr className={styles.divider} />
             </div>
         )}
-        {children && (
-            <div className={styles.content}>
-                {children}
-            </div>
-        )}
+        {children && <div className={styles.content}>{children}</div>}
     </div>
 )
 
