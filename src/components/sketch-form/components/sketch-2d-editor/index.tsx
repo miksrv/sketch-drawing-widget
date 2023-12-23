@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { doLinesIntersect } from '../../../../functions/geometry'
-import { Point2D } from '../../../../functions/types'
+import { Line2D, Point2D } from '../../../../functions/types'
 import styles from './styles.module.sass'
 
 interface Sketch2DEditorProps {
@@ -182,8 +182,16 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
 
                 if (i > 1 && i < points.length) {
                     // Угол между двумя прямыми
-                    const prevLine = { end: startPoint, start: points[i - 2] }
-                    const currentLine = { end: endPoint, start: startPoint }
+                    const prevLine: Line2D = {
+                        end: startPoint,
+                        start: points[i - 2]
+                    }
+
+                    const currentLine: Line2D = {
+                        end: endPoint,
+                        start: startPoint
+                    }
+
                     const angle = getAngleBetweenLines(prevLine, currentLine)
 
                     ctx.fillText(
@@ -196,7 +204,7 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
         }
     }
 
-    const getAngleBetweenLines = (line1: any, line2: any) => {
+    const getAngleBetweenLines = (line1: Line2D, line2: Line2D) => {
         const angle1 = Math.atan2(
             line1.end.y - line1.start.y,
             line1.end.x - line1.start.x

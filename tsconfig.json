@@ -19,11 +19,12 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": "src",
     "paths": {
-      "@/*": ["./*"]
+      "@components/*": ["./components/*"],
+      "@functions/*": ["./functions/*"]
     }
   },
-  "include": [
-    "src"
-  ]
+  "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules"]
 }

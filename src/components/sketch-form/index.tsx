@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { Point2D } from '../../functions/types'
 import Button from '../button'
-import Tabs, { Tab } from '../tabs/Tabs'
+import Index, { Tab } from '../tabs'
 import FormEditor from './components/form-editor'
 import Message from './components/message'
 import Sketch2DEditor from './components/sketch-2d-editor'
@@ -43,7 +43,7 @@ const SketchForm: React.FC = () => {
 
     return (
         <div className={styles.section}>
-            <Tabs>
+            <Index>
                 <Tab label={'Эскиз'}>
                     <Sketch2DEditor
                         drawing={drawing}
@@ -57,7 +57,7 @@ const SketchForm: React.FC = () => {
                 <Tab label={'Развертка'}>
                     <Sketch2DScan sketch={formState?.sketch} />
                 </Tab>
-            </Tabs>
+            </Index>
             <div style={{ width: '100%' }}>
                 <Message
                     content={

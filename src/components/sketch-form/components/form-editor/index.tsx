@@ -5,12 +5,12 @@ import Input from '../../../input'
 import { FormProps } from '../../types'
 import styles from './styles.module.sass'
 
-interface FormEditor {
+interface FormEditorProps {
     formState?: FormProps
     onChangeFormState?: (name: keyof FormProps, value: string) => void
 }
 
-const FormEditor: React.FC<FormEditor> = (props) => {
+const FormEditor: React.FC<FormEditorProps> = (props) => {
     const { formState, onChangeFormState } = props
 
     return (
@@ -19,7 +19,7 @@ const FormEditor: React.FC<FormEditor> = (props) => {
                 value={formState?.title}
                 label={'Название профиля'}
                 placeholder={'Введите название профиля'}
-                onChange={(event: React.ChangeEvent<any>) => {
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     onChangeFormState?.('title', event.target.value)
                 }}
             />

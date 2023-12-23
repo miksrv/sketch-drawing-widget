@@ -130,7 +130,8 @@
             }
         ],
 
-        "react/no-unknown-property": ["error", { "ignore": ["css"] }]
+        "react/no-unknown-property": "off",
+        "@typescript-eslint/no-explicit-any": "off"
     },
     "settings": {
         "react": {

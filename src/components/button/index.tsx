@@ -1,29 +1,26 @@
-/**
- * Button component for user interaction.
- *
- * @module Button
- */
 import React from 'react'
 
 import styles from './styles.module.sass'
 
 /**
- * @typedef {Object} InputProps - Props for the Button component.
- * @property {string} [children] - The content inside the button.
- * @property {'primary' | 'default'} [variant] - The variant style of the button.
- * @property {boolean} [disabled] - Whether the button is disabled.
+ * Properties for the Button component.
  */
-
 interface InputProps extends React.ButtonHTMLAttributes<unknown> {
+    /**
+     * The content inside the button.
+     */
     children?: string
+    /**
+     * The variant style of the button.
+     */
     variant?: 'primary' | 'default'
 }
 
 /**
- * Button component that renders a clickable button with specified styles.
+ * A button component with optional properties and styling variants.
  *
- * @param {InputProps} props - Props passed to the Button component.
- * @returns {JSX.Element} Returns the JSX element of the Button component.
+ * @param {InputProps} props - The properties for the Button component.
+ * @returns {JSX.Element} Returns the rendered Button component.
  */
 const Button: React.FC<InputProps> = (props: InputProps): JSX.Element => (
     <button

@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { Point2D } from '@/src/functions/types'
+import { Point2D } from '@functions/types'
 import { OrbitControls, Text } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import React, { useRef } from 'react'
