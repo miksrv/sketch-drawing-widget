@@ -58,5 +58,5 @@ jobs:
         name: Build UI
         run: |
           export dateNow=$(date +"%Y-%m-%dT%H:%M")
-          echo "export const update = '$dateNow'" > update.ts
+          echo "export const update = '$dateNow'" > src/update.ts
           yarn build
