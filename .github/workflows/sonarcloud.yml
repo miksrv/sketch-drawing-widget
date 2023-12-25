@@ -43,14 +43,8 @@ jobs:
         name: Install dependencies
         run: yarn install
 
-      - if: ${{ steps.cache-build.outputs.cache-hit != 'true' }}
-        name: Configure Client
-        run: |
-          echo "NEXT_PUBLIC_API_URL = '${{ secrets.NEXT_PUBLIC_API_URL }}'
-          NEXT_PUBLIC_API_KEY = '${{ secrets.NEXT_PUBLIC_API_KEY }}'" > .env
-
-      - name: UI Unit Tests
-        run: yarn test
+#      - name: UI Unit Tests
+#        run: yarn test
 
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master

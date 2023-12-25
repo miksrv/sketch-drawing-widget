@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
+import packageInfo from '../../../package.json'
 import { Point2D } from '../../functions/types'
+import { update } from '../../update'
 import Button from '../button'
 import Index, { Tab } from '../tabs'
 import FormEditor from './components/form-editor'
@@ -58,7 +60,7 @@ const SketchForm: React.FC = () => {
                     <Sketch2DScan sketch={formState?.sketch} />
                 </Tab>
             </Index>
-            <div style={{ width: '100%' }}>
+            <div className={styles.formEditor}>
                 <Message
                     content={
                         drawing
@@ -73,6 +75,10 @@ const SketchForm: React.FC = () => {
                 <div className={styles.buttonsContainer}>
                     <Button variant={'primary'}>{'Сохранить'}</Button>
                     <Button>{'Отмена'}</Button>
+                </div>
+                <div className={styles.footer}>
+                    {'Version:'} {packageInfo.version}
+                    {','} {update}
                 </div>
             </div>
         </div>
