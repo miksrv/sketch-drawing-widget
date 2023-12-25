@@ -1,8 +1,8 @@
+import { Point2D } from 'functions/types'
 import React, { useEffect, useState } from 'react'
+import { update } from 'update'
 
 import packageInfo from '../../../package.json'
-import { Point2D } from '../../functions/types'
-import { update } from '../../update'
 import Button from '../button'
 import Index, { Tab } from '../tabs'
 import FormEditor from './components/form-editor'

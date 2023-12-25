@@ -1,7 +1,7 @@
+import Input from 'components/input'
+import { encodeCoordinates } from 'functions/geometry'
 import React from 'react'
 
-import { encodeCoordinates } from '../../../../functions/geometry'
-import Input from '../../../input'
 import { FormProps } from '../../types'
 import styles from './styles.module.sass'
 

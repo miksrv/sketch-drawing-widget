@@ -1,7 +1,7 @@
 import * as THREE from 'three'
-import { Point2D } from '@functions/types'
 import { OrbitControls, Text } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
+import { Point2D } from 'functions/types'
 import React, { useRef } from 'react'
 
 interface Sketch3DViewerProps {

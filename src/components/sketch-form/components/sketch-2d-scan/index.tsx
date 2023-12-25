@@ -1,6 +1,5 @@
+import { Point2D } from 'functions/types'
 import React, { useEffect, useRef } from 'react'
-
-import { Point2D } from '../../../../functions/types'
 
 interface Sketch2DScanProps {
     sketch?: Point2D[]

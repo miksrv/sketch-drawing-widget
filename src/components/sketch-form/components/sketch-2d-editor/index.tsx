@@ -1,7 +1,7 @@
+import { doLinesIntersect } from 'functions/geometry'
+import { Line2D, Point2D } from 'functions/types'
 import React, { useEffect, useState } from 'react'
 
-import { doLinesIntersect } from '../../../../functions/geometry'
-import { Line2D, Point2D } from '../../../../functions/types'
 import styles from './styles.module.sass'
 
 interface Sketch2DEditorProps {
