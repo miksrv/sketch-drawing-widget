@@ -2,6 +2,7 @@ import Input from 'components/input'
 import { encodeCoordinates } from 'functions/geometry'
 import React from 'react'
 
+import Dropdown from '../../../dropdown'
 import { FormProps } from '../../types'
 import styles from './styles.module.sass'
 
@@ -32,6 +33,12 @@ interface FormEditorProps {
 const FormEditor: React.FC<FormEditorProps> = (props) => {
     const { formState, onChangeFormState } = props
 
+    const options = ['Нет', 'Опция 1', 'Опция 2']
+
+    const handleSelect = (selectedOption: string) => {
+        console.log('Выбранная опция:', selectedOption)
+    }
+
     return (
         <div className={styles.section}>
             {/* Input for the profile title */}
@@ -49,6 +56,24 @@ const FormEditor: React.FC<FormEditorProps> = (props) => {
                 value={encodeCoordinates(formState?.sketch || [])}
                 label={'Код профиля'}
                 readOnly={true}
+            />
+
+            <Dropdown
+                label={'Подгиб слева'}
+                options={options}
+                onSelect={handleSelect}
+            />
+
+            <Dropdown
+                label={'Подгиб справа'}
+                options={options}
+                onSelect={handleSelect}
+            />
+
+            <Dropdown
+                label={'Сторона покраски'}
+                options={options}
+                onSelect={handleSelect}
             />
         </div>
     )
