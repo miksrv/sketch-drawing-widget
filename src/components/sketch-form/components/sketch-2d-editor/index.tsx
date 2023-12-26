@@ -11,11 +11,48 @@ interface Sketch2DEditorProps {
     onSketchEdit?: (sketch?: Point2D[]) => void
 }
 
+const interpolatePoints = (points: Point2D[]): Point2D[] => {
+    // Находим минимальные и максимальные значения x и y
+    let minX = points[0].x
+    let minY = points[0].y
+    let maxX = points[0].x
+    let maxY = points[0].y
+
+    for (const point of points) {
+        minX = Math.min(minX, point.x)
+        minY = Math.min(minY, point.y)
+        maxX = Math.max(maxX, point.x)
+        maxY = Math.max(maxY, point.y)
+    }
+
+    // Вычисляем новые границы с отступами
+    const canvasWidth = 500
+    const canvasHeight = 400
+    const padding = 50
+
+    const newMinX = padding
+    const newMinY = padding
+    const newMaxX = canvasWidth - padding
+    const newMaxY = canvasHeight - padding
+
+    // Вычисляем коэффициенты масштабирования для x и y
+    const scaleX = (newMaxX - newMinX) / (maxX - minX)
+    const scaleY = (newMaxY - newMinY) / (maxY - minY)
+
+    // Вычисляем новые координаты точек
+    const newPoints = points.map((point) => ({
+        x: newMinX + (point.x - minX) * scaleX,
+        y: newMinY + (point.y - minY) * scaleY
+    }))
+
+    return newPoints
+}
+
 const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
     const { drawing, sketch, paintSide, onSketchEdit } = props
 
     const [points, setPoints] = useState<Point2D[]>(sketch || [])
-    const [tempPoint, setTempPoint] = useState({ x: 0, y: 0 })
+    const [tempPoint, setTempPoint] = useState<Point2D>({ x: 0, y: 0 })
 
     useEffect(() => {
         if (sketch) {
@@ -73,6 +110,12 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
         draw()
         drawInfo()
     }, [paintSide])
+
+    useEffect(() => {
+        if (!drawing && points.length) {
+            setPoints(interpolatePoints(points))
+        }
+    }, [drawing])
 
     const draw = () => {
         const canvas = document.getElementById(
@@ -136,41 +179,45 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
         ctx?.stroke()
 
         // Рисование пунктирных линий с внешней стороны
-        ctx.beginPath()
-        ctx.setLineDash([dashLength, dashLength])
-        ctx.strokeStyle = 'red' // красный цвет
-        ctx.lineWidth = lineWidth
+        if (
+            paintSide &&
+            ['Снизу', 'Сверху', 'Двухсторонняя'].includes(paintSide)
+        ) {
+            ctx.beginPath()
+            ctx.setLineDash([dashLength, dashLength])
+            ctx.strokeStyle = 'red' // красный цвет
+            ctx.lineWidth = lineWidth
 
-        for (let i = 0; i < points.length - 1; i++) {
-            const startPoint = points[i]
-            const endPoint = points[i + 1]
+            for (let i = 0; i < points.length - 1; i++) {
+                const startPoint = points[i]
+                const endPoint = points[i + 1]
 
-            const dx = endPoint.x - startPoint.x
-            const dy = endPoint.y - startPoint.y
+                const dx = endPoint.x - startPoint.x
+                const dy = endPoint.y - startPoint.y
 
-            // Вычисляем точки для пунктирной линии с внешней стороны
-            const offset = 3 // расстояние от основной линии
-            const offsetX = (dy / Math.sqrt(dx * dx + dy * dy)) * offset
-            const offsetY = (dx / Math.sqrt(dx * dx + dy * dy)) * offset
+                // Вычисляем точки для пунктирной линии с внешней стороны
+                const offset = 3 // расстояние от основной линии
+                const offsetX = (dy / Math.sqrt(dx * dx + dy * dy)) * offset
+                const offsetY = (dx / Math.sqrt(dx * dx + dy * dy)) * offset
 
-            // Внутренняя сторона
-            if (paintSide === 'Снизу' || paintSide === 'Двухсторонняя') {
-                ctx.moveTo(startPoint.x - offsetX, startPoint.y + offsetY)
-                ctx.lineTo(endPoint.x - offsetX, endPoint.y + offsetY)
-                ctx.stroke()
+                // Внутренняя сторона
+                if (paintSide === 'Снизу' || paintSide === 'Двухсторонняя') {
+                    ctx.moveTo(startPoint.x - offsetX, startPoint.y + offsetY)
+                    ctx.lineTo(endPoint.x - offsetX, endPoint.y + offsetY)
+                    ctx.stroke()
+                }
+
+                // Внешняя сторона
+                if (paintSide === 'Сверху' || paintSide === 'Двухсторонняя') {
+                    ctx.moveTo(startPoint.x + offsetX, startPoint.y - offsetY)
+                    ctx.lineTo(endPoint.x + offsetX, endPoint.y - offsetY)
+                    ctx.stroke()
+                }
             }
 
-            // Внешняя сторона
-            if (paintSide === 'Сверху' || paintSide === 'Двухсторонняя') {
-                ctx.moveTo(startPoint.x + offsetX, startPoint.y - offsetY)
-                ctx.lineTo(endPoint.x + offsetX, endPoint.y - offsetY)
-                ctx.stroke()
-            }
+            ctx.setLineDash([]) // сброс пунктирного стиля
+            ctx.strokeStyle = 'black' // черный цвет
         }
-
-        ctx.setLineDash([]) // сброс пунктирного стиля
-
-        ctx.strokeStyle = 'black' // красный цвет
 
         onSketchEdit?.(points)
     }
