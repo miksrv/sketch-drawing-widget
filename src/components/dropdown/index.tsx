@@ -1,13 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import arrowDown from './arrow-down.svg'
-import arrowUp from './arrow-up.svg'
 import styles from './styles.module.sass'
 
 interface DropdownProps {
     options: string[]
     label?: string
-    onSelect: (selectedOption: string) => void
+    onSelect?: (selectedOption: string) => void
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ options, label, onSelect }) => {
@@ -21,8 +19,8 @@ const Dropdown: React.FC<DropdownProps> = ({ options, label, onSelect }) => {
 
     const handleSelect = (option: string) => {
         setSelectedOption(option)
-        onSelect(option)
         setIsOpen(false)
+        onSelect?.(option)
     }
 
     const handleClickOutside = (event: MouseEvent) => {

@@ -35,9 +35,9 @@ const FormEditor: React.FC<FormEditorProps> = (props) => {
 
     const options = ['Нет', 'Опция 1', 'Опция 2']
 
-    const handleSelect = (selectedOption: string) => {
-        console.log('Выбранная опция:', selectedOption)
-    }
+    // const handleSelect = (selectedOption: string) => {
+    //     // console.log('Выбранная опция:', selectedOption)
+    // }
 
     return (
         <div className={styles.section}>
@@ -61,13 +61,13 @@ const FormEditor: React.FC<FormEditorProps> = (props) => {
             <Dropdown
                 label={'Подгиб слева'}
                 options={options}
-                onSelect={handleSelect}
+                // onSelect={handleSelect}
             />
 
             <Dropdown
                 label={'Подгиб справа'}
                 options={options}
-                onSelect={handleSelect}
+                // onSelect={handleSelect}
             />
 
             <Dropdown

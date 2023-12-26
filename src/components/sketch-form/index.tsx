@@ -56,7 +56,10 @@ const SketchForm: React.FC = () => {
                 <Tab label={'3D Модель'}>
                     <Sketch3DViewer sketch={formState?.sketch} />
                 </Tab>
-                <Tab label={'Развертка'}>
+                <Tab
+                    label={'Развертка'}
+                    disable={true}
+                >
                     <Sketch2DScan sketch={formState?.sketch} />
                 </Tab>
             </Index>
