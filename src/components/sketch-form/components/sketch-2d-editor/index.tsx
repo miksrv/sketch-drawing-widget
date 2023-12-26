@@ -7,11 +7,12 @@ import styles from './styles.module.sass'
 interface Sketch2DEditorProps {
     drawing?: boolean
     sketch?: Point2D[]
+    paintSide?: string
     onSketchEdit?: (sketch?: Point2D[]) => void
 }
 
 const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
-    const { drawing, sketch, onSketchEdit } = props
+    const { drawing, sketch, paintSide, onSketchEdit } = props
 
     const [points, setPoints] = useState<Point2D[]>(sketch || [])
     const [tempPoint, setTempPoint] = useState({ x: 0, y: 0 })
@@ -68,6 +69,11 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
         }
     }, [points, tempPoint])
 
+    useEffect(() => {
+        draw()
+        drawInfo()
+    }, [paintSide])
+
     const draw = () => {
         const canvas = document.getElementById(
             'Sketch2DEditor'
@@ -118,14 +124,53 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
         ctx?.moveTo(points[0]?.x, points[0]?.y)
 
         for (let i = 1; i < points.length; i++) {
+            ctx.lineWidth = 2
             ctx?.lineTo(points[i].x, points[i].y)
         }
 
         if (drawing) {
+            ctx.lineWidth = 2
             ctx?.lineTo(tempPoint.x, tempPoint.y)
         }
 
         ctx?.stroke()
+
+        // Рисование пунктирных линий с внешней стороны
+        ctx.beginPath()
+        ctx.setLineDash([dashLength, dashLength])
+        ctx.strokeStyle = 'red' // красный цвет
+        ctx.lineWidth = lineWidth
+
+        for (let i = 0; i < points.length - 1; i++) {
+            const startPoint = points[i]
+            const endPoint = points[i + 1]
+
+            const dx = endPoint.x - startPoint.x
+            const dy = endPoint.y - startPoint.y
+
+            // Вычисляем точки для пунктирной линии с внешней стороны
+            const offset = 3 // расстояние от основной линии
+            const offsetX = (dy / Math.sqrt(dx * dx + dy * dy)) * offset
+            const offsetY = (dx / Math.sqrt(dx * dx + dy * dy)) * offset
+
+            // Внутренняя сторона
+            if (paintSide === 'Снизу' || paintSide === 'Двухсторонняя') {
+                ctx.moveTo(startPoint.x - offsetX, startPoint.y + offsetY)
+                ctx.lineTo(endPoint.x - offsetX, endPoint.y + offsetY)
+                ctx.stroke()
+            }
+
+            // Внешняя сторона
+            if (paintSide === 'Сверху' || paintSide === 'Двухсторонняя') {
+                ctx.moveTo(startPoint.x + offsetX, startPoint.y - offsetY)
+                ctx.lineTo(endPoint.x + offsetX, endPoint.y - offsetY)
+                ctx.stroke()
+            }
+        }
+
+        ctx.setLineDash([]) // сброс пунктирного стиля
+
+        ctx.strokeStyle = 'black' // красный цвет
 
         onSketchEdit?.(points)
     }
@@ -176,9 +221,20 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
                     y: (startPoint.y + endPoint.y) / 2
                 }
 
+                // Рассчитываем угол наклона между двумя точками
+                const textAngle = Math.atan2(
+                    startPoint.y - endPoint.y,
+                    startPoint.x - endPoint.x
+                )
+
                 ctx.font = '12px Arial'
                 ctx.fillStyle = '#000'
-                ctx.fillText(`${length.toFixed(0)} мм`, midPoint.x, midPoint.y)
+
+                ctx.save() // Сохраняем текущее состояние контекста
+                ctx.translate(midPoint.x, midPoint.y) // Перемещаем начало координат в точку
+                ctx.rotate(textAngle) // Поворачиваем контекст рисования на рассчитанный угол
+                ctx.fillText(`${length.toFixed(0)} мм`, -20, -5)
+                ctx.restore() // Восстанавливаем сохраненное состояние контекста
 
                 if (i > 1 && i < points.length) {
                     // Угол между двумя прямыми
@@ -196,8 +252,8 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
 
                     ctx.fillText(
                         `${angle.toFixed(0)}°`,
-                        startPoint.x + 10,
-                        startPoint.y + 10
+                        startPoint.x + 5,
+                        startPoint.y + 5
                     )
                 }
             }

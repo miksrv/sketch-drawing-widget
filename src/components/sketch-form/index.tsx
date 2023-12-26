@@ -50,6 +50,7 @@ const SketchForm: React.FC = () => {
                     <Sketch2DEditor
                         drawing={drawing}
                         sketch={formState?.sketch}
+                        paintSide={formState?.paintSide}
                         onSketchEdit={handleSketchEdit}
                     />
                 </Tab>

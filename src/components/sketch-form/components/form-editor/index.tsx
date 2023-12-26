@@ -23,6 +23,9 @@ interface FormEditorProps {
     onChangeFormState?: (name: keyof FormProps, value: string) => void
 }
 
+const pointOptions = ['Нет', 'ᓓ', 'ᓗ']
+const paintSideOptions = ['Нет', 'Сверху', 'Снизу', 'Двухсторонняя']
+
 /**
  * Component for editing form details.
  *
@@ -33,11 +36,9 @@ interface FormEditorProps {
 const FormEditor: React.FC<FormEditorProps> = (props) => {
     const { formState, onChangeFormState } = props
 
-    const options = ['Нет', 'Опция 1', 'Опция 2']
-
-    // const handleSelect = (selectedOption: string) => {
-    //     // console.log('Выбранная опция:', selectedOption)
-    // }
+    const handleSelect = (name: keyof FormProps, selectedOption: string) => {
+        onChangeFormState?.(name, selectedOption)
+    }
 
     return (
         <div className={styles.section}>
@@ -59,21 +60,24 @@ const FormEditor: React.FC<FormEditorProps> = (props) => {
             />
 
             <Dropdown
+                name={'firstPoint'}
                 label={'Подгиб слева'}
-                options={options}
-                // onSelect={handleSelect}
+                options={pointOptions}
+                onSelect={handleSelect}
             />
 
             <Dropdown
+                name={'lastPoint'}
                 label={'Подгиб справа'}
-                options={options}
-                // onSelect={handleSelect}
+                options={pointOptions}
+                onSelect={handleSelect}
             />
 
             <Dropdown
+                name={'paintSide'}
                 label={'Сторона покраски'}
-                options={options}
-                // onSelect={handleSelect}
+                options={paintSideOptions}
+                onSelect={handleSelect}
             />
         </div>
     )

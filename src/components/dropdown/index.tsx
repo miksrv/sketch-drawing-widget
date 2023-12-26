@@ -1,14 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react'
 
+import { FormProps } from '../sketch-form/types'
 import styles from './styles.module.sass'
 
 interface DropdownProps {
     options: string[]
+    name: keyof FormProps
     label?: string
-    onSelect?: (selectedOption: string) => void
+    onSelect?: (name: keyof FormProps, selectedOption: string) => void
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options, label, onSelect }) => {
+const Dropdown: React.FC<DropdownProps> = ({
+    name,
+    options,
+    label,
+    onSelect
+}) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOption, setSelectedOption] = useState<string | null>(null)
     const dropdownRef = useRef<HTMLDivElement>(null)
@@ -20,7 +27,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, label, onSelect }) => {
     const handleSelect = (option: string) => {
         setSelectedOption(option)
         setIsOpen(false)
-        onSelect?.(option)
+        onSelect?.(name || '', option)
     }
 
     const handleClickOutside = (event: MouseEvent) => {
