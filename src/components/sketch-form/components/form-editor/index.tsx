@@ -73,7 +73,7 @@ const FormEditor: React.FC<FormEditorProps> = (props) => {
             <Dropdown
                 label={'Сторона покраски'}
                 options={options}
-                onSelect={handleSelect}
+                // onSelect={handleSelect}
             />
         </div>
     )
