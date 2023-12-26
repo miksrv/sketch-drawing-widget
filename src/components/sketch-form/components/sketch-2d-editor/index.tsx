@@ -40,12 +40,10 @@ const interpolatePoints = (points: Point2D[]): Point2D[] => {
     const scaleY = (newMaxY - newMinY) / (maxY - minY)
 
     // Вычисляем новые координаты точек
-    const newPoints = points.map((point) => ({
-        x: newMinX + (point.x - minX) * scaleX,
-        y: newMinY + (point.y - minY) * scaleY
+    return points.map((point) => ({
+        x: Math.round(newMinX + (point.x - minX) * scaleX),
+        y: Math.round(newMinY + (point.y - minY) * scaleY)
     }))
-
-    return newPoints
 }
 
 const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
@@ -104,7 +102,7 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
             canvas.removeEventListener('mousedown', handleMouseDown)
             canvas.removeEventListener('mousemove', handleMouseMove)
         }
-    }, [points, tempPoint])
+    }, [points, tempPoint, paintSide])
 
     useEffect(() => {
         draw()
@@ -121,6 +119,7 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
         const canvas = document.getElementById(
             'Sketch2DEditor'
         ) as HTMLCanvasElement
+
         const ctx = canvas.getContext('2d')
 
         if (!ctx) {
@@ -163,20 +162,20 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
             return
         }
 
-        ctx?.beginPath()
-        ctx?.moveTo(points[0]?.x, points[0]?.y)
+        ctx.beginPath()
+        ctx.moveTo(points[0]?.x, points[0]?.y)
 
         for (let i = 1; i < points.length; i++) {
             ctx.lineWidth = 2
-            ctx?.lineTo(points[i].x, points[i].y)
+            ctx.lineTo(points[i].x, points[i].y)
         }
 
         if (drawing) {
             ctx.lineWidth = 2
-            ctx?.lineTo(tempPoint.x, tempPoint.y)
+            ctx.lineTo(tempPoint.x, tempPoint.y)
         }
 
-        ctx?.stroke()
+        ctx.stroke()
 
         // Рисование пунктирных линий с внешней стороны
         if (

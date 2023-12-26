@@ -1,6 +1,6 @@
 {
   "name": "sketch-drawing-widget",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "dependencies": {
     "@react-three/drei": "^9.92.4",
@@ -25,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "typedoc": "typedoc  --out docs --entryPointStrategy expand src",
+    "typedoc": "typedoc --plugin typedoc-plugin-markdown --out docs --entryPointStrategy expand src",
     "eslint:check": "eslint -c .eslintrc --ext .js,.jsx,.ts,.tsx .",
     "eslint:fix": "npm run eslint:check -- --fix",
     "prettier:check": "prettier --check .",
@@ -61,6 +61,7 @@
     "eslint-plugin-sort-keys": "^2.3.5",
     "eslint-plugin-testing-library": "^6.2.0",
     "prettier": "^3.1.1",
-    "typedoc": "^0.25.4"
+    "typedoc": "^0.25.4",
+    "typedoc-plugin-markdown": "^3.17.1"
   }
 }
