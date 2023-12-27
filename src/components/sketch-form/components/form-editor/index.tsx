@@ -61,14 +61,14 @@ const FormEditor: React.FC<FormEditorProps> = (props) => {
 
             <Dropdown
                 name={'firstPoint'}
-                label={'Подгиб слева'}
+                label={'Законцовка в начале'}
                 options={pointOptions}
                 onSelect={handleSelect}
             />
 
             <Dropdown
                 name={'lastPoint'}
-                label={'Подгиб справа'}
+                label={'Законцовка в конце'}
                 options={pointOptions}
                 onSelect={handleSelect}
             />
