@@ -127,10 +127,12 @@ export const addHookPoints = (
     const normalizedVectorY = vectorY / length
 
     // Повернем нормализованный вектор на 90 градусов
-    const rotatedVectorX = positive ? +normalizedVectorY : -normalizedVectorY // 90 градусов против часовой стрелки
-    // Умножим повернутый вектор на 10 пикселей, чтобы получить координаты новой точки
+    const rotatedVectorX = positive ? normalizedVectorY : -normalizedVectorY
+    const rotatedVectorY = positive ? -normalizedVectorX : normalizedVectorX
+
+    // Умножим повернутый вектор на заданный размер, чтобы получить координаты новой точки
     return {
-        x: points[0].x + (size ?? 10) * rotatedVectorX,
-        y: points[0].y + (size ?? 10) * normalizedVectorX
+        x: points[0].x + (size ?? 5) * rotatedVectorX,
+        y: points[0].y + (size ?? 5) * rotatedVectorY
     }
 }
