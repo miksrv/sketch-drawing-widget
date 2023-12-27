@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls, Text } from '@react-three/drei'
-import { Canvas, useLoader } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import { Point2D } from 'functions/types'
 import React, { useEffect, useRef, useState } from 'react'
 
@@ -24,9 +24,6 @@ const Sketch3DViewer: React.FC<Sketch3DViewerProps> = ({ sketch }) => {
     const [rectangles, setRectangles] = useState<any>()
 
     const [texture, setTexture] = useState(null)
-
-    // Загрузка текстуры (пример для PNG-файла)
-    // const texture = useLoader(THREE.TextureLoader, imageTexture)
 
     useEffect(() => {
         const loadTexture = async () => {
