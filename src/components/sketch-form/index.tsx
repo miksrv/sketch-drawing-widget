@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { update } from 'update'
 
 import packageInfo from '../../../package.json'
+import { addHookPoints } from '../../functions/geometry'
 import Button from '../button'
 import Index, { Tab } from '../tabs'
 import FormEditor from './components/form-editor'
@@ -16,6 +17,8 @@ import { FormProps } from './types'
 const SketchForm: React.FC = () => {
     const [formState, setFormState] = useState<FormProps>()
     const [drawing, setDrawing] = useState<boolean>(false)
+    const [firstPoints, setFirstPoints] = useState<Point2D[]>([])
+    const [lastPoints, setLastPoints] = useState<Point2D[]>([])
 
     const handleSketchEdit = (sketch?: Point2D[]) => {
         setFormState({ ...formState, sketch: sketch })
@@ -24,6 +27,40 @@ const SketchForm: React.FC = () => {
     const handleFormChange = (name: keyof FormProps, value: string) => {
         setFormState({ ...formState, [name]: value })
     }
+
+    useEffect(() => {
+        if (
+            formState?.sketch &&
+            formState.sketch?.length > 2 &&
+            formState.firstPoint
+        ) {
+            if (formState.firstPoint === 'ᓓ') {
+                const firstPoint = addHookPoints(formState.sketch, true)
+                const secondPoint = addHookPoints(
+                    [firstPoint, ...formState.sketch],
+                    true,
+                    20
+                )
+
+                setFirstPoints([secondPoint, firstPoint])
+            }
+
+            if (formState.firstPoint === 'ᓗ') {
+                const firstPoint = addHookPoints(formState.sketch, false)
+                const secondPoint = addHookPoints(
+                    [firstPoint, ...formState.sketch],
+                    false,
+                    20
+                )
+
+                setFirstPoints([secondPoint, firstPoint])
+            }
+
+            if (formState.firstPoint === 'Нет') {
+                setFirstPoints([])
+            }
+        }
+    }, [formState?.firstPoint])
 
     useEffect(() => {
         const handleKeyPress = (event: KeyboardEvent) => {
@@ -50,8 +87,8 @@ const SketchForm: React.FC = () => {
                     <Sketch2DEditor
                         drawing={drawing}
                         sketch={formState?.sketch}
-                        firstPoint={formState?.firstPoint}
-                        lastPoint={formState?.lastPoint}
+                        firstPoints={firstPoints}
+                        lastPoints={lastPoints}
                         paintSide={formState?.paintSide}
                         onSketchEdit={handleSketchEdit}
                     />
