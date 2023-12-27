@@ -66,12 +66,33 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
     }, [])
 
     useEffect(() => {
-        if (points?.length > 2) {
-            const firstPoint = addHookPoints(points)
-            const secondPoint = addHookPoints([firstPoint, ...points])
+        if (points?.length > 2 && firstPoint) {
+            if (firstPoint === 'ᓓ') {
+                const firstPoint = addHookPoints(points, true)
+                const secondPoint = addHookPoints(
+                    [firstPoint, ...points],
+                    true,
+                    20
+                )
 
-            // setFirstPoints([hookPoint1, hookPoint2])
-            setPoints([secondPoint, firstPoint, ...points])
+                setFirstPoints([secondPoint, firstPoint])
+            }
+
+            if (firstPoint === 'ᓗ') {
+                const firstPoint = addHookPoints(points, false)
+                const secondPoint = addHookPoints(
+                    [firstPoint, ...points],
+                    false,
+                    20
+                )
+
+                setFirstPoints([secondPoint, firstPoint])
+            }
+
+            if (firstPoint === 'Нет') {
+                setFirstPoints([])
+            }
+
             draw()
             drawInfo()
         }
@@ -180,6 +201,14 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
         }
 
         ctx.beginPath()
+
+        // Рисуем начальную законцовку
+        if (firstPoints.length && points.length) {
+            ctx.moveTo(firstPoints[0]?.x, firstPoints[0]?.y)
+            ctx.lineTo(firstPoints[1].x, firstPoints[1].y)
+            ctx.lineTo(points[0]?.x, points[0]?.y)
+        }
+
         ctx.moveTo(points[0]?.x, points[0]?.y)
 
         for (let i = 1; i < points.length; i++) {
