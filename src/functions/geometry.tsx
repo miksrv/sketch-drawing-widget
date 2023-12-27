@@ -64,17 +64,13 @@ export const doSegmentsIntersect = (
     const o3 = orientation(seg2Start, seg2End, seg1Start)
     const o4 = orientation(seg2Start, seg2End, seg1End)
 
-    if (
+    return (
         (o1 !== o2 && o3 !== o4) ||
         (o1 === 0 && onSegment(seg1Start, seg2Start, seg1End)) ||
         (o2 === 0 && onSegment(seg1Start, seg2End, seg1End)) ||
         (o3 === 0 && onSegment(seg2Start, seg1Start, seg2End)) ||
         (o4 === 0 && onSegment(seg2Start, seg1End, seg2End))
-    ) {
-        return true
-    }
-
-    return false
+    )
 }
 
 export const encodeCoordinates = (coordinates: Point2D[]): string =>
