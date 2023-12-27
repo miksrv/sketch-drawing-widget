@@ -115,3 +115,22 @@ export const transformPoints = (points: Point2D[]) => {
 
     return transformed
 }
+
+export const addHookPoints = (points: Point2D[]): Point2D => {
+    // Найдем вектор между первой и второй точкой
+    const vectorX = points[1].x - points[0].x
+    const vectorY = points[1].y - points[0].y
+
+    // Нормализуем вектор
+    const length = Math.sqrt(vectorX * vectorX + vectorY * vectorY)
+    const normalizedVectorX = vectorX / length
+    const normalizedVectorY = vectorY / length
+
+    // Повернем нормализованный вектор на 90 градусов
+    const rotatedVectorX = -normalizedVectorY // 90 градусов против часовой стрелки
+    // Умножим повернутый вектор на 10 пикселей, чтобы получить координаты новой точки
+    return {
+        x: points[0].x + 10 * rotatedVectorX,
+        y: points[0].y + 10 * normalizedVectorX
+    }
+}

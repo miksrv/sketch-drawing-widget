@@ -1,4 +1,4 @@
-import { doLinesIntersect } from 'functions/geometry'
+import { addHookPoints, doLinesIntersect } from 'functions/geometry'
 import { Line2D, Point2D } from 'functions/types'
 import React, { useEffect, useState } from 'react'
 
@@ -8,6 +8,8 @@ interface Sketch2DEditorProps {
     drawing?: boolean
     sketch?: Point2D[]
     paintSide?: string
+    firstPoint?: string
+    lastPoint?: string
     onSketchEdit?: (sketch?: Point2D[]) => void
 }
 
@@ -47,9 +49,12 @@ const interpolatePoints = (points: Point2D[]): Point2D[] => {
 }
 
 const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
-    const { drawing, sketch, paintSide, onSketchEdit } = props
+    const { drawing, sketch, paintSide, firstPoint, lastPoint, onSketchEdit } =
+        props
 
     const [points, setPoints] = useState<Point2D[]>(sketch || [])
+    const [firstPoints, setFirstPoints] = useState<Point2D[]>([])
+    const [lastPoints, setLastPoints] = useState<Point2D[]>([])
     const [tempPoint, setTempPoint] = useState<Point2D>({ x: 0, y: 0 })
 
     useEffect(() => {
@@ -59,6 +64,18 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
             drawInfo()
         }
     }, [])
+
+    useEffect(() => {
+        if (points?.length > 2) {
+            const firstPoint = addHookPoints(points)
+            const secondPoint = addHookPoints([firstPoint, ...points])
+
+            // setFirstPoints([hookPoint1, hookPoint2])
+            setPoints([secondPoint, firstPoint, ...points])
+            draw()
+            drawInfo()
+        }
+    }, [firstPoint])
 
     useEffect(() => {
         const canvas = document.getElementById(

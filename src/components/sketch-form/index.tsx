@@ -50,6 +50,8 @@ const SketchForm: React.FC = () => {
                     <Sketch2DEditor
                         drawing={drawing}
                         sketch={formState?.sketch}
+                        firstPoint={formState?.firstPoint}
+                        lastPoint={formState?.lastPoint}
                         paintSide={formState?.paintSide}
                         onSketchEdit={handleSketchEdit}
                     />
