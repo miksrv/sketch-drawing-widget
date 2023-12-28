@@ -115,11 +115,15 @@ export const transformPoints = (points: Point2D[]) => {
 export const addHookPoints = (
     points: Point2D[],
     positive?: boolean,
-    size?: number
+    size?: number,
+    isFirst?: boolean
 ): Point2D => {
-    // Найдем вектор между первой и второй точкой
-    const vectorX = points[1].x - points[0].x
-    const vectorY = points[1].y - points[0].y
+    // Выбор точек для которых создается крючок
+    const referencePoint = isFirst ? points[0] : points[points.length - 1]
+
+    // Найдем вектор от выбранной точки до следующей
+    const vectorX = points[isFirst ? 1 : points.length - 2].x - referencePoint.x
+    const vectorY = points[isFirst ? 1 : points.length - 2].y - referencePoint.y
 
     // Нормализуем вектор
     const length = Math.sqrt(vectorX * vectorX + vectorY * vectorY)
@@ -130,9 +134,9 @@ export const addHookPoints = (
     const rotatedVectorX = positive ? normalizedVectorY : -normalizedVectorY
     const rotatedVectorY = positive ? -normalizedVectorX : normalizedVectorX
 
-    // Умножим повернутый вектор на заданный размер, чтобы получить координаты новой точки
+    // Умножим повернутый вектор на заданный размер, чтобы получить координаты новой точки крючка
     return {
-        x: points[0].x + (size ?? 5) * rotatedVectorX,
-        y: points[0].y + (size ?? 5) * rotatedVectorY
+        x: referencePoint.x + (size ?? 10) * rotatedVectorX,
+        y: referencePoint.y + (size ?? 10) * rotatedVectorY
     }
 }

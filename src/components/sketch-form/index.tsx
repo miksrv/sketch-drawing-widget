@@ -35,22 +35,34 @@ const SketchForm: React.FC = () => {
             formState.firstPoint
         ) {
             if (formState.firstPoint === 'ᓓ') {
-                const firstPoint = addHookPoints(formState.sketch, true)
+                const firstPoint = addHookPoints(
+                    formState.sketch,
+                    true,
+                    5,
+                    true
+                )
                 const secondPoint = addHookPoints(
                     [firstPoint, ...formState.sketch],
                     true,
-                    20
+                    20,
+                    true
                 )
 
                 setFirstPoints([secondPoint, firstPoint])
             }
 
             if (formState.firstPoint === 'ᓗ') {
-                const firstPoint = addHookPoints(formState.sketch, false)
+                const firstPoint = addHookPoints(
+                    formState.sketch,
+                    false,
+                    5,
+                    true
+                )
                 const secondPoint = addHookPoints(
                     [firstPoint, ...formState.sketch],
                     false,
-                    20
+                    20,
+                    true
                 )
 
                 setFirstPoints([secondPoint, firstPoint])
@@ -61,6 +73,52 @@ const SketchForm: React.FC = () => {
             }
         }
     }, [formState?.firstPoint])
+
+    useEffect(() => {
+        if (
+            formState?.sketch &&
+            formState.sketch?.length > 2 &&
+            formState.lastPoint
+        ) {
+            if (formState.lastPoint === 'ᓓ') {
+                const firstPoint = addHookPoints(
+                    formState.sketch,
+                    true,
+                    5,
+                    false
+                )
+                const secondPoint = addHookPoints(
+                    [firstPoint, ...formState.sketch],
+                    true,
+                    20,
+                    false
+                )
+
+                setLastPoints([firstPoint, secondPoint])
+            }
+
+            if (formState.lastPoint === 'ᓗ') {
+                const firstPoint = addHookPoints(
+                    formState.sketch,
+                    false,
+                    5,
+                    false
+                )
+                const secondPoint = addHookPoints(
+                    [firstPoint, ...formState.sketch],
+                    false,
+                    20,
+                    false
+                )
+
+                setLastPoints([firstPoint, secondPoint])
+            }
+
+            if (formState.lastPoint === 'Нет') {
+                setLastPoints([])
+            }
+        }
+    }, [formState?.lastPoint])
 
     useEffect(() => {
         const handleKeyPress = (event: KeyboardEvent) => {

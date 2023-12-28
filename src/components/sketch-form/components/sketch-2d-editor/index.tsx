@@ -116,7 +116,7 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
     useEffect(() => {
         draw()
         drawInfo()
-    }, [paintSide, firstPoints])
+    }, [paintSide, firstPoints, lastPoints])
 
     useEffect(() => {
         if (!drawing && points.length) {
@@ -172,6 +172,7 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
         }
 
         ctx.beginPath()
+        ctx.lineWidth = 2
 
         // Рисуем начальную законцовку
         if (firstPoints?.length && points.length) {
@@ -183,12 +184,16 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
         ctx.moveTo(points[0]?.x, points[0]?.y)
 
         for (let i = 1; i < points.length; i++) {
-            ctx.lineWidth = 2
             ctx.lineTo(points[i].x, points[i].y)
         }
 
+        // Рисуем конечную законцовку
+        if (lastPoints?.length && points.length) {
+            ctx.lineTo(lastPoints[0].x, lastPoints[0].y)
+            ctx.lineTo(lastPoints[1].x, lastPoints[1].y)
+        }
+
         if (drawing) {
-            ctx.lineWidth = 2
             ctx.lineTo(tempPoint.x, tempPoint.y)
         }
 
