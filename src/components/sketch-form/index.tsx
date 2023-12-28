@@ -88,7 +88,7 @@ const SketchForm: React.FC = () => {
                     false
                 )
                 const secondPoint = addHookPoints(
-                    [firstPoint, ...formState.sketch],
+                    [...formState.sketch, firstPoint],
                     true,
                     20,
                     false
@@ -105,7 +105,7 @@ const SketchForm: React.FC = () => {
                     false
                 )
                 const secondPoint = addHookPoints(
-                    [firstPoint, ...formState.sketch],
+                    [...formState.sketch, firstPoint],
                     false,
                     20,
                     false
