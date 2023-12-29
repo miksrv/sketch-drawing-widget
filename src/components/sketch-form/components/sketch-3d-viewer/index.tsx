@@ -81,7 +81,6 @@ const Sketch3DViewer: React.FC<Sketch3DViewerProps> = ({ sketch }) => {
             quaternion.setFromUnitVectors(new THREE.Vector3(1, 0, 0), direction)
 
             const geometry = new THREE.BoxGeometry(length, height, depth)
-            // const material = new THREE.MeshStandardMaterial({ map: texture })
             const material = new THREE.MeshBasicMaterial({
                 color: '#dcd9c9',
                 map: texture
