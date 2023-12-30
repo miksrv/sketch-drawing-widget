@@ -7,13 +7,19 @@ import React, { useEffect, useRef, useState } from 'react'
 import imageTexture from './metal-texture.jpg'
 
 interface Sketch3DViewerProps {
+    firstPoints?: boolean
+    lastPoints?: boolean
     sketch?: Point2D[]
 }
 
-const height = 5
+const height = 2
 const depth = 100
 
-const Sketch3DViewer: React.FC<Sketch3DViewerProps> = ({ sketch }) => {
+const Sketch3DViewer: React.FC<Sketch3DViewerProps> = ({
+    firstPoints,
+    lastPoints,
+    sketch
+}) => {
     const ref = useRef<any>()
     const groupRef = useRef<any>()
 
@@ -101,15 +107,22 @@ const Sketch3DViewer: React.FC<Sketch3DViewerProps> = ({ sketch }) => {
                         attach={'material'}
                         map={texture}
                     />
-                    <Text
-                        position={[0, 0, height + 50]}
-                        anchorX={'center'}
-                        anchorY={'middle'}
-                        fontSize={17}
-                        color={'#000000'}
-                    >
-                        {`${length.toFixed(0)} mm`}
-                    </Text>
+                    {!(firstPoints && (i === 0 || i === 1)) &&
+                        !(
+                            lastPoints &&
+                            (i === points2D.length - 2 ||
+                                i === points2D.length - 3)
+                        ) && (
+                            <Text
+                                position={[0, 0, height + 50]}
+                                anchorX={'center'}
+                                anchorY={'middle'}
+                                fontSize={17}
+                                color={'#000000'}
+                            >
+                                {`${length.toFixed(0)} mm`}
+                            </Text>
+                        )}
                 </mesh>
             )
 
@@ -149,24 +162,25 @@ const Sketch3DViewer: React.FC<Sketch3DViewerProps> = ({ sketch }) => {
             >
                 {rectangles}
 
-                {/*{geometries?.map(*/}
-                {/*    (*/}
-                {/*        geometry: { x: number; y: number; z: number },*/}
-                {/*        index: string | number | bigint | undefined*/}
-                {/*    ) => (*/}
-                {/*        <mesh*/}
-                {/*            key={index}*/}
-                {/*            ref={ref}*/}
-                {/*            position={[geometry.x, geometry.y, geometry.z - 5]}*/}
-                {/*        >*/}
-                {/*            <boxGeometry args={[height, height, depth]} />*/}
-                {/*            <meshBasicMaterial*/}
-                {/*                attach={'material'}*/}
-                {/*                map={texture}*/}
-                {/*            />*/}
-                {/*        </mesh>*/}
-                {/*    )*/}
-                {/*)}*/}
+                {geometries?.map(
+                    (
+                        geometry: { x: number; y: number; z: number },
+                        index: string | number | bigint | undefined
+                    ) => (
+                        <mesh
+                            key={index}
+                            ref={ref}
+                            position={[geometry.x, geometry.y, geometry.z - 2]}
+                        >
+                            <boxGeometry args={[height, height, depth]} />
+                            <meshBasicMaterial
+                                attach={'material'}
+                                map={texture}
+                                color={'#dcd9c9'}
+                            />
+                        </mesh>
+                    )
+                )}
             </group>
 
             <OrbitControls

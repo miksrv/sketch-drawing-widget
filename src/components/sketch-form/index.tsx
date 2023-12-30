@@ -153,6 +153,8 @@ const SketchForm: React.FC = () => {
                 </Tab>
                 <Tab label={'3D Модель'}>
                     <Sketch3DViewer
+                        firstPoints={!!firstPoints?.length}
+                        lastPoints={!!lastPoints?.length}
                         sketch={
                             formState?.sketch
                                 ? [
