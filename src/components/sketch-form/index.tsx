@@ -166,10 +166,7 @@ const SketchForm: React.FC = () => {
                         }
                     />
                 </Tab>
-                <Tab
-                    label={'Развертка'}
-                    disable={true}
-                >
+                <Tab label={'Развертка'}>
                     <Sketch2DScan sketch={formState?.sketch} />
                 </Tab>
             </Index>

@@ -8,43 +8,31 @@ interface Sketch2DScanProps {
 const Sketch2DScan: React.FC<Sketch2DScanProps> = ({ sketch }) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null)
 
-    sketch = transformArray([
-        { x: 94, y: 38 },
-        { x: 109, y: 154 },
-        { x: 204, y: 152 }
-    ])
-
     useEffect(() => {
         const canvas = canvasRef.current
         if (!canvas || !sketch?.length) return
 
+        const newPoints = calculateNewPoints(sketch)
+        const allPoints = addShiftedPoints(newPoints)
+
         const ctx = canvas.getContext('2d')
         if (!ctx) return
-
-        // Находим минимальные и максимальные значения координат
-        const minX = Math.min(...sketch.map((coord) => coord.x))
-        const minY = Math.min(...sketch.map((coord) => coord.y))
 
         // Очистка canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height)
 
         // Начало отрисовки
         ctx.beginPath()
-        ctx.moveTo(sketch?.[0].x - minX, sketch?.[0].y - minY) // Начинаем с первой точки
+        ctx.moveTo(newPoints?.[0].x, newPoints?.[0].y) // Начинаем с первой точки
 
-        for (let i = 0; i < sketch.length - 1; i += 2) {
-            ctx.moveTo(sketch[i].x, sketch[i].y) // Устанавливаем начальную точку
-            ctx.lineTo(sketch[i + 1].x, sketch[i + 1].y) // Рисуем линию к следующей точке
+        for (let i = 0; i < newPoints.length - 1; i += 1) {
+            ctx.moveTo(newPoints[i].x, newPoints[i].y) // Устанавливаем начальную точку
+            ctx.lineTo(newPoints[i + 1].x, newPoints[i + 1].y) // Рисуем линию к следующей точке
         }
 
-        for (let i = 0; i < sketch.length - 2; i += 2) {
-            ctx.moveTo(sketch[i].x, sketch[i].y) // Устанавливаем начальную четную точку
-            ctx.lineTo(sketch[i + 2].x, sketch[i + 2].y) // Рисуем линию к следующей нечетной точке
-        }
-
-        for (let i = 1; i < sketch.length - 2; i += 2) {
-            ctx.moveTo(sketch[i].x, sketch[i].y) // Устанавливаем начальную нечетную точку
-            ctx.lineTo(sketch[i + 2].x, sketch[i + 2].y) // Рисуем линию к следующей четной точке
+        for (let i = 0; i < allPoints.length - 1; i += 1) {
+            ctx.moveTo(allPoints[i].x, allPoints[i].y) // Устанавливаем начальную точку
+            ctx.lineTo(allPoints[i + 1].x, allPoints[i + 1].y) // Рисуем линию к следующей точке
         }
 
         // Отображаем линии
@@ -60,18 +48,54 @@ const Sketch2DScan: React.FC<Sketch2DScanProps> = ({ sketch }) => {
     )
 }
 
-const transformArray = (arr: Point2D[]) => {
-    const transformed = []
-
-    for (let i = 0; i < arr.length; i++) {
-        // Добавляем текущую точку в массив
-        transformed.push(arr[i])
-
-        // Добавляем новую точку с увеличенным x на 200
-        transformed.push({ x: arr[i].x + 200, y: arr[i].y })
+const calculateNewPoints = (originalPoints: Point2D[]) => {
+    // 1. Рассчитать расстояние между каждой точкой
+    const distances = []
+    for (let i = 0; i < originalPoints.length - 1; i++) {
+        const point1 = originalPoints[i]
+        const point2 = originalPoints[i + 1]
+        const distance = Math.sqrt(
+            (point2.x - point1.x) ** 2 + (point2.y - point1.y) ** 2
+        )
+        distances.push(distance)
     }
 
-    return transformed
+    // 2. Найти общую длину всех расстояний
+    const totalDistance = distances.reduce((acc, curr) => acc + curr, 0)
+
+    // 3. Рассчитать процентное соотношение
+    const percentages = distances.map(
+        (distance) => (distance / totalDistance) * 100
+    )
+
+    // 4. Создать новый массив точек
+    const newPoints = [{ x: 50, y: originalPoints[0].y }] // первая точка с x = 50
+    let currentDistance = 0
+
+    for (let i = 0; i < originalPoints.length - 1; i++) {
+        const percentage = percentages[i]
+        const targetDistance = (percentage / 100) * 500
+        currentDistance += distances[i]
+        const ratio = targetDistance / currentDistance
+
+        const newX = 50 // x остается 50
+        const newY =
+            originalPoints[i].y +
+            (originalPoints[i + 1].y - originalPoints[i].y) * ratio
+
+        newPoints.push({ x: newX, y: newY })
+    }
+
+    return newPoints
+}
+
+const addShiftedPoints = (originalPoints: Point2D[]) => {
+    const shiftedPoints = originalPoints.map((point) => ({
+        x: point.x + 300, // увеличиваем x на 300 пикселей
+        y: point.y // y остается неизменным
+    }))
+
+    return shiftedPoints
 }
 
 export default Sketch2DScan
