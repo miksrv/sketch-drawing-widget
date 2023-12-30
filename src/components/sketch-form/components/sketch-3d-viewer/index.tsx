@@ -15,6 +15,13 @@ interface Sketch3DViewerProps {
 const height = 2
 const depth = 100
 
+function computeAngleBetweenVectors(vector1: any, vector2: any) {
+    const dotProduct = vector1.dot(vector2)
+    const magnitude1 = vector1.length()
+    const magnitude2 = vector2.length()
+    return Math.acos(dotProduct / (magnitude1 * magnitude2))
+}
+
 const Sketch3DViewer: React.FC<Sketch3DViewerProps> = ({
     firstPoints,
     lastPoints,
@@ -28,7 +35,6 @@ const Sketch3DViewer: React.FC<Sketch3DViewerProps> = ({
     const [centerY, setCenterY] = useState<any>()
     const [cameraDistance, setCameraDistance] = useState<any>()
     const [rectangles, setRectangles] = useState<any>()
-
     const [texture, setTexture] = useState(null)
 
     useEffect(() => {
@@ -71,6 +77,58 @@ const Sketch3DViewer: React.FC<Sketch3DViewerProps> = ({
         setCameraDistance(cameraDistance)
 
         const rectangles = []
+        for (let i = 0; i < points2D.length - 2; i++) {
+            const start = new THREE.Vector3(points2D[i].x, points2D[i].y, 0)
+            const mid = new THREE.Vector3(
+                points2D[i + 1].x,
+                points2D[i + 1].y,
+                0
+            )
+            const end = new THREE.Vector3(
+                points2D[i + 2].x,
+                points2D[i + 2].y,
+                0
+            )
+
+            const direction1 = mid.clone().sub(start).normalize()
+            const direction2 = end.clone().sub(mid).normalize()
+            const angle =
+                computeAngleBetweenVectors(direction1, direction2) *
+                (180 / Math.PI) // в градусах
+
+            const position = mid
+                .clone()
+                .add(
+                    direction1
+                        .clone()
+                        .add(direction2)
+                        .normalize()
+                        .multiplyScalar(10)
+                ) // установите нужное смещение
+
+            const quaternion = new THREE.Quaternion().setFromUnitVectors(
+                new THREE.Vector3(0, 0, 0),
+                direction1
+            )
+
+            const textElement = (
+                <mesh
+                    position={[position.x + 5, position.y - 10, 60]}
+                    quaternion={quaternion}
+                >
+                    <Text
+                        fontSize={16}
+                        color='#000000'
+                        anchorX='center'
+                        anchorY='middle'
+                    >
+                        {`${angle.toFixed(0)}°`}
+                    </Text>
+                </mesh>
+            )
+
+            rectangles.push(textElement)
+        }
 
         for (let i = 0; i < points2D.length - 1; i++) {
             const start = new THREE.Vector3(points2D[i].x, points2D[i].y, 0)
