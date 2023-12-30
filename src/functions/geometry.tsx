@@ -140,3 +140,43 @@ export const addHookPoints = (
         y: referencePoint.y + (size ?? 10) * rotatedVectorY
     }
 }
+
+export const calculateFirstVertical = (
+    originalPoints: Point2D[]
+): Point2D[] => {
+    // 1. Рассчитать расстояние между каждой точкой в исходном массиве
+    const distances: number[] = []
+    for (let i = 0; i < originalPoints.length - 1; i++) {
+        const distance = Math.sqrt(
+            (originalPoints[i + 1].x - originalPoints[i].x) ** 2 +
+                (originalPoints[i + 1].y - originalPoints[i].y) ** 2
+        )
+        distances.push(distance)
+    }
+
+    // 2. Найти общую длину всех расстояний
+    const totalDistance = distances.reduce((acc, curr) => acc + curr, 0)
+
+    // 3. Рассчитать процентное соотношение
+    const percentages = distances.map(
+        (distance) => (distance / totalDistance) * 100
+    )
+
+    // 4. Создать новый массив точек с учетом пропорций
+    const firstVertical: Point2D[] = [{ x: 100, y: 50 }]
+
+    const numbersFrom350 = percentages.map((percent) => percent * 3)
+
+    for (let i = 0; i < numbersFrom350.length; i++) {
+        const newY = firstVertical[i].y + numbersFrom350[i] // рассчитываем новую координату y
+        firstVertical.push({ x: 100, y: newY }) // добавляем новую точку в массив
+    }
+
+    return firstVertical
+}
+
+export const addShiftedPoints = (originalPoints: Point2D[]) =>
+    originalPoints.map((point) => ({
+        x: point.x + 300, // увеличиваем x на 300 пикселей
+        y: point.y // y остается неизменным
+    }))

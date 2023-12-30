@@ -167,7 +167,11 @@ const SketchForm: React.FC = () => {
                     />
                 </Tab>
                 <Tab label={'Развертка'}>
-                    <Sketch2DScan sketch={formState?.sketch} />
+                    <Sketch2DScan
+                        firstPoints={firstPoints}
+                        lastPoints={lastPoints}
+                        sketch={formState?.sketch}
+                    />
                 </Tab>
             </Index>
             <div className={styles.formEditor}>
