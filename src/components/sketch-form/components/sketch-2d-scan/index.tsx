@@ -97,6 +97,7 @@ const Sketch2DScan: React.FC<Sketch2DScanProps> = ({
             if (
                 isLastPoints(i) ||
                 isFirstPoints(i) ||
+                (isFirstPoints(i) && i === 2) ||
                 i === 0 ||
                 i === Math.min(firstVertical.length, lastVertical.length) - 1
             ) {
