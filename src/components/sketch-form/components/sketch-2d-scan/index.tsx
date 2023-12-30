@@ -25,24 +25,42 @@ const Sketch2DScan: React.FC<Sketch2DScanProps> = ({ sketch }) => {
         ctx.beginPath()
         ctx.moveTo(newPoints?.[0].x, newPoints?.[0].y) // Начинаем с первой точки
 
-        // for (let i = 0; i < newPoints.length - 1; i += 1) {
-        //     ctx.moveTo(newPoints[i].x, newPoints[i].y) // Устанавливаем начальную точку
-        //     ctx.lineTo(newPoints[i + 1].x, newPoints[i + 1].y) // Рисуем линию к следующей точке
-        // }
-        //
-        // for (let i = 0; i < allPoints.length - 1; i += 1) {
-        //     ctx.moveTo(allPoints[i].x, allPoints[i].y) // Устанавливаем начальную точку
-        //     ctx.lineTo(allPoints[i + 1].x, allPoints[i + 1].y) // Рисуем линию к следующей точке
-        // }
+        for (let i = 0; i < newPoints.length - 1; i += 1) {
+            ctx.moveTo(newPoints[i].x, newPoints[i].y) // Устанавливаем начальную точку
+            ctx.lineTo(newPoints[i + 1].x, newPoints[i + 1].y) // Рисуем линию к следующей точке
+            ctx.stroke()
+        }
+
+        for (let i = 0; i < allPoints.length - 1; i += 1) {
+            ctx.moveTo(allPoints[i].x, allPoints[i].y) // Устанавливаем начальную точку
+            ctx.lineTo(allPoints[i + 1].x, allPoints[i + 1].y) // Рисуем линию к следующей точке
+            ctx.stroke()
+        }
 
         for (let i = 0; i < Math.min(newPoints.length, allPoints.length); i++) {
+            // Если это первая или последняя точка, рисуем сплошную линию
+            if (
+                i === 0 ||
+                i === Math.min(newPoints.length, allPoints.length) - 1
+            ) {
+                ctx.setLineDash([]) // Сбросить пунктирный стиль
+            } else {
+                ctx.setLineDash([5, 5]) // Установить пунктирный стиль
+            }
+
+            // Начинаем новый путь
+            ctx.beginPath()
+
             // Рисуем горизонтальную линию между точками
             ctx.moveTo(newPoints[i].x, newPoints[i].y) // Начало линии из newPoints
             ctx.lineTo(allPoints[i].x, allPoints[i].y) // Конец линии в allPoints
+
+            // Заканчиваем путь и рисуем текущую линию
+            ctx.stroke()
         }
 
-        // Отображаем линии
-        ctx.stroke()
+        // Восстановите стандартный стиль линии, если это необходимо
+        ctx.setLineDash([])
     }, [sketch])
 
     return (
@@ -74,42 +92,22 @@ const calculateNewPoints = (originalPoints: Point2D[]): Point2D[] => {
     )
 
     // 4. Создать новый массив точек с учетом пропорций
-    const newPoints: Point2D[] = [{ x: 50, y: 50 }]
+    const newPoints: Point2D[] = [{ x: 100, y: 50 }]
 
     const numbersFrom350 = percentages.map((percent) => percent * 3)
 
     for (let i = 0; i < numbersFrom350.length; i++) {
         const newY = newPoints[i].y + numbersFrom350[i] // рассчитываем новую координату y
-        newPoints.push({ x: 50, y: newY }) // добавляем новую точку в массив
+        newPoints.push({ x: 100, y: newY }) // добавляем новую точку в массив
     }
-
-    // let accumulatedDistance = 0
-
-    // for (let i = 0; i < originalPoints.length - 1; i++) {
-    //     const percentage = percentages[i]
-    //     const targetDistance = (percentage / 100) * 350
-    //     accumulatedDistance += distances[i]
-    //
-    //     const ratio = targetDistance / accumulatedDistance
-    //     const newY =
-    //         newPoints[i].y +
-    //         (originalPoints[i + 1].y - originalPoints[i].y) * ratio
-    //
-    //     newPoints.push({ x: 50, y: newY })
-    // }
-
-    console.log('percentages', percentages)
 
     return newPoints
 }
 
-const addShiftedPoints = (originalPoints: Point2D[]) => {
-    const shiftedPoints = originalPoints.map((point) => ({
+const addShiftedPoints = (originalPoints: Point2D[]) =>
+    originalPoints.map((point) => ({
         x: point.x + 300, // увеличиваем x на 300 пикселей
         y: point.y // y остается неизменным
     }))
-
-    return shiftedPoints
-}
 
 export default Sketch2DScan
