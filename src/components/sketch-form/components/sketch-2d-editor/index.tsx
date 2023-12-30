@@ -13,40 +13,40 @@ interface Sketch2DEditorProps {
     onSketchEdit?: (sketch?: Point2D[]) => void
 }
 
-const interpolatePoints = (points: Point2D[]): Point2D[] => {
-    // Находим минимальные и максимальные значения x и y
-    let minX = points[0].x
-    let minY = points[0].y
-    let maxX = points[0].x
-    let maxY = points[0].y
-
-    for (const point of points) {
-        minX = Math.min(minX, point.x)
-        minY = Math.min(minY, point.y)
-        maxX = Math.max(maxX, point.x)
-        maxY = Math.max(maxY, point.y)
-    }
-
-    // Вычисляем новые границы с отступами
-    const canvasWidth = 500
-    const canvasHeight = 400
-    const padding = 50
-
-    const newMinX = padding
-    const newMinY = padding
-    const newMaxX = canvasWidth - padding
-    const newMaxY = canvasHeight - padding
-
-    // Вычисляем коэффициенты масштабирования для x и y
-    const scaleX = (newMaxX - newMinX) / (maxX - minX)
-    const scaleY = (newMaxY - newMinY) / (maxY - minY)
-
-    // Вычисляем новые координаты точек
-    return points.map((point) => ({
-        x: Math.round(newMinX + (point.x - minX) * scaleX),
-        y: Math.round(newMinY + (point.y - minY) * scaleY)
-    }))
-}
+// const interpolatePoints = (points: Point2D[]): Point2D[] => {
+//     // Находим минимальные и максимальные значения x и y
+//     let minX = points[0].x
+//     let minY = points[0].y
+//     let maxX = points[0].x
+//     let maxY = points[0].y
+//
+//     for (const point of points) {
+//         minX = Math.min(minX, point.x)
+//         minY = Math.min(minY, point.y)
+//         maxX = Math.max(maxX, point.x)
+//         maxY = Math.max(maxY, point.y)
+//     }
+//
+//     // Вычисляем новые границы с отступами
+//     const canvasWidth = 500
+//     const canvasHeight = 400
+//     const padding = 50
+//
+//     const newMinX = padding
+//     const newMinY = padding
+//     const newMaxX = canvasWidth - padding
+//     const newMaxY = canvasHeight - padding
+//
+//     // Вычисляем коэффициенты масштабирования для x и y
+//     const scaleX = (newMaxX - newMinX) / (maxX - minX)
+//     const scaleY = (newMaxY - newMinY) / (maxY - minY)
+//
+//     // Вычисляем новые координаты точек
+//     return points.map((point) => ({
+//         x: Math.round(newMinX + (point.x - minX) * scaleX),
+//         y: Math.round(newMinY + (point.y - minY) * scaleY)
+//     }))
+// }
 
 const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
     const {
