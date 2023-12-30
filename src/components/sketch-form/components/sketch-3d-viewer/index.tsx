@@ -149,24 +149,24 @@ const Sketch3DViewer: React.FC<Sketch3DViewerProps> = ({ sketch }) => {
             >
                 {rectangles}
 
-                {geometries?.map(
-                    (
-                        geometry: { x: number; y: number; z: number },
-                        index: string | number | bigint | undefined
-                    ) => (
-                        <mesh
-                            key={index}
-                            ref={ref}
-                            position={[geometry.x, geometry.y, geometry.z - 5]}
-                        >
-                            <boxGeometry args={[height, height, depth]} />
-                            <meshBasicMaterial
-                                attach={'material'}
-                                map={texture}
-                            />
-                        </mesh>
-                    )
-                )}
+                {/*{geometries?.map(*/}
+                {/*    (*/}
+                {/*        geometry: { x: number; y: number; z: number },*/}
+                {/*        index: string | number | bigint | undefined*/}
+                {/*    ) => (*/}
+                {/*        <mesh*/}
+                {/*            key={index}*/}
+                {/*            ref={ref}*/}
+                {/*            position={[geometry.x, geometry.y, geometry.z - 5]}*/}
+                {/*        >*/}
+                {/*            <boxGeometry args={[height, height, depth]} />*/}
+                {/*            <meshBasicMaterial*/}
+                {/*                attach={'material'}*/}
+                {/*                map={texture}*/}
+                {/*            />*/}
+                {/*        </mesh>*/}
+                {/*    )*/}
+                {/*)}*/}
             </group>
 
             <OrbitControls
