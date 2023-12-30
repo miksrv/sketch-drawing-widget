@@ -118,11 +118,11 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
         drawInfo()
     }, [paintSide, firstPoints, lastPoints])
 
-    useEffect(() => {
-        if (!drawing && points.length) {
-            setPoints(interpolatePoints(points))
-        }
-    }, [drawing])
+    // useEffect(() => {
+    //     if (!drawing && points.length) {
+    //         setPoints(interpolatePoints(points))
+    //     }
+    // }, [drawing])
 
     const draw = () => {
         const canvas = document.getElementById(

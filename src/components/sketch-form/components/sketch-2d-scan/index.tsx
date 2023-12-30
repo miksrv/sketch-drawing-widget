@@ -25,14 +25,20 @@ const Sketch2DScan: React.FC<Sketch2DScanProps> = ({ sketch }) => {
         ctx.beginPath()
         ctx.moveTo(newPoints?.[0].x, newPoints?.[0].y) // Начинаем с первой точки
 
-        for (let i = 0; i < newPoints.length - 1; i += 1) {
-            ctx.moveTo(newPoints[i].x, newPoints[i].y) // Устанавливаем начальную точку
-            ctx.lineTo(newPoints[i + 1].x, newPoints[i + 1].y) // Рисуем линию к следующей точке
-        }
+        // for (let i = 0; i < newPoints.length - 1; i += 1) {
+        //     ctx.moveTo(newPoints[i].x, newPoints[i].y) // Устанавливаем начальную точку
+        //     ctx.lineTo(newPoints[i + 1].x, newPoints[i + 1].y) // Рисуем линию к следующей точке
+        // }
+        //
+        // for (let i = 0; i < allPoints.length - 1; i += 1) {
+        //     ctx.moveTo(allPoints[i].x, allPoints[i].y) // Устанавливаем начальную точку
+        //     ctx.lineTo(allPoints[i + 1].x, allPoints[i + 1].y) // Рисуем линию к следующей точке
+        // }
 
-        for (let i = 0; i < allPoints.length - 1; i += 1) {
-            ctx.moveTo(allPoints[i].x, allPoints[i].y) // Устанавливаем начальную точку
-            ctx.lineTo(allPoints[i + 1].x, allPoints[i + 1].y) // Рисуем линию к следующей точке
+        for (let i = 0; i < Math.min(newPoints.length, allPoints.length); i++) {
+            // Рисуем горизонтальную линию между точками
+            ctx.moveTo(newPoints[i].x, newPoints[i].y) // Начало линии из newPoints
+            ctx.lineTo(allPoints[i].x, allPoints[i].y) // Конец линии в allPoints
         }
 
         // Отображаем линии
@@ -48,14 +54,13 @@ const Sketch2DScan: React.FC<Sketch2DScanProps> = ({ sketch }) => {
     )
 }
 
-const calculateNewPoints = (originalPoints: Point2D[]) => {
-    // 1. Рассчитать расстояние между каждой точкой
-    const distances = []
+const calculateNewPoints = (originalPoints: Point2D[]): Point2D[] => {
+    // 1. Рассчитать расстояние между каждой точкой в исходном массиве
+    const distances: number[] = []
     for (let i = 0; i < originalPoints.length - 1; i++) {
-        const point1 = originalPoints[i]
-        const point2 = originalPoints[i + 1]
         const distance = Math.sqrt(
-            (point2.x - point1.x) ** 2 + (point2.y - point1.y) ** 2
+            (originalPoints[i + 1].x - originalPoints[i].x) ** 2 +
+                (originalPoints[i + 1].y - originalPoints[i].y) ** 2
         )
         distances.push(distance)
     }
@@ -68,23 +73,32 @@ const calculateNewPoints = (originalPoints: Point2D[]) => {
         (distance) => (distance / totalDistance) * 100
     )
 
-    // 4. Создать новый массив точек
-    const newPoints = [{ x: 50, y: originalPoints[0].y }] // первая точка с x = 50
-    let currentDistance = 0
+    // 4. Создать новый массив точек с учетом пропорций
+    const newPoints: Point2D[] = [{ x: 50, y: 50 }]
 
-    for (let i = 0; i < originalPoints.length - 1; i++) {
-        const percentage = percentages[i]
-        const targetDistance = (percentage / 100) * 500
-        currentDistance += distances[i]
-        const ratio = targetDistance / currentDistance
+    const numbersFrom350 = percentages.map((percent) => percent * 3)
 
-        const newX = 50 // x остается 50
-        const newY =
-            originalPoints[i].y +
-            (originalPoints[i + 1].y - originalPoints[i].y) * ratio
-
-        newPoints.push({ x: newX, y: newY })
+    for (let i = 0; i < numbersFrom350.length; i++) {
+        const newY = newPoints[i].y + numbersFrom350[i] // рассчитываем новую координату y
+        newPoints.push({ x: 50, y: newY }) // добавляем новую точку в массив
     }
+
+    // let accumulatedDistance = 0
+
+    // for (let i = 0; i < originalPoints.length - 1; i++) {
+    //     const percentage = percentages[i]
+    //     const targetDistance = (percentage / 100) * 350
+    //     accumulatedDistance += distances[i]
+    //
+    //     const ratio = targetDistance / accumulatedDistance
+    //     const newY =
+    //         newPoints[i].y +
+    //         (originalPoints[i + 1].y - originalPoints[i].y) * ratio
+    //
+    //     newPoints.push({ x: 50, y: newY })
+    // }
+
+    console.log('percentages', percentages)
 
     return newPoints
 }
