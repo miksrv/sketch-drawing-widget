@@ -1,8 +1,8 @@
+import Dropdown from 'components/dropdown'
 import Input from 'components/input'
 import { encodeCoordinates } from 'functions/geometry'
 import React from 'react'
 
-import Dropdown from '../../../dropdown'
 import { FormProps } from '../../types'
 import styles from './styles.module.sass'
 

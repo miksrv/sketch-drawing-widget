@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[src/components/sketch-form/types.tsx:6](https://github.com/miksrv/sketch-drawing-widget/blob/9bd886b/src/components/sketch-form/types.tsx#L6)
+[src/components/sketch-form/types.tsx:6](https://github.com/miksrv/sketch-drawing-widget/blob/4e85d9a/src/components/sketch-form/types.tsx#L6)
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 #### Defined in
 
-[src/components/sketch-form/types.tsx:7](https://github.com/miksrv/sketch-drawing-widget/blob/9bd886b/src/components/sketch-form/types.tsx#L7)
+[src/components/sketch-form/types.tsx:7](https://github.com/miksrv/sketch-drawing-widget/blob/4e85d9a/src/components/sketch-form/types.tsx#L7)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-[src/components/sketch-form/types.tsx:8](https://github.com/miksrv/sketch-drawing-widget/blob/9bd886b/src/components/sketch-form/types.tsx#L8)
+[src/components/sketch-form/types.tsx:8](https://github.com/miksrv/sketch-drawing-widget/blob/4e85d9a/src/components/sketch-form/types.tsx#L8)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 #### Defined in
 
-[src/components/sketch-form/types.tsx:5](https://github.com/miksrv/sketch-drawing-widget/blob/9bd886b/src/components/sketch-form/types.tsx#L5)
+[src/components/sketch-form/types.tsx:5](https://github.com/miksrv/sketch-drawing-widget/blob/4e85d9a/src/components/sketch-form/types.tsx#L5)
 
 ___
 
@@ -62,4 +62,4 @@ ___
 
 #### Defined in
 
-[src/components/sketch-form/types.tsx:4](https://github.com/miksrv/sketch-drawing-widget/blob/9bd886b/src/components/sketch-form/types.tsx#L4)
+[src/components/sketch-form/types.tsx:4](https://github.com/miksrv/sketch-drawing-widget/blob/4e85d9a/src/components/sketch-form/types.tsx#L4)

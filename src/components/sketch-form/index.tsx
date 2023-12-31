@@ -1,9 +1,9 @@
+import { addHookPoints } from 'functions/geometry'
 import { Point2D } from 'functions/types'
 import React, { useEffect, useState } from 'react'
 import { update } from 'update'
 
 import packageInfo from '../../../package.json'
-import { addHookPoints } from '../../functions/geometry'
 import Button from '../button'
 import Index, { Tab } from '../tabs'
 import FormEditor from './components/form-editor'

@@ -23,7 +23,7 @@ The x-coordinate of the point.
 
 #### Defined in
 
-[src/functions/types.ts:8](https://github.com/miksrv/sketch-drawing-widget/blob/9bd886b/src/functions/types.ts#L8)
+[src/functions/types.ts:8](https://github.com/miksrv/sketch-drawing-widget/blob/4e85d9a/src/functions/types.ts#L8)
 
 ___
 
@@ -35,4 +35,4 @@ The y-coordinate of the point.
 
 #### Defined in
 
-[src/functions/types.ts:13](https://github.com/miksrv/sketch-drawing-widget/blob/9bd886b/src/functions/types.ts#L13)
+[src/functions/types.ts:13](https://github.com/miksrv/sketch-drawing-widget/blob/4e85d9a/src/functions/types.ts#L13)
