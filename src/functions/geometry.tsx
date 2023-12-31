@@ -76,18 +76,18 @@ export const doSegmentsIntersect = (
 export const encodeCoordinates = (coordinates: Point2D[]): string =>
     coordinates?.map((coord) => `${coord.x},${coord.y}`).join(',')
 
-export const decodeCoordinates = (encodedString: string): Point2D[] => {
-    const parts = encodedString.split(',')
-    const coordinates = []
-    for (let i = 0; i < parts.length; i += 2) {
-        coordinates.push({
-            x: parseFloat(parts[i]),
-            y: parseFloat(parts[i + 1])
-        })
-    }
-
-    return coordinates
-}
+// export const decodeCoordinates = (encodedString: string): Point2D[] => {
+//     const parts = encodedString.split(',')
+//     const coordinates = []
+//     for (let i = 0; i < parts.length; i += 2) {
+//         coordinates.push({
+//             x: parseFloat(parts[i]),
+//             y: parseFloat(parts[i + 1])
+//         })
+//     }
+//
+//     return coordinates
+// }
 
 export const addHookPoints = (
     points: Point2D[],
