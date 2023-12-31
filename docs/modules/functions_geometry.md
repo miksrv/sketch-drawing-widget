@@ -6,13 +6,78 @@
 
 ### Functions
 
+- [addHookPoints](functions_geometry.md#addhookpoints)
+- [addShiftedPoints](functions_geometry.md#addshiftedpoints)
+- [calculateFirstVertical](functions_geometry.md#calculatefirstvertical)
 - [decodeCoordinates](functions_geometry.md#decodecoordinates)
 - [doLinesIntersect](functions_geometry.md#dolinesintersect)
 - [doSegmentsIntersect](functions_geometry.md#dosegmentsintersect)
 - [encodeCoordinates](functions_geometry.md#encodecoordinates)
-- [transformPoints](functions_geometry.md#transformpoints)
 
 ## Functions
+
+### addHookPoints
+
+▸ **addHookPoints**(`points`, `positive?`, `size?`, `isFirst?`): [`Point2D`](../interfaces/functions_types.Point2D.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `points` | [`Point2D`](../interfaces/functions_types.Point2D.md)[] |
+| `positive?` | `boolean` |
+| `size?` | `number` |
+| `isFirst?` | `boolean` |
+
+#### Returns
+
+[`Point2D`](../interfaces/functions_types.Point2D.md)
+
+#### Defined in
+
+[src/functions/geometry.tsx:92](https://github.com/miksrv/sketch-drawing-widget/blob/9bd886b/src/functions/geometry.tsx#L92)
+
+___
+
+### addShiftedPoints
+
+▸ **addShiftedPoints**(`originalPoints`): \{ `x`: `number` ; `y`: `number` = point.y }[]
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `originalPoints` | [`Point2D`](../interfaces/functions_types.Point2D.md)[] |
+
+#### Returns
+
+\{ `x`: `number` ; `y`: `number` = point.y }[]
+
+#### Defined in
+
+[src/functions/geometry.tsx:155](https://github.com/miksrv/sketch-drawing-widget/blob/9bd886b/src/functions/geometry.tsx#L155)
+
+___
+
+### calculateFirstVertical
+
+▸ **calculateFirstVertical**(`originalPoints`): [`Point2D`](../interfaces/functions_types.Point2D.md)[]
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `originalPoints` | [`Point2D`](../interfaces/functions_types.Point2D.md)[] |
+
+#### Returns
+
+[`Point2D`](../interfaces/functions_types.Point2D.md)[]
+
+#### Defined in
+
+[src/functions/geometry.tsx:121](https://github.com/miksrv/sketch-drawing-widget/blob/9bd886b/src/functions/geometry.tsx#L121)
+
+___
 
 ### decodeCoordinates
 
@@ -30,7 +95,7 @@
 
 #### Defined in
 
-[src/functions/geometry.tsx:83](https://github.com/miksrv/sketch-drawing-widget/blob/2552fb8/src/functions/geometry.tsx#L83)
+[src/functions/geometry.tsx:79](https://github.com/miksrv/sketch-drawing-widget/blob/9bd886b/src/functions/geometry.tsx#L79)
 
 ___
 
@@ -54,7 +119,7 @@ Returns true if at least two lines intersect; otherwise, returns false.
 
 #### Defined in
 
-[src/functions/geometry.tsx:9](https://github.com/miksrv/sketch-drawing-widget/blob/2552fb8/src/functions/geometry.tsx#L9)
+[src/functions/geometry.tsx:9](https://github.com/miksrv/sketch-drawing-widget/blob/9bd886b/src/functions/geometry.tsx#L9)
 
 ___
 
@@ -81,7 +146,7 @@ Returns true if the line segments intersect; otherwise, returns false.
 
 #### Defined in
 
-[src/functions/geometry.tsx:40](https://github.com/miksrv/sketch-drawing-widget/blob/2552fb8/src/functions/geometry.tsx#L40)
+[src/functions/geometry.tsx:40](https://github.com/miksrv/sketch-drawing-widget/blob/9bd886b/src/functions/geometry.tsx#L40)
 
 ___
 
@@ -101,24 +166,4 @@ ___
 
 #### Defined in
 
-[src/functions/geometry.tsx:80](https://github.com/miksrv/sketch-drawing-widget/blob/2552fb8/src/functions/geometry.tsx#L80)
-
-___
-
-### transformPoints
-
-▸ **transformPoints**(`points`): \{ `x`: `number` = 10; `y`: `number`  }[]
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `points` | [`Point2D`](../interfaces/functions_types.Point2D.md)[] |
-
-#### Returns
-
-\{ `x`: `number` = 10; `y`: `number`  }[]
-
-#### Defined in
-
-[src/functions/geometry.tsx:96](https://github.com/miksrv/sketch-drawing-widget/blob/2552fb8/src/functions/geometry.tsx#L96)
+[src/functions/geometry.tsx:76](https://github.com/miksrv/sketch-drawing-widget/blob/9bd886b/src/functions/geometry.tsx#L76)

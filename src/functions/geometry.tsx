@@ -89,29 +89,6 @@ export const decodeCoordinates = (encodedString: string): Point2D[] => {
     return coordinates
 }
 
-export const transformPoints = (points: Point2D[]) => {
-    const transformed = []
-
-    // Устанавливаем начальную точку
-    transformed.push({ x: 10, y: points[0].y })
-
-    for (let i = 0; i < points.length - 1; i++) {
-        // Вычисляем разницу x между текущим и следующим элементами
-        const diffX = Math.abs(points[i].x - points[i + 1].x)
-
-        // Добавляем новый объект в массив с этой разницей и текущей y координатой
-        transformed.push({ x: diffX, y: points[i].y })
-
-        // Добавляем новый объект с x увеличенным на 300 и текущей y координатой
-        transformed.push({
-            x: transformed[transformed.length - 1].x + 300,
-            y: points[i].y
-        })
-    }
-
-    return transformed
-}
-
 export const addHookPoints = (
     points: Point2D[],
     positive?: boolean,

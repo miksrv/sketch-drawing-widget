@@ -16,4 +16,4 @@
 
 #### Defined in
 
-[src/update.ts:1](https://github.com/miksrv/sketch-drawing-widget/blob/2552fb8/src/update.ts#L1)
+[src/update.ts:1](https://github.com/miksrv/sketch-drawing-widget/blob/9bd886b/src/update.ts#L1)
