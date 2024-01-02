@@ -15,6 +15,8 @@ interface FormEditorProps {
      */
     formState?: FormProps
 
+    onFormSubmit?: () => void
+
     /**
      * Callback function triggered when the form state changes.
      * @param {keyof FormProps} name - The name of the property being changed.
@@ -33,15 +35,20 @@ const paintSideOptions = ['Нет', 'Сверху', 'Снизу', 'Двухст�
  * @param {FormEditorProps} props - The component props.
  * @return {JSX.Element} The FormEditor component.
  */
-const FormEditor: React.FC<FormEditorProps> = (props) => {
-    const { formState, onChangeFormState } = props
+const FormEditor: React.FC<FormEditorProps> = (
+    props: FormEditorProps
+): JSX.Element => {
+    const { formState, onFormSubmit, onChangeFormState } = props
 
     const handleSelect = (name: keyof FormProps, selectedOption: string) => {
         onChangeFormState?.(name, selectedOption)
     }
 
     return (
-        <div className={styles.section}>
+        <form
+            className={styles.section}
+            onSubmit={onFormSubmit}
+        >
             {/* Input for the profile title */}
             <Input
                 value={formState?.title}
@@ -79,7 +86,7 @@ const FormEditor: React.FC<FormEditorProps> = (props) => {
                 options={paintSideOptions}
                 onSelect={handleSelect}
             />
-        </div>
+        </form>
     )
 }
 

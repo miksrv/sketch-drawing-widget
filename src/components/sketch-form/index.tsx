@@ -1,3 +1,4 @@
+import { API } from 'api/api'
 import { addHookPoints } from 'functions/geometry'
 import { Point2D } from 'functions/types'
 import React, { useEffect, useState } from 'react'
@@ -20,12 +21,22 @@ const SketchForm: React.FC = () => {
     const [firstPoints, setFirstPoints] = useState<Point2D[]>([])
     const [lastPoints, setLastPoints] = useState<Point2D[]>([])
 
+    const [createSketch, { isLoading: submitLoading }] =
+        API.useSketchCreateMutation()
+
     const handleSketchEdit = (sketch?: Point2D[]) => {
         setFormState({ ...formState, sketch: sketch })
     }
 
     const handleFormChange = (name: keyof FormProps, value: string) => {
         setFormState({ ...formState, [name]: value })
+    }
+
+    const handleFormSubmit = () => {
+        console.log('111')
+        if (formState) {
+            createSketch(formState)
+        }
     }
 
     useEffect(() => {
@@ -184,11 +195,18 @@ const SketchForm: React.FC = () => {
                 />
                 <FormEditor
                     formState={formState}
+                    onFormSubmit={handleFormSubmit}
                     onChangeFormState={handleFormChange}
                 />
                 <div className={styles.buttonsContainer}>
-                    <Button variant={'primary'}>{'Сохранить'}</Button>
-                    <Button>{'Отмена'}</Button>
+                    <Button
+                        variant={'primary'}
+                        onClick={handleFormSubmit}
+                        disabled={submitLoading}
+                    >
+                        {'Сохранить'}
+                    </Button>
+                    <Button disabled={submitLoading}>{'Отмена'}</Button>
                 </div>
                 <div className={styles.footer}>
                     {'Version:'} {packageInfo.version}

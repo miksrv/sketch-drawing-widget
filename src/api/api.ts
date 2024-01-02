@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
+import * as ApiType from './types'
+
 // type Maybe<T> = T | void
 
 export const API = createApi({
@@ -18,10 +20,8 @@ export const API = createApi({
         responseHandler: 'content-type'
     }),
     endpoints: (builder) => ({
-        sketchCreate: builder.mutation<void, any>({
-            invalidatesTags: (res, err, arg) => [
-                { id: arg.place, type: 'Sketch' }
-            ],
+        sketchCreate: builder.mutation<void, ApiType.RequestPostSketch>({
+            invalidatesTags: (res, err, arg) => [{ type: 'Sketch' }],
             query: (data) => ({
                 body: data,
                 method: 'POST',

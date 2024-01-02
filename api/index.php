@@ -1,5 +1,18 @@
 <?php
 
+// For local run: php -S localhost:8000
+
+// Устанавливаем заголовки для разрешения CORS
+header("Access-Control-Allow-Origin: http://localhost:3000"); // Замените на ваш домен, если он отличается
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS"); // Добавьте другие методы, если необходимо
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+// Если запрос является OPTIONS, просто возвращаем 200 OK
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header("HTTP/1.1 200 OK");
+    exit();
+}
+
 function handleRequest() {
     switch ($_SERVER['REQUEST_METHOD']) {
         case 'GET':
@@ -13,9 +26,17 @@ function handleRequest() {
             $decodedData = json_decode($data, true);
 
             if (json_last_error() === JSON_ERROR_NONE) {
+                $directory = __DIR__ . '/data/';
+
+                if (!file_exists($directory)) {
+                    mkdir($directory, 0777, true);
+                }
+
                 $filename = 'sketch_' . date('YmdHis') . '.json';
-                $filePath = __DIR__ . '/sketches/' . $filename;
+                $filePath = $directory . $filename;
+
                 file_put_contents($filePath, json_encode($decodedData));
+
                 echo json_encode(['status' => 'success', 'message' => 'Sketch saved successfully.', 'filename' => $filename]);
             } else {
                 echo json_encode(['status' => 'error', 'message' => 'Failed to decode JSON.']);

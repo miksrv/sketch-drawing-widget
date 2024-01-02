@@ -24,6 +24,7 @@ interface InputProps extends React.ButtonHTMLAttributes<unknown> {
  */
 const Button: React.FC<InputProps> = (props: InputProps): JSX.Element => (
     <button
+        {...props}
         type={'button'}
         className={`
             ${styles.component}
