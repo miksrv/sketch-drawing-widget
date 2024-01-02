@@ -1,33 +1,44 @@
 <?php
 
-// Проверяем, что запрос является POST-запросом
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+function handleRequest() {
+    switch ($_SERVER['REQUEST_METHOD']) {
+        case 'GET':
+            // Обработка GET-запроса
+            echo json_encode(['status' => 'success', 'message' => 'GET request handled.']);
+            break;
 
-    // Получаем данные из тела запроса
-    $data = file_get_contents('php://input');
+        case 'POST':
+            // Обработка POST-запроса
+            $data = file_get_contents('php://input');
+            $decodedData = json_decode($data, true);
 
-    // Декодируем JSON-данные в ассоциативный массив
-    $decodedData = json_decode($data, true);
+            if (json_last_error() === JSON_ERROR_NONE) {
+                $filename = 'sketch_' . date('YmdHis') . '.json';
+                $filePath = __DIR__ . '/sketches/' . $filename;
+                file_put_contents($filePath, json_encode($decodedData));
+                echo json_encode(['status' => 'success', 'message' => 'Sketch saved successfully.', 'filename' => $filename]);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Failed to decode JSON.']);
+            }
+            break;
 
-    // Проверяем успешность декодирования JSON
-    if (json_last_error() === JSON_ERROR_NONE) {
+        case 'PUT':
+            // Обработка PUT-запроса
+            parse_str(file_get_contents("php://input"), $putParams);
+            echo json_encode(['status' => 'success', 'message' => 'PUT request handled.', 'data' => $putParams]);
+            break;
 
-        // Генерируем имя файла (можно сделать более сложную логику)
-        $filename = 'sketch_' . date('YmdHis') . '.json';
+        case 'DELETE':
+            // Обработка DELETE-запроса
+            echo json_encode(['status' => 'success', 'message' => 'DELETE request handled.']);
+            break;
 
-        // Путь для сохранения файла
-        $filePath = __DIR__ . '/sketches/' . $filename;
-
-        // Сохраняем данные в JSON-файл
-        file_put_contents($filePath, json_encode($decodedData));
-
-        // Отправляем ответ об успешном сохранении
-        echo json_encode(['status' => 'success', 'message' => 'Sketch saved successfully.', 'filename' => $filename]);
-    } else {
-        // Отправляем ответ об ошибке при декодировании JSON
-        echo json_encode(['status' => 'error', 'message' => 'Failed to decode JSON.']);
+        default:
+            // Если метод не известен
+            echo json_encode(['status' => 'error', 'message' => 'Unknown request method.']);
+            break;
     }
-} else {
-    // Отправляем ответ о неправильном методе запроса
-    echo json_encode(['status' => 'error', 'message' => 'Only POST requests are allowed.']);
 }
+
+// Вызываем функцию для обработки запроса
+handleRequest();
