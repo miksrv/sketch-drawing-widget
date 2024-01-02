@@ -18,6 +18,7 @@ import { FormProps } from './types'
 const SketchForm: React.FC = () => {
     const [formState, setFormState] = useState<FormProps>({})
     const [formSketch, setFormSketch] = useState<Point2D[]>([])
+    const [formImage, setFormImage] = useState<string>()
     const [drawing, setDrawing] = useState<boolean>(false)
     const [firstPoints, setFirstPoints] = useState<Point2D[]>([])
     const [lastPoints, setLastPoints] = useState<Point2D[]>([])
@@ -35,8 +36,12 @@ const SketchForm: React.FC = () => {
 
     const handleFormSubmit = () => {
         if (formState) {
-            createSketch({ ...formState, sketch: formSketch })
+            createSketch({ ...formState, image: formImage, sketch: formSketch })
         }
+    }
+
+    const handleGetCanvasImage = (image?: string) => {
+        setFormImage(image)
     }
 
     useEffect(() => {
@@ -131,6 +136,7 @@ const SketchForm: React.FC = () => {
                         firstPoints={firstPoints}
                         lastPoints={lastPoints}
                         paintSide={formState?.paintSide}
+                        onGetCanvasImage={handleGetCanvasImage}
                         onSketchEdit={handleSketchEdit}
                     />
                 </Tab>
@@ -170,7 +176,7 @@ const SketchForm: React.FC = () => {
                     <Button
                         variant={'primary'}
                         onClick={handleFormSubmit}
-                        disabled={submitLoading}
+                        disabled={submitLoading || drawing}
                     >
                         {'Сохранить'}
                     </Button>

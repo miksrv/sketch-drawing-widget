@@ -10,6 +10,7 @@ interface Sketch2DEditorProps {
     paintSide?: string
     firstPoints?: Point2D[]
     lastPoints?: Point2D[]
+    onGetCanvasImage?: (image?: string) => void
     onSketchEdit?: (sketch?: Point2D[]) => void
 }
 
@@ -55,6 +56,7 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
         paintSide,
         firstPoints,
         lastPoints,
+        onGetCanvasImage,
         onSketchEdit
     } = props
 
@@ -326,6 +328,8 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
                 }
             }
         }
+
+        onGetCanvasImage?.(canvas.toDataURL('image/png'))
     }
 
     const getAngleBetweenLines = (line1: Line2D, line2: Line2D) => {

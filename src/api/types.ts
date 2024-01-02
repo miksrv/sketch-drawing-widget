@@ -3,6 +3,7 @@ import { Point2D } from '../functions/types'
 
 export interface RequestPostSketch {
     title?: string
+    image?: string
     sketch?: Point2D[]
     firstPoint?: string
     lastPoint?: string

@@ -79,10 +79,16 @@ function handleRequest() {
 
                 $decodedData->id = uniqid();
 
-                $filename = 'sketch_' . $decodedData->id . '.json';
-                $filePath = SKETCH_DIR . $filename;
+                if ($decodedData->image) {
+                    // Удаление метаданных из строки base64, если они присутствуют
+                    $base64_string = preg_replace('/^data:image\/\w+;base64,/', '', $decodedData->image);
+                    // Декодирование base64 в бинарные данные
+                    $decoded_image = base64_decode($base64_string);
+                    // Сохранение изображения на сервере
+                    file_put_contents(SKETCH_DIR . $decodedData->id . '.png', $decoded_image);
+                }
 
-                file_put_contents($filePath, json_encode($decodedData));
+                file_put_contents(SKETCH_DIR . $decodedData->id . '.json', json_encode($decodedData));
 
                 echo json_encode(['status' => 'success', 'message' => 'Sketch saved successfully.', 'id' => $decodedData->id]);
             } else {
