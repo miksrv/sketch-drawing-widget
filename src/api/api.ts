@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const API = createApi({
     baseQuery: fetchBaseQuery({
-        baseUrl: process.env.NEXT_PUBLIC_API_HOST || 'http://localhost:8080/',
+        baseUrl: process.env.REACT_APP_API_HOST || 'http://localhost:8080/api/',
         // prepareHeaders: (headers, { getState }) => {
         //     // By default, if we have a token in the store, let's use that for authenticated requests
         //     const token = (getState() as RootState).auth.token
