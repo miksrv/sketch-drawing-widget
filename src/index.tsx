@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 
 import Container from './components/container'
 import SketchForm from './components/sketch-form'
+import SketchList from './components/sketch-list'
 import './styles/globals.sass'
 
 const root = ReactDOM.createRoot(
@@ -17,6 +18,7 @@ root.render(
             <div className={'wrapper'}>
                 <Container title={'Редактор профиля'}>
                     <SketchForm />
+                    <SketchList />
                 </Container>
             </div>
         </Provider>

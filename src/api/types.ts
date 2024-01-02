@@ -1,3 +1,4 @@
+import { FormProps } from '../components/sketch-form/types'
 import { Point2D } from '../functions/types'
 
 export interface RequestPostSketch {
@@ -6,4 +7,8 @@ export interface RequestPostSketch {
     firstPoint?: string
     lastPoint?: string
     paintSide?: string
+}
+
+export interface ResponseGetList {
+    items?: FormProps[]
 }

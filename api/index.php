@@ -7,17 +7,64 @@ header("Access-Control-Allow-Origin: http://localhost:3000"); // Заменит�
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS"); // Добавьте другие методы, если необходимо
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
+// Устанавливаем заголовок ответа как JSON
+header('Content-Type: application/json');
+
 // Если запрос является OPTIONS, просто возвращаем 200 OK
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     header("HTTP/1.1 200 OK");
     exit();
 }
 
+const SKETCH_DIR = __DIR__ . '/data/';
+
+function getJsonFiles() {
+    if (!$dirHandle = opendir(SKETCH_DIR)) {
+        return false;
+    }
+
+    $result = [];
+
+    // Открываем директорию
+    $dirHandle = opendir(SKETCH_DIR);
+
+    // Читаем каждый элемент в директории
+    while (($file = readdir($dirHandle)) !== false) {
+        // Проверяем, что это JSON-файл
+        if (pathinfo($file, PATHINFO_EXTENSION) == 'json') {
+            // Полный путь к файлу
+            $filePath = SKETCH_DIR . '/' . $file;
+
+            // Читаем содержимое файла
+            $fileContent = file_get_contents($filePath);
+
+            // Декодируем JSON
+            $jsonData = json_decode($fileContent, true);
+
+            // Проверяем успешность декодирования и наличие параметра
+            if (json_last_error() === JSON_ERROR_NONE && !empty($jsonData)) {
+                $result[] = $jsonData;
+            }
+        }
+    }
+
+    // Закрываем дескриптор директории
+    closedir($dirHandle);
+
+    return $result;
+}
+
 function handleRequest() {
     switch ($_SERVER['REQUEST_METHOD']) {
         case 'GET':
+            // Проверяем, существует ли директория
+            if (!is_dir(SKETCH_DIR)) {
+                echo json_encode(['status' => 'error', 'message' => 'Directory does not exist']);
+                break;
+            }
+
             // Обработка GET-запроса
-            echo json_encode(['status' => 'success', 'message' => 'GET request handled.']);
+            echo json_encode(['items' => getJsonFiles()]);
             break;
 
         case 'POST':
@@ -26,16 +73,14 @@ function handleRequest() {
             $decodedData = (object) json_decode($data, true);
 
             if (json_last_error() === JSON_ERROR_NONE) {
-                $directory = __DIR__ . '/data/';
-
-                if (!file_exists($directory)) {
-                    mkdir($directory, 0777, true);
+                if (!file_exists(SKETCH_DIR)) {
+                    mkdir(SKETCH_DIR, 0777, true);
                 }
 
                 $decodedData->id = uniqid();
 
                 $filename = 'sketch_' . $decodedData->id . '.json';
-                $filePath = $directory . $filename;
+                $filePath = SKETCH_DIR . $filename;
 
                 file_put_contents($filePath, json_encode($decodedData));
 
