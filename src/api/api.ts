@@ -18,15 +18,50 @@ export const API = createApi({
         responseHandler: 'content-type'
     }),
     endpoints: (builder) => ({
-        activityGetList: builder.query<any, any>({
-            providesTags: (result, error, arg) => [
-                { id: arg?.place || arg?.author, type: 'Sketches' }
+        sketchCreate: builder.mutation<void, any>({
+            invalidatesTags: (res, err, arg) => [
+                { id: arg.place, type: 'Sketch' }
             ],
-            query: (params) => 'activity'
+            query: (data) => ({
+                body: data,
+                method: 'POST',
+                url: 'sketch'
+            }),
+            transformErrorResponse: (response) => response.data
+        }),
+        sketchDelete: builder.mutation<void, any>({
+            invalidatesTags: (res, err, arg) => [
+                { id: arg.place, type: 'Sketch' }
+            ],
+            query: (data) => ({
+                body: data,
+                method: 'DELETE',
+                url: 'sketch'
+            }),
+            transformErrorResponse: (response) => response.data
+        }),
+        sketchGetByID: builder.query<any, any>({
+            providesTags: (result, error, arg) => [{ type: 'Sketch' }],
+            query: (params) => 'sketch'
+        }),
+        sketchGetList: builder.query<any, any>({
+            providesTags: (result, error, arg) => [{ type: 'Sketch' }],
+            query: (params) => 'sketch'
+        }),
+        sketchModify: builder.mutation<void, any>({
+            invalidatesTags: (res, err, arg) => [
+                { id: arg.place, type: 'Sketch' }
+            ],
+            query: (data) => ({
+                body: data,
+                method: 'PUT',
+                url: 'sketch'
+            }),
+            transformErrorResponse: (response) => response.data
         })
     }),
     reducerPath: 'api',
-    tagTypes: ['Sketches']
+    tagTypes: ['Sketch']
 })
 
 // Export hooks for usage in functional components
