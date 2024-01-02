@@ -23,7 +23,7 @@ function handleRequest() {
         case 'POST':
             // Обработка POST-запроса
             $data = file_get_contents('php://input');
-            $decodedData = json_decode($data, true);
+            $decodedData = (object) json_decode($data, true);
 
             if (json_last_error() === JSON_ERROR_NONE) {
                 $directory = __DIR__ . '/data/';
@@ -32,12 +32,14 @@ function handleRequest() {
                     mkdir($directory, 0777, true);
                 }
 
-                $filename = 'sketch_' . date('YmdHis') . '.json';
+                $decodedData->id = uniqid();
+
+                $filename = 'sketch_' . $decodedData->id . '.json';
                 $filePath = $directory . $filename;
 
                 file_put_contents($filePath, json_encode($decodedData));
 
-                echo json_encode(['status' => 'success', 'message' => 'Sketch saved successfully.', 'filename' => $filename]);
+                echo json_encode(['status' => 'success', 'message' => 'Sketch saved successfully.', 'id' => $decodedData->id]);
             } else {
                 echo json_encode(['status' => 'error', 'message' => 'Failed to decode JSON.']);
             }

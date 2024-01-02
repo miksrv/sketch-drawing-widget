@@ -6,7 +6,7 @@ import { update } from 'update'
 
 import packageInfo from '../../../package.json'
 import Button from '../button'
-import Index, { Tab } from '../tabs'
+import Tabs, { Tab } from '../tabs'
 import FormEditor from './components/form-editor'
 import Message from './components/message'
 import Sketch2DEditor from './components/sketch-2d-editor'
@@ -16,7 +16,8 @@ import styles from './styles.module.sass'
 import { FormProps } from './types'
 
 const SketchForm: React.FC = () => {
-    const [formState, setFormState] = useState<FormProps>()
+    const [formState, setFormState] = useState<FormProps>({})
+    const [formSketch, setFormSketch] = useState<Point2D[]>([])
     const [drawing, setDrawing] = useState<boolean>(false)
     const [firstPoints, setFirstPoints] = useState<Point2D[]>([])
     const [lastPoints, setLastPoints] = useState<Point2D[]>([])
@@ -25,7 +26,7 @@ const SketchForm: React.FC = () => {
         API.useSketchCreateMutation()
 
     const handleSketchEdit = (sketch?: Point2D[]) => {
-        setFormState({ ...formState, sketch: sketch })
+        setFormSketch(sketch || [])
     }
 
     const handleFormChange = (name: keyof FormProps, value: string) => {
@@ -33,27 +34,17 @@ const SketchForm: React.FC = () => {
     }
 
     const handleFormSubmit = () => {
-        console.log('111')
         if (formState) {
-            createSketch(formState)
+            createSketch({ ...formState, sketch: formSketch })
         }
     }
 
     useEffect(() => {
-        if (
-            formState?.sketch &&
-            formState.sketch?.length > 2 &&
-            formState.firstPoint
-        ) {
+        if (formSketch && formSketch?.length > 2 && formState.firstPoint) {
             if (formState.firstPoint === 'ᓓ') {
-                const firstPoint = addHookPoints(
-                    formState.sketch,
-                    true,
-                    5,
-                    true
-                )
+                const firstPoint = addHookPoints(formSketch, true, 5, true)
                 const secondPoint = addHookPoints(
-                    [firstPoint, ...formState.sketch],
+                    [firstPoint, ...formSketch],
                     true,
                     20,
                     true
@@ -63,14 +54,9 @@ const SketchForm: React.FC = () => {
             }
 
             if (formState.firstPoint === 'ᓗ') {
-                const firstPoint = addHookPoints(
-                    formState.sketch,
-                    false,
-                    5,
-                    true
-                )
+                const firstPoint = addHookPoints(formSketch, false, 5, true)
                 const secondPoint = addHookPoints(
-                    [firstPoint, ...formState.sketch],
+                    [firstPoint, ...formSketch],
                     false,
                     20,
                     true
@@ -86,20 +72,11 @@ const SketchForm: React.FC = () => {
     }, [formState?.firstPoint])
 
     useEffect(() => {
-        if (
-            formState?.sketch &&
-            formState.sketch?.length > 2 &&
-            formState.lastPoint
-        ) {
+        if (formSketch && formSketch?.length > 2 && formState.lastPoint) {
             if (formState.lastPoint === 'ᓓ') {
-                const firstPoint = addHookPoints(
-                    formState.sketch,
-                    true,
-                    5,
-                    false
-                )
+                const firstPoint = addHookPoints(formSketch, true, 5, false)
                 const secondPoint = addHookPoints(
-                    [...formState.sketch, firstPoint],
+                    [...formSketch, firstPoint],
                     true,
                     20,
                     false
@@ -109,14 +86,9 @@ const SketchForm: React.FC = () => {
             }
 
             if (formState.lastPoint === 'ᓗ') {
-                const firstPoint = addHookPoints(
-                    formState.sketch,
-                    false,
-                    5,
-                    false
-                )
+                const firstPoint = addHookPoints(formSketch, false, 5, false)
                 const secondPoint = addHookPoints(
-                    [...formState.sketch, firstPoint],
+                    [...formSketch, firstPoint],
                     false,
                     20,
                     false
@@ -151,11 +123,11 @@ const SketchForm: React.FC = () => {
 
     return (
         <div className={styles.section}>
-            <Index>
+            <Tabs>
                 <Tab label={'Эскиз'}>
                     <Sketch2DEditor
                         drawing={drawing}
-                        sketch={formState?.sketch}
+                        sketch={formSketch}
                         firstPoints={firstPoints}
                         lastPoints={lastPoints}
                         paintSide={formState?.paintSide}
@@ -167,12 +139,8 @@ const SketchForm: React.FC = () => {
                         firstPoints={!!firstPoints?.length}
                         lastPoints={!!lastPoints?.length}
                         sketch={
-                            formState?.sketch
-                                ? [
-                                      ...firstPoints,
-                                      ...formState.sketch,
-                                      ...lastPoints
-                                  ]
+                            formSketch
+                                ? [...firstPoints, ...formSketch, ...lastPoints]
                                 : []
                         }
                     />
@@ -181,10 +149,10 @@ const SketchForm: React.FC = () => {
                     <Sketch2DScan
                         firstPoints={firstPoints}
                         lastPoints={lastPoints}
-                        sketch={formState?.sketch}
+                        sketch={formSketch}
                     />
                 </Tab>
-            </Index>
+            </Tabs>
             <div className={styles.formEditor}>
                 <Message
                     content={
@@ -195,7 +163,7 @@ const SketchForm: React.FC = () => {
                 />
                 <FormEditor
                     formState={formState}
-                    onFormSubmit={handleFormSubmit}
+                    formSketch={formSketch}
                     onChangeFormState={handleFormChange}
                 />
                 <div className={styles.buttonsContainer}>

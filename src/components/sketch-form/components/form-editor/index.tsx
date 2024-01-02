@@ -3,6 +3,7 @@ import Input from 'components/input'
 import { encodeCoordinates } from 'functions/geometry'
 import React from 'react'
 
+import { Point2D } from '../../../../functions/types'
 import { FormProps } from '../../types'
 import styles from './styles.module.sass'
 
@@ -15,7 +16,7 @@ interface FormEditorProps {
      */
     formState?: FormProps
 
-    onFormSubmit?: () => void
+    formSketch?: Point2D[]
 
     /**
      * Callback function triggered when the form state changes.
@@ -38,17 +39,14 @@ const paintSideOptions = ['Нет', 'Сверху', 'Снизу', 'Двухст�
 const FormEditor: React.FC<FormEditorProps> = (
     props: FormEditorProps
 ): JSX.Element => {
-    const { formState, onFormSubmit, onChangeFormState } = props
+    const { formState, formSketch, onChangeFormState } = props
 
     const handleSelect = (name: keyof FormProps, selectedOption: string) => {
         onChangeFormState?.(name, selectedOption)
     }
 
     return (
-        <form
-            className={styles.section}
-            onSubmit={onFormSubmit}
-        >
+        <div className={styles.section}>
             {/* Input for the profile title */}
             <Input
                 value={formState?.title}
@@ -61,7 +59,7 @@ const FormEditor: React.FC<FormEditorProps> = (
 
             {/* Input for the encoded profile coordinates */}
             <Input
-                value={encodeCoordinates(formState?.sketch || [])}
+                value={encodeCoordinates(formSketch || [])}
                 label={'Код профиля'}
                 readOnly={true}
             />
@@ -86,7 +84,7 @@ const FormEditor: React.FC<FormEditorProps> = (
                 options={paintSideOptions}
                 onSelect={handleSelect}
             />
-        </form>
+        </div>
     )
 }
 
