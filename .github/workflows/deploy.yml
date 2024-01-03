@@ -50,6 +50,8 @@ jobs:
         run: |
           export dateNow=$(date +"%d.%m.%Y %H:%M")
           echo "export const update = '$dateNow'" > src/update.ts
+          echo "REACT_APP_API_HOST = '${{ secrets.REACT_APP_API_HOST }}'
+          GENERATE_SOURCEMAP = false" > .env
           yarn build
 
       # If for deployment we use SSH

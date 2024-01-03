@@ -59,8 +59,7 @@ function handleRequest() {
         case 'GET':
             // Проверяем, существует ли директория
             if (!is_dir(SKETCH_DIR)) {
-                echo json_encode(['status' => 'error', 'message' => 'Directory does not exist']);
-                break;
+                mkdir(SKETCH_DIR, 0777, true);
             }
 
             // Обработка GET-запроса
