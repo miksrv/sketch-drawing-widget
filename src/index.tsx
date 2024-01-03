@@ -18,6 +18,9 @@ root.render(
             <div className={'wrapper'}>
                 <Container title={'Редактор профиля'}>
                     <SketchForm />
+                </Container>
+
+                <Container title={'Список профилей'}>
                     <SketchList />
                 </Container>
             </div>
