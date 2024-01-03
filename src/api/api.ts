@@ -1,9 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import * as ApiType from './types'
-import { ResponseGetList } from './types'
-
-// type Maybe<T> = T | void
 
 export const API = createApi({
     baseQuery: fetchBaseQuery({
@@ -30,20 +27,13 @@ export const API = createApi({
             }),
             transformErrorResponse: (response) => response.data
         }),
-        sketchDelete: builder.mutation<void, any>({
-            invalidatesTags: (res, err, arg) => [
-                { id: arg.place, type: 'Sketch' }
-            ],
-            query: (data) => ({
-                body: data,
+        sketchDelete: builder.mutation<void, string>({
+            invalidatesTags: () => [{ type: 'Sketch' }],
+            query: (id) => ({
                 method: 'DELETE',
-                url: 'sketch'
+                url: `sketch/${id}`
             }),
             transformErrorResponse: (response) => response.data
-        }),
-        sketchGetByID: builder.query<any, any>({
-            providesTags: (result, error, arg) => [{ type: 'Sketch' }],
-            query: (params) => 'sketch'
         }),
         sketchGetList: builder.query<ApiType.ResponseGetList, void>({
             providesTags: ['Sketch'],

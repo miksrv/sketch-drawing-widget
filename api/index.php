@@ -103,8 +103,35 @@ function handleRequest() {
             break;
 
         case 'DELETE':
-            // Обработка DELETE-запроса
-            echo json_encode(['status' => 'success', 'message' => 'DELETE request handled.']);
+            // Получаем текущий URL
+            $currentUrl = $_SERVER['REQUEST_URI'];
+
+            // Разбиваем URL по слешу и получаем последний элемент
+            $parts = explode('/', $currentUrl);
+            $id = end($parts);  // Получаем последний элемент массива
+
+            if (!$id) {
+                echo json_encode(['status' => 'error', 'message' => 'ID is missing']);
+                break;
+            }
+
+            // Имя файла, который вы хотите удалить
+            $filenameToDelete = $id . '.json';  // Замените на имя вашего файла
+
+            // Полный путь к файлу
+            $filePath = SKETCH_DIR . $filenameToDelete;
+
+            // Проверяем, существует ли файл
+            if (file_exists($filePath)) {
+                if (unlink($filePath) && unlink(SKETCH_DIR . $id . '.png')) {
+                    echo json_encode(['status' => 'success', 'message' => 'Sketch was removed']);
+                } else {
+                    echo json_encode(['status' => 'error', 'message' => 'Sketch remove error']);
+                }
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Sketch not found']);
+            }
+
             break;
 
         default:

@@ -1,10 +1,19 @@
 import { API } from 'api/api'
-import React, { useEffect, useState } from 'react'
+import { editSketch } from 'api/applicationSlice'
+import { useAppDispatch } from 'api/hooks'
+import React from 'react'
 
 import styles from './styles.module.sass'
 
 const SketchList: React.FC = () => {
-    const { data, isLoading } = API.useSketchGetListQuery()
+    const dispatch = useAppDispatch()
+    const { data } = API.useSketchGetListQuery()
+
+    const handleEditSketch = (id?: string) => {
+        const findSketch = data?.items?.find((item) => item.id === id)
+
+        dispatch(editSketch(findSketch))
+    }
 
     return (
         <div className={styles.section}>
@@ -12,16 +21,17 @@ const SketchList: React.FC = () => {
                 <div className={styles.empty}>{'Список пуст'}</div>
             )}
             {data?.items?.map((item) => (
-                <div
+                <button
                     key={item.id}
                     className={styles.item}
+                    onClick={() => handleEditSketch(item.id)}
                 >
                     <h4>{item.title || ''}</h4>
                     <img
                         alt={''}
                         src={`${process.env.REACT_APP_API_HOST}/data/${item.id}.png`}
                     />
-                </div>
+                </button>
             ))}
         </div>
     )

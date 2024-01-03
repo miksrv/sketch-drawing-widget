@@ -1,10 +1,12 @@
 import { API } from 'api/api'
+import { useAppDispatch, useAppSelector } from 'api/hooks'
 import { addHookPoints } from 'functions/geometry'
 import { Point2D } from 'functions/types'
 import React, { useEffect, useState } from 'react'
 import { update } from 'update'
 
 import packageInfo from '../../../package.json'
+import { editSketch } from '../../api/applicationSlice'
 import Button from '../button'
 import Tabs, { Tab } from '../tabs'
 import FormEditor from './components/form-editor'
@@ -16,6 +18,11 @@ import styles from './styles.module.sass'
 import { FormProps } from './types'
 
 const SketchForm: React.FC = () => {
+    const dispatch = useAppDispatch()
+    const editableSketch = useAppSelector(
+        (state) => state.application.editSketch
+    )
+
     const [formState, setFormState] = useState<FormProps>({})
     const [formSketch, setFormSketch] = useState<Point2D[]>([])
     const [formImage, setFormImage] = useState<string>()
@@ -26,6 +33,9 @@ const SketchForm: React.FC = () => {
     const [createSketch, { isLoading: submitLoading }] =
         API.useSketchCreateMutation()
 
+    const [deleteSketch, { isLoading: deleteLoading }] =
+        API.useSketchDeleteMutation()
+
     const handleSketchEdit = (sketch?: Point2D[]) => {
         setFormSketch(sketch || [])
     }
@@ -34,8 +44,29 @@ const SketchForm: React.FC = () => {
         setFormState({ ...formState, [name]: value })
     }
 
+    const handleSketchDelete = () => {
+        if (editableSketch?.id) {
+            deleteSketch(editableSketch?.id)
+            clearForm()
+        }
+    }
+
+    const clearForm = () => {
+        dispatch(editSketch(undefined))
+        setFormState({})
+        setFormSketch([])
+        setFirstPoints([])
+        setLastPoints([])
+        setFormImage('')
+
+        setTimeout(() => {
+            setDrawing(true)
+        }, 100)
+    }
+
     const handleFormSubmit = () => {
-        if (formState) {
+        if (formState && formSketch) {
+            clearForm()
             createSketch({ ...formState, image: formImage, sketch: formSketch })
         }
     }
@@ -45,6 +76,11 @@ const SketchForm: React.FC = () => {
     }
 
     useEffect(() => {
+        if (!formState.firstPoint) {
+            setFirstPoints([])
+            return
+        }
+
         if (formSketch && formSketch?.length > 2 && formState.firstPoint) {
             if (formState.firstPoint === 'ᓓ') {
                 const firstPoint = addHookPoints(formSketch, true, 5, true)
@@ -74,9 +110,14 @@ const SketchForm: React.FC = () => {
                 setFirstPoints([])
             }
         }
-    }, [formState?.firstPoint])
+    }, [formSketch, formState?.firstPoint])
 
     useEffect(() => {
+        if (!formState.lastPoint) {
+            setLastPoints([])
+            return
+        }
+
         if (formSketch && formSketch?.length > 2 && formState.lastPoint) {
             if (formState.lastPoint === 'ᓓ') {
                 const firstPoint = addHookPoints(formSketch, true, 5, false)
@@ -106,7 +147,7 @@ const SketchForm: React.FC = () => {
                 setLastPoints([])
             }
         }
-    }, [formState?.lastPoint])
+    }, [formSketch, formState?.lastPoint])
 
     useEffect(() => {
         const handleKeyPress = (event: KeyboardEvent) => {
@@ -114,6 +155,8 @@ const SketchForm: React.FC = () => {
                 setDrawing(false)
             }
         }
+
+        setDrawing(true)
 
         window.addEventListener('keydown', handleKeyPress)
 
@@ -123,8 +166,12 @@ const SketchForm: React.FC = () => {
     }, [])
 
     useEffect(() => {
-        setDrawing(true)
-    }, [])
+        if (editableSketch && editableSketch?.sketch) {
+            setDrawing(false)
+            setFormState(editableSketch)
+            setFormSketch(editableSketch.sketch)
+        }
+    }, [editableSketch])
 
     return (
         <div className={styles.section}>
@@ -140,7 +187,10 @@ const SketchForm: React.FC = () => {
                         onSketchEdit={handleSketchEdit}
                     />
                 </Tab>
-                <Tab label={'3D Модель'}>
+                <Tab
+                    label={'3D Модель'}
+                    disable={!formSketch?.length}
+                >
                     <Sketch3DViewer
                         firstPoints={!!firstPoints?.length}
                         lastPoints={!!lastPoints?.length}
@@ -151,7 +201,10 @@ const SketchForm: React.FC = () => {
                         }
                     />
                 </Tab>
-                <Tab label={'Развертка'}>
+                <Tab
+                    label={'Развертка'}
+                    disable={!formSketch?.length}
+                >
                     <Sketch2DScan
                         firstPoints={firstPoints}
                         lastPoints={lastPoints}
@@ -168,19 +221,34 @@ const SketchForm: React.FC = () => {
                     }
                 />
                 <FormEditor
+                    drawing={drawing}
                     formState={formState}
                     formSketch={formSketch}
                     onChangeFormState={handleFormChange}
                 />
                 <div className={styles.buttonsContainer}>
+                    {editableSketch?.id && (
+                        <Button
+                            variant={'negative'}
+                            disabled={deleteLoading}
+                            onClick={handleSketchDelete}
+                        >
+                            {'Удалить'}
+                        </Button>
+                    )}
                     <Button
                         variant={'primary'}
-                        onClick={handleFormSubmit}
                         disabled={submitLoading || drawing}
+                        onClick={handleFormSubmit}
                     >
                         {'Сохранить'}
                     </Button>
-                    <Button disabled={submitLoading}>{'Отмена'}</Button>
+                    <Button
+                        disabled={submitLoading}
+                        onClick={clearForm}
+                    >
+                        {'Отмена'}
+                    </Button>
                 </div>
                 <div className={styles.footer}>
                     {'Version:'} {packageInfo.version}

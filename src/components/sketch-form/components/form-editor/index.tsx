@@ -11,6 +11,7 @@ import styles from './styles.module.sass'
  * Props for the FormEditor component.
  */
 interface FormEditorProps {
+    drawing?: boolean
     /**
      * Current state of the form.
      */
@@ -39,7 +40,7 @@ const paintSideOptions = ['Нет', 'Сверху', 'Снизу', 'Двухст�
 const FormEditor: React.FC<FormEditorProps> = (
     props: FormEditorProps
 ): JSX.Element => {
-    const { formState, formSketch, onChangeFormState } = props
+    const { drawing, formState, formSketch, onChangeFormState } = props
 
     const handleSelect = (name: keyof FormProps, selectedOption: string) => {
         onChangeFormState?.(name, selectedOption)
@@ -49,7 +50,7 @@ const FormEditor: React.FC<FormEditorProps> = (
         <div className={styles.section}>
             {/* Input for the profile title */}
             <Input
-                value={formState?.title}
+                value={formState?.title || ''}
                 label={'Название профиля'}
                 placeholder={'Введите название профиля'}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +60,7 @@ const FormEditor: React.FC<FormEditorProps> = (
 
             {/* Input for the encoded profile coordinates */}
             <Input
-                value={encodeCoordinates(formSketch || [])}
+                value={formSketch?.length ? encodeCoordinates(formSketch) : ''}
                 label={'Код профиля'}
                 readOnly={true}
             />
@@ -67,6 +68,8 @@ const FormEditor: React.FC<FormEditorProps> = (
             <Dropdown
                 name={'firstPoint'}
                 label={'Законцовка в начале'}
+                disabled={drawing || !formSketch?.length}
+                value={formState?.firstPoint || ''}
                 options={pointOptions}
                 onSelect={handleSelect}
             />
@@ -74,6 +77,8 @@ const FormEditor: React.FC<FormEditorProps> = (
             <Dropdown
                 name={'lastPoint'}
                 label={'Законцовка в конце'}
+                disabled={drawing || !formSketch?.length}
+                value={formState?.lastPoint || ''}
                 options={pointOptions}
                 onSelect={handleSelect}
             />
@@ -81,6 +86,8 @@ const FormEditor: React.FC<FormEditorProps> = (
             <Dropdown
                 name={'paintSide'}
                 label={'Сторона покраски'}
+                disabled={drawing}
+                value={formState?.paintSide || ''}
                 options={paintSideOptions}
                 onSelect={handleSelect}
             />

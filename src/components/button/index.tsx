@@ -13,7 +13,7 @@ interface InputProps extends React.ButtonHTMLAttributes<unknown> {
     /**
      * The variant style of the button.
      */
-    variant?: 'primary' | 'default'
+    variant?: 'primary' | 'default' | 'negative'
 }
 
 /**
@@ -29,7 +29,13 @@ const Button: React.FC<InputProps> = (props: InputProps): JSX.Element => (
         className={`
             ${styles.component}
             ${props.disabled ? styles.disabled : ''}
-            ${props.variant === 'primary' ? styles.primary : styles.default}
+            ${
+                props.variant === 'primary'
+                    ? styles.primary
+                    : props.variant === 'negative'
+                      ? styles.negative
+                      : styles.default
+            }
         `}
     >
         {props.children}

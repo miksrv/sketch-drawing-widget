@@ -1,5 +1,6 @@
 .section
   display: flex
+  flex-wrap: wrap
 
   .empty
     text-align: center
@@ -12,8 +13,9 @@
     border: 1px solid #e0e0e0
     padding: 10px
     cursor: pointer
-    width: 25%
     margin: 5px
+    background: #FFF
+    flex: 1 0 calc(25% - 10px)
 
     &:hover
       border: 1px solid #cecece

@@ -1,5 +1,5 @@
-import { FormProps } from '../components/sketch-form/types'
-import { Point2D } from '../functions/types'
+import { SketchData } from 'components/sketch-form/types'
+import { Point2D } from 'functions/types'
 
 export interface RequestPostSketch {
     title?: string
@@ -11,5 +11,5 @@ export interface RequestPostSketch {
 }
 
 export interface ResponseGetList {
-    items?: FormProps[]
+    items?: SketchData[]
 }

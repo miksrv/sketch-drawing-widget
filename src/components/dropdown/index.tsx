@@ -6,6 +6,8 @@ import styles from './styles.module.sass'
 interface DropdownProps {
     options: string[]
     name: keyof FormProps
+    disabled?: boolean
+    value?: string
     label?: string
     onSelect?: (name: keyof FormProps, selectedOption: string) => void
 }
@@ -13,11 +15,15 @@ interface DropdownProps {
 const Dropdown: React.FC<DropdownProps> = ({
     name,
     options,
+    disabled,
+    value,
     label,
     onSelect
 }) => {
     const [isOpen, setIsOpen] = useState(false)
-    const [selectedOption, setSelectedOption] = useState<string | null>(null)
+    const [selectedOption, setSelectedOption] = useState<string | null>(
+        value || null
+    )
     const dropdownRef = useRef<HTMLDivElement>(null)
 
     const toggleDropdown = () => {
@@ -47,6 +53,16 @@ const Dropdown: React.FC<DropdownProps> = ({
         }
     }, [])
 
+    useEffect(() => {
+        if (!value) {
+            setSelectedOption(null)
+        }
+
+        if (value) {
+            setSelectedOption(value)
+        }
+    }, [value])
+
     return (
         <div
             ref={dropdownRef}
@@ -57,10 +73,11 @@ const Dropdown: React.FC<DropdownProps> = ({
             <div
                 className={`${styles.dropdown} ${
                     isOpen ? styles.open : undefined
-                }`}
+                } ${disabled ? styles.disabled : undefined}`}
             >
                 <button
                     onClick={toggleDropdown}
+                    disabled={disabled}
                     className={selectedOption ? styles.selected : undefined}
                 >
                     {selectedOption || 'Выберите опцию'}

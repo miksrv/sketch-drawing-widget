@@ -65,6 +65,7 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
 
     useEffect(() => {
         if (sketch) {
+            clearCanvas()
             setPoints(sketch)
             draw()
             drawInfo()
@@ -119,6 +120,35 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
         draw()
         drawInfo()
     }, [paintSide, firstPoints, lastPoints])
+
+    // Очистка
+    useEffect(() => {
+        if (!sketch?.length && points.length) {
+            setPoints([])
+            clearCanvas()
+        }
+
+        if (sketch?.length && !drawing) {
+            clearCanvas()
+            setPoints(sketch)
+            draw()
+            drawInfo()
+        }
+    }, [sketch])
+
+    const clearCanvas = () => {
+        const canvas = document.getElementById(
+            'Sketch2DEditor'
+        ) as HTMLCanvasElement
+        const ctx = canvas?.getContext('2d')
+
+        setPoints([])
+        setTempPoint({ x: 0, y: 0 })
+
+        if (ctx) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+        }
+    }
 
     // useEffect(() => {
     //     if (!drawing && points.length) {
@@ -242,7 +272,9 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
             ctx.strokeStyle = 'black' // черный цвет
         }
 
-        onSketchEdit?.(points)
+        if (drawing) {
+            onSketchEdit?.(points)
+        }
     }
 
     const drawInfo = () => {
