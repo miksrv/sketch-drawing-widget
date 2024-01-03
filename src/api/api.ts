@@ -4,7 +4,7 @@ import * as ApiType from './types'
 
 export const API = createApi({
     baseQuery: fetchBaseQuery({
-        baseUrl: process.env.REACT_APP_API_HOST || 'http://localhost:8080/api/',
+        baseUrl: process.env.REACT_APP_API_HOST || 'http://localhost:8000/api/',
         // prepareHeaders: (headers, { getState }) => {
         //     // By default, if we have a token in the store, let's use that for authenticated requests
         //     const token = (getState() as RootState).auth.token
