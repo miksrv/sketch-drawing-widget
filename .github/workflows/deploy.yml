@@ -85,4 +85,6 @@ jobs:
         run: echo "machine ${{ secrets.FTP_HOSTNAME }} login ${{ secrets.FTP_USERNAME }} password ${{ secrets.FTP_PASSWORD }}" > ~/.netrc
 
       - name: Upload Folder
-        run: lftp -e "mirror --parallel=100 -R build/ /" ${{ secrets.FTP_HOSTNAME }}
+        run: |
+          lftp -e "mirror --parallel=100 -R build/ /" ${{ secrets.FTP_HOSTNAME }}
+          lftp -e "mirror --parallel=100 -R api/ /" ${{ secrets.FTP_HOSTNAME }}
