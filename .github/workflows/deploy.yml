@@ -87,4 +87,4 @@ jobs:
       - name: Upload Folder
         run: |
           lftp -e "mirror --parallel=100 -R build/ /" ${{ secrets.FTP_HOSTNAME }}
-          lftp -e "mirror --parallel=100 -R api/ /" ${{ secrets.FTP_HOSTNAME }}
+          lftp -e "mirror --parallel=100 -R api/ api/" ${{ secrets.FTP_HOSTNAME }}
