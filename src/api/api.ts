@@ -55,7 +55,6 @@ export const API = createApi({
     tagTypes: ['Sketch']
 })
 
-// Export hooks for usage in functional components
 export const {
     util: { getRunningQueriesThunk }
 } = API

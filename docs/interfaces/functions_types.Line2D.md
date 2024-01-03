@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[src/functions/types.ts:17](https://github.com/miksrv/sketch-drawing-widget/blob/4e85d9a/src/functions/types.ts#L17)
+[src/functions/types.ts:17](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/functions/types.ts#L17)
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-[src/functions/types.ts:18](https://github.com/miksrv/sketch-drawing-widget/blob/4e85d9a/src/functions/types.ts#L18)
+[src/functions/types.ts:18](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/functions/types.ts#L18)
