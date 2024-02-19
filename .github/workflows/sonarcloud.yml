@@ -13,7 +13,9 @@ concurrency:
 jobs:
   sonarcloud:
     if: github.event.pull_request.draft == false
+    name: SonarCloud
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
         with:

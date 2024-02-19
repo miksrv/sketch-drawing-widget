@@ -1,4 +1,4 @@
-name: Deployment
+name: Deploy
 
 on:
   push:
@@ -7,7 +7,9 @@ on:
 
 jobs:
   ssh-deploy:
+    name: Production
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
@@ -88,5 +90,6 @@ jobs:
 
       - name: Upload Folder
         run: |
+          lftp -e "rm -r /static" ${{ secrets.FTP_HOSTNAME }}
           lftp -e "mirror --parallel=100 -R build/ /" ${{ secrets.FTP_HOSTNAME }}
           lftp -e "mirror --parallel=100 -R api/ api/" ${{ secrets.FTP_HOSTNAME }}
