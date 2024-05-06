@@ -8,10 +8,10 @@
 
 ### Variables
 
-- [contextTypes](components_tabs.default.md#contexttypes)
-- [defaultProps](components_tabs.default.md#defaultprops)
-- [displayName](components_tabs.default.md#displayname)
-- [propTypes](components_tabs.default.md#proptypes)
+-   [contextTypes](components_tabs.default.md#contexttypes)
+-   [defaultProps](components_tabs.default.md#defaultprops)
+-   [displayName](components_tabs.default.md#displayname)
+-   [propTypes](components_tabs.default.md#proptypes)
 
 ## Variables
 
@@ -23,7 +23,7 @@
 
 node_modules/@types/react/ts5.0/index.d.ts:570
 
-___
+---
 
 ### defaultProps
 
@@ -33,7 +33,7 @@ ___
 
 node_modules/@types/react/ts5.0/index.d.ts:571
 
-___
+---
 
 ### displayName
 
@@ -43,7 +43,7 @@ ___
 
 node_modules/@types/react/ts5.0/index.d.ts:572
 
-___
+---
 
 ### propTypes
 

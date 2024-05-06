@@ -6,13 +6,13 @@
 
 ### Variables
 
-- [update](update.md#update)
+-   [update](update.md#update)
 
 ## Variables
 
 ### update
 
-• `Const` **update**: ``"23.07.2023"``
+• `Const` **update**: `"23.07.2023"`
 
 #### Defined in
 

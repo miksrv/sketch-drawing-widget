@@ -6,5 +6,5 @@
 
 ### Interfaces
 
-- [FormProps](../interfaces/components_sketch_form_types.FormProps.md)
-- [SketchData](../interfaces/components_sketch_form_types.SketchData.md)
+-   [FormProps](../interfaces/components_sketch_form_types.FormProps.md)
+-   [SketchData](../interfaces/components_sketch_form_types.SketchData.md)

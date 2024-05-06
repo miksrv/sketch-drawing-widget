@@ -14,10 +14,10 @@ The properties for the Button component.
 
 ### Variables
 
-- [contextTypes](components_button.default.md#contexttypes)
-- [defaultProps](components_button.default.md#defaultprops)
-- [displayName](components_button.default.md#displayname)
-- [propTypes](components_button.default.md#proptypes)
+-   [contextTypes](components_button.default.md#contexttypes)
+-   [defaultProps](components_button.default.md#defaultprops)
+-   [displayName](components_button.default.md#displayname)
+-   [propTypes](components_button.default.md#proptypes)
 
 ## Variables
 
@@ -29,7 +29,7 @@ The properties for the Button component.
 
 node_modules/@types/react/ts5.0/index.d.ts:570
 
-___
+---
 
 ### defaultProps
 
@@ -39,7 +39,7 @@ ___
 
 node_modules/@types/react/ts5.0/index.d.ts:571
 
-___
+---
 
 ### displayName
 
@@ -49,7 +49,7 @@ ___
 
 node_modules/@types/react/ts5.0/index.d.ts:572
 
-___
+---
 
 ### propTypes
 

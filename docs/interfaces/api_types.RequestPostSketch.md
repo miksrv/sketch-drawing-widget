@@ -8,12 +8,12 @@
 
 ### Properties
 
-- [firstPoint](api_types.RequestPostSketch.md#firstpoint)
-- [image](api_types.RequestPostSketch.md#image)
-- [lastPoint](api_types.RequestPostSketch.md#lastpoint)
-- [paintSide](api_types.RequestPostSketch.md#paintside)
-- [sketch](api_types.RequestPostSketch.md#sketch)
-- [title](api_types.RequestPostSketch.md#title)
+-   [firstPoint](api_types.RequestPostSketch.md#firstpoint)
+-   [image](api_types.RequestPostSketch.md#image)
+-   [lastPoint](api_types.RequestPostSketch.md#lastpoint)
+-   [paintSide](api_types.RequestPostSketch.md#paintside)
+-   [sketch](api_types.RequestPostSketch.md#sketch)
+-   [title](api_types.RequestPostSketch.md#title)
 
 ## Properties
 
@@ -25,7 +25,7 @@
 
 [src/api/types.ts:8](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/api/types.ts#L8)
 
-___
+---
 
 ### image
 
@@ -35,7 +35,7 @@ ___
 
 [src/api/types.ts:6](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/api/types.ts#L6)
 
-___
+---
 
 ### lastPoint
 
@@ -45,7 +45,7 @@ ___
 
 [src/api/types.ts:9](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/api/types.ts#L9)
 
-___
+---
 
 ### paintSide
 
@@ -55,7 +55,7 @@ ___
 
 [src/api/types.ts:10](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/api/types.ts#L10)
 
-___
+---
 
 ### sketch
 
@@ -65,7 +65,7 @@ ___
 
 [src/api/types.ts:7](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/api/types.ts#L7)
 
-___
+---
 
 ### title
 

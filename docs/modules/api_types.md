@@ -6,5 +6,5 @@
 
 ### Interfaces
 
-- [RequestPostSketch](../interfaces/api_types.RequestPostSketch.md)
-- [ResponseGetList](../interfaces/api_types.ResponseGetList.md)
+-   [RequestPostSketch](../interfaces/api_types.RequestPostSketch.md)
+-   [ResponseGetList](../interfaces/api_types.ResponseGetList.md)

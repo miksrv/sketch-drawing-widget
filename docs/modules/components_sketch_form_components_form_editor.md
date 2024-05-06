@@ -6,30 +6,30 @@
 
 ### Namespaces
 
-- [default](components_sketch_form_components_form_editor.default.md)
+-   [default](components_sketch_form_components_form_editor.default.md)
 
 ### Functions
 
-- [default](components_sketch_form_components_form_editor.md#default)
+-   [default](components_sketch_form_components_form_editor.md#default)
 
 ## Functions
 
 ### default
 
-▸ **default**(`props`, `context?`): ``null`` \| `ReactElement`\<`any`, `any`\>
+▸ **default**(`props`, `context?`): `null` \| `ReactElement`\<`any`, `any`\>
 
 Component for editing form details.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `props` | `FormEditorProps` | The component props. |
-| `context?` | `any` | - |
+| Name       | Type              | Description          |
+| :--------- | :---------------- | :------------------- |
+| `props`    | `FormEditorProps` | The component props. |
+| `context?` | `any`             | -                    |
 
 #### Returns
 
-``null`` \| `ReactElement`\<`any`, `any`\>
+`null` \| `ReactElement`\<`any`, `any`\>
 
 The FormEditor component.
 

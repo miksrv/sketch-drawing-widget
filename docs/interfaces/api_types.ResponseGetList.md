@@ -8,7 +8,7 @@
 
 ### Properties
 
-- [items](api_types.ResponseGetList.md#items)
+-   [items](api_types.ResponseGetList.md#items)
 
 ## Properties
 

@@ -10,8 +10,8 @@ Represents a two-dimensional point with x and y coordinates.
 
 ### Properties
 
-- [x](functions_types.Point2D.md#x)
-- [y](functions_types.Point2D.md#y)
+-   [x](functions_types.Point2D.md#x)
+-   [y](functions_types.Point2D.md#y)
 
 ## Properties
 
@@ -25,7 +25,7 @@ The x-coordinate of the point.
 
 [src/functions/types.ts:8](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/functions/types.ts#L8)
 
-___
+---
 
 ### y
 

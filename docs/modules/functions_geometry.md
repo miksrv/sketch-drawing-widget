@@ -6,12 +6,12 @@
 
 ### Functions
 
-- [addHookPoints](functions_geometry.md#addhookpoints)
-- [addShiftedPoints](functions_geometry.md#addshiftedpoints)
-- [calculateFirstVertical](functions_geometry.md#calculatefirstvertical)
-- [doLinesIntersect](functions_geometry.md#dolinesintersect)
-- [doSegmentsIntersect](functions_geometry.md#dosegmentsintersect)
-- [encodeCoordinates](functions_geometry.md#encodecoordinates)
+-   [addHookPoints](functions_geometry.md#addhookpoints)
+-   [addShiftedPoints](functions_geometry.md#addshiftedpoints)
+-   [calculateFirstVertical](functions_geometry.md#calculatefirstvertical)
+-   [doLinesIntersect](functions_geometry.md#dolinesintersect)
+-   [doSegmentsIntersect](functions_geometry.md#dosegmentsintersect)
+-   [encodeCoordinates](functions_geometry.md#encodecoordinates)
 
 ## Functions
 
@@ -21,12 +21,12 @@
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `points` | [`Point2D`](../interfaces/functions_types.Point2D.md)[] |
-| `positive?` | `boolean` |
-| `size?` | `number` |
-| `isFirst?` | `boolean` |
+| Name        | Type                                                    |
+| :---------- | :------------------------------------------------------ |
+| `points`    | [`Point2D`](../interfaces/functions_types.Point2D.md)[] |
+| `positive?` | `boolean`                                               |
+| `size?`     | `number`                                                |
+| `isFirst?`  | `boolean`                                               |
 
 #### Returns
 
@@ -36,7 +36,7 @@
 
 [src/functions/geometry.ts:92](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/functions/geometry.ts#L92)
 
-___
+---
 
 ### addShiftedPoints
 
@@ -44,8 +44,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
 | `originalPoints` | [`Point2D`](../interfaces/functions_types.Point2D.md)[] |
 
 #### Returns
@@ -56,7 +56,7 @@ ___
 
 [src/functions/geometry.ts:155](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/functions/geometry.ts#L155)
 
-___
+---
 
 ### calculateFirstVertical
 
@@ -64,8 +64,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
 | `originalPoints` | [`Point2D`](../interfaces/functions_types.Point2D.md)[] |
 
 #### Returns
@@ -76,7 +76,7 @@ ___
 
 [src/functions/geometry.ts:121](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/functions/geometry.ts#L121)
 
-___
+---
 
 ### doLinesIntersect
 
@@ -86,8 +86,8 @@ Checks if lines intersect in two-dimensional space.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name    | Type                                                    | Description                                                             |
+| :------ | :------------------------------------------------------ | :---------------------------------------------------------------------- |
 | `lines` | [`Point2D`](../interfaces/functions_types.Point2D.md)[] | Array of points representing lines in the format [x1, y1, x2, y2, ...]. |
 
 #### Returns
@@ -100,7 +100,7 @@ Returns true if at least two lines intersect; otherwise, returns false.
 
 [src/functions/geometry.ts:9](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/functions/geometry.ts#L9)
 
-___
+---
 
 ### doSegmentsIntersect
 
@@ -110,12 +110,12 @@ Checks if two line segments intersect.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `seg1Start` | [`Point2D`](../interfaces/functions_types.Point2D.md) | Starting point of the first line segment. |
-| `seg1End` | [`Point2D`](../interfaces/functions_types.Point2D.md) | Ending point of the first line segment. |
+| Name        | Type                                                  | Description                                |
+| :---------- | :---------------------------------------------------- | :----------------------------------------- |
+| `seg1Start` | [`Point2D`](../interfaces/functions_types.Point2D.md) | Starting point of the first line segment.  |
+| `seg1End`   | [`Point2D`](../interfaces/functions_types.Point2D.md) | Ending point of the first line segment.    |
 | `seg2Start` | [`Point2D`](../interfaces/functions_types.Point2D.md) | Starting point of the second line segment. |
-| `seg2End` | [`Point2D`](../interfaces/functions_types.Point2D.md) | Ending point of the second line segment. |
+| `seg2End`   | [`Point2D`](../interfaces/functions_types.Point2D.md) | Ending point of the second line segment.   |
 
 #### Returns
 
@@ -127,7 +127,7 @@ Returns true if the line segments intersect; otherwise, returns false.
 
 [src/functions/geometry.ts:40](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/functions/geometry.ts#L40)
 
-___
+---
 
 ### encodeCoordinates
 
@@ -135,8 +135,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name          | Type                                                    |
+| :------------ | :------------------------------------------------------ |
 | `coordinates` | [`Point2D`](../interfaces/functions_types.Point2D.md)[] |
 
 #### Returns

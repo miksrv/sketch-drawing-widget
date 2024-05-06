@@ -6,28 +6,28 @@
 
 ### Namespaces
 
-- [default](components_sketch_list.default.md)
+-   [default](components_sketch_list.default.md)
 
 ### Functions
 
-- [default](components_sketch_list.md#default)
+-   [default](components_sketch_list.md#default)
 
 ## Functions
 
 ### default
 
-▸ **default**(`props`, `context?`): ``null`` \| `ReactElement`\<`any`, `any`\>
+▸ **default**(`props`, `context?`): `null` \| `ReactElement`\<`any`, `any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `props` | `Object` |
-| `context?` | `any` |
+| Name       | Type     |
+| :--------- | :------- |
+| `props`    | `Object` |
+| `context?` | `any`    |
 
 #### Returns
 
-``null`` \| `ReactElement`\<`any`, `any`\>
+`null` \| `ReactElement`\<`any`, `any`\>
 
 #### Defined in
 
