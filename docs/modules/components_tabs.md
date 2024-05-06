@@ -6,51 +6,51 @@
 
 ### Namespaces
 
-- [Tab](components_tabs.Tab.md)
-- [default](components_tabs.default.md)
+-   [Tab](components_tabs.Tab.md)
+-   [default](components_tabs.default.md)
 
 ### Functions
 
-- [Tab](components_tabs.md#tab)
-- [default](components_tabs.md#default)
+-   [Tab](components_tabs.md#tab)
+-   [default](components_tabs.md#default)
 
 ## Functions
 
 ### Tab
 
-▸ **Tab**(`props`, `context?`): ``null`` \| `ReactElement`\<`any`, `any`\>
+▸ **Tab**(`props`, `context?`): `null` \| `ReactElement`\<`any`, `any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `props` | `TabProps` |
-| `context?` | `any` |
+| Name       | Type       |
+| :--------- | :--------- |
+| `props`    | `TabProps` |
+| `context?` | `any`      |
 
 #### Returns
 
-``null`` \| `ReactElement`\<`any`, `any`\>
+`null` \| `ReactElement`\<`any`, `any`\>
 
 #### Defined in
 
 node_modules/@types/react/ts5.0/index.d.ts:568
 
-___
+---
 
 ### default
 
-▸ **default**(`props`, `context?`): ``null`` \| `ReactElement`\<`any`, `any`\>
+▸ **default**(`props`, `context?`): `null` \| `ReactElement`\<`any`, `any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `props` | `TabsProps` |
-| `context?` | `any` |
+| Name       | Type        |
+| :--------- | :---------- |
+| `props`    | `TabsProps` |
+| `context?` | `any`       |
 
 #### Returns
 
-``null`` \| `ReactElement`\<`any`, `any`\>
+`null` \| `ReactElement`\<`any`, `any`\>
 
 #### Defined in
 

@@ -16,10 +16,10 @@ The component props.
 
 ### Variables
 
-- [contextTypes](components_sketch_form_components_form_editor.default.md#contexttypes)
-- [defaultProps](components_sketch_form_components_form_editor.default.md#defaultprops)
-- [displayName](components_sketch_form_components_form_editor.default.md#displayname)
-- [propTypes](components_sketch_form_components_form_editor.default.md#proptypes)
+-   [contextTypes](components_sketch_form_components_form_editor.default.md#contexttypes)
+-   [defaultProps](components_sketch_form_components_form_editor.default.md#defaultprops)
+-   [displayName](components_sketch_form_components_form_editor.default.md#displayname)
+-   [propTypes](components_sketch_form_components_form_editor.default.md#proptypes)
 
 ## Variables
 
@@ -31,7 +31,7 @@ The component props.
 
 node_modules/@types/react/ts5.0/index.d.ts:570
 
-___
+---
 
 ### defaultProps
 
@@ -41,7 +41,7 @@ ___
 
 node_modules/@types/react/ts5.0/index.d.ts:571
 
-___
+---
 
 ### displayName
 
@@ -51,7 +51,7 @@ ___
 
 node_modules/@types/react/ts5.0/index.d.ts:572
 
-___
+---
 
 ### propTypes
 

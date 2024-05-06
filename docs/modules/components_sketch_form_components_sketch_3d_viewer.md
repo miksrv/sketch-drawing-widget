@@ -6,28 +6,28 @@
 
 ### Namespaces
 
-- [default](components_sketch_form_components_sketch_3d_viewer.default.md)
+-   [default](components_sketch_form_components_sketch_3d_viewer.default.md)
 
 ### Functions
 
-- [default](components_sketch_form_components_sketch_3d_viewer.md#default)
+-   [default](components_sketch_form_components_sketch_3d_viewer.md#default)
 
 ## Functions
 
 ### default
 
-▸ **default**(`props`, `context?`): ``null`` \| `ReactElement`\<`any`, `any`\>
+▸ **default**(`props`, `context?`): `null` \| `ReactElement`\<`any`, `any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `props` | `Sketch3DViewerProps` |
-| `context?` | `any` |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `props`    | `Sketch3DViewerProps` |
+| `context?` | `any`                 |
 
 #### Returns
 
-``null`` \| `ReactElement`\<`any`, `any`\>
+`null` \| `ReactElement`\<`any`, `any`\>
 
 #### Defined in
 

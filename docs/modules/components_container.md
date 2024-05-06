@@ -6,28 +6,28 @@
 
 ### Namespaces
 
-- [default](components_container.default.md)
+-   [default](components_container.default.md)
 
 ### Functions
 
-- [default](components_container.md#default)
+-   [default](components_container.md#default)
 
 ## Functions
 
 ### default
 
-▸ **default**(`props`, `context?`): ``null`` \| `ReactElement`\<`any`, `any`\>
+▸ **default**(`props`, `context?`): `null` \| `ReactElement`\<`any`, `any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `props` | `ContainerProps` |
-| `context?` | `any` |
+| Name       | Type             |
+| :--------- | :--------------- |
+| `props`    | `ContainerProps` |
+| `context?` | `any`            |
 
 #### Returns
 
-``null`` \| `ReactElement`\<`any`, `any`\>
+`null` \| `ReactElement`\<`any`, `any`\>
 
 #### Defined in
 

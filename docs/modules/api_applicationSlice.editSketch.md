@@ -8,17 +8,17 @@
 
 ### Variables
 
-- [type](api_applicationSlice.editSketch.md#type)
+-   [type](api_applicationSlice.editSketch.md#type)
 
 ### Functions
 
-- [match](api_applicationSlice.editSketch.md#match)
+-   [match](api_applicationSlice.editSketch.md#match)
 
 ## Variables
 
 ### type
 
-• **type**: ``"counter/editSketch"``
+• **type**: `"counter/editSketch"`
 
 #### Defined in
 
@@ -32,8 +32,8 @@ node_modules/@reduxjs/toolkit/dist/createAction.d.ts:57
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name     | Type      |
+| :------- | :-------- |
 | `action` | `unknown` |
 
 #### Returns

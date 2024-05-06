@@ -8,8 +8,8 @@
 
 ### Properties
 
-- [end](functions_types.Line2D.md#end)
-- [start](functions_types.Line2D.md#start)
+-   [end](functions_types.Line2D.md#end)
+-   [start](functions_types.Line2D.md#start)
 
 ## Properties
 
@@ -21,7 +21,7 @@
 
 [src/functions/types.ts:17](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/functions/types.ts#L17)
 
-___
+---
 
 ### start
 

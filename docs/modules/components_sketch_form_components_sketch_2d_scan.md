@@ -6,28 +6,28 @@
 
 ### Namespaces
 
-- [default](components_sketch_form_components_sketch_2d_scan.default.md)
+-   [default](components_sketch_form_components_sketch_2d_scan.default.md)
 
 ### Functions
 
-- [default](components_sketch_form_components_sketch_2d_scan.md#default)
+-   [default](components_sketch_form_components_sketch_2d_scan.md#default)
 
 ## Functions
 
 ### default
 
-▸ **default**(`props`, `context?`): ``null`` \| `ReactElement`\<`any`, `any`\>
+▸ **default**(`props`, `context?`): `null` \| `ReactElement`\<`any`, `any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `props` | `Sketch2DScanProps` |
-| `context?` | `any` |
+| Name       | Type                |
+| :--------- | :------------------ |
+| `props`    | `Sketch2DScanProps` |
+| `context?` | `any`               |
 
 #### Returns
 
-``null`` \| `ReactElement`\<`any`, `any`\>
+`null` \| `ReactElement`\<`any`, `any`\>
 
 #### Defined in
 

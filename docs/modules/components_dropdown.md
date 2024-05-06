@@ -6,28 +6,28 @@
 
 ### Namespaces
 
-- [default](components_dropdown.default.md)
+-   [default](components_dropdown.default.md)
 
 ### Functions
 
-- [default](components_dropdown.md#default)
+-   [default](components_dropdown.md#default)
 
 ## Functions
 
 ### default
 
-▸ **default**(`props`, `context?`): ``null`` \| `ReactElement`\<`any`, `any`\>
+▸ **default**(`props`, `context?`): `null` \| `ReactElement`\<`any`, `any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `props` | `DropdownProps` |
-| `context?` | `any` |
+| Name       | Type            |
+| :--------- | :-------------- |
+| `props`    | `DropdownProps` |
+| `context?` | `any`           |
 
 #### Returns
 
-``null`` \| `ReactElement`\<`any`, `any`\>
+`null` \| `ReactElement`\<`any`, `any`\>
 
 #### Defined in
 

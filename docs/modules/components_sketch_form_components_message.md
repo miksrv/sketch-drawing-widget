@@ -6,30 +6,30 @@
 
 ### Namespaces
 
-- [default](components_sketch_form_components_message.default.md)
+-   [default](components_sketch_form_components_message.default.md)
 
 ### Functions
 
-- [default](components_sketch_form_components_message.md#default)
+-   [default](components_sketch_form_components_message.md#default)
 
 ## Functions
 
 ### default
 
-▸ **default**(`props`, `context?`): ``null`` \| `ReactElement`\<`any`, `any`\>
+▸ **default**(`props`, `context?`): `null` \| `ReactElement`\<`any`, `any`\>
 
 Component to display a simple message with an optional title and content.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `props` | `MessageProps` | The component props. |
-| `context?` | `any` | - |
+| Name       | Type           | Description          |
+| :--------- | :------------- | :------------------- |
+| `props`    | `MessageProps` | The component props. |
+| `context?` | `any`          | -                    |
 
 #### Returns
 
-``null`` \| `ReactElement`\<`any`, `any`\>
+`null` \| `ReactElement`\<`any`, `any`\>
 
 The Message component.
 

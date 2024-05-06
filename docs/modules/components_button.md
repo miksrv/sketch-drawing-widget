@@ -6,30 +6,30 @@
 
 ### Namespaces
 
-- [default](components_button.default.md)
+-   [default](components_button.default.md)
 
 ### Functions
 
-- [default](components_button.md#default)
+-   [default](components_button.md#default)
 
 ## Functions
 
 ### default
 
-▸ **default**(`props`, `context?`): ``null`` \| `ReactElement`\<`any`, `any`\>
+▸ **default**(`props`, `context?`): `null` \| `ReactElement`\<`any`, `any`\>
 
 A button component with optional properties and styling variants.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `props` | `InputProps` | The properties for the Button component. |
-| `context?` | `any` | - |
+| Name       | Type         | Description                              |
+| :--------- | :----------- | :--------------------------------------- |
+| `props`    | `InputProps` | The properties for the Button component. |
+| `context?` | `any`        | -                                        |
 
 #### Returns
 
-``null`` \| `ReactElement`\<`any`, `any`\>
+`null` \| `ReactElement`\<`any`, `any`\>
 
 Returns the rendered Button component.
 

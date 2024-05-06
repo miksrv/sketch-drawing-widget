@@ -6,17 +6,17 @@
 
 ### Variables
 
-- [API](api_api.md#api)
+-   [API](api_api.md#api)
 
 ### Functions
 
-- [getRunningQueriesThunk](api_api.md#getrunningqueriesthunk)
+-   [getRunningQueriesThunk](api_api.md#getrunningqueriesthunk)
 
 ## Variables
 
 ### API
 
-• `Const` **API**: `Api`\<`BaseQueryFn`\<`string` \| `FetchArgs`, `unknown`, `FetchBaseQueryError`, {}, `FetchBaseQueryMeta`\>, \{ `sketchCreate`: `MutationDefinition`\<[`RequestPostSketch`](../interfaces/api_types.RequestPostSketch.md), `BaseQueryFn`\<`string` \| `FetchArgs`, `unknown`, `FetchBaseQueryError`, {}, `FetchBaseQueryMeta`\>, ``"Sketch"``, `void`, ``"api"``\> ; `sketchDelete`: `MutationDefinition`\<`string`, `BaseQueryFn`\<`string` \| `FetchArgs`, `unknown`, `FetchBaseQueryError`, {}, `FetchBaseQueryMeta`\>, ``"Sketch"``, `void`, ``"api"``\> ; `sketchGetList`: `QueryDefinition`\<`void`, `BaseQueryFn`\<`string` \| `FetchArgs`, `unknown`, `FetchBaseQueryError`, {}, `FetchBaseQueryMeta`\>, ``"Sketch"``, [`ResponseGetList`](../interfaces/api_types.ResponseGetList.md), ``"api"``\> ; `sketchModify`: `MutationDefinition`\<`any`, `BaseQueryFn`\<`string` \| `FetchArgs`, `unknown`, `FetchBaseQueryError`, {}, `FetchBaseQueryMeta`\>, ``"Sketch"``, `void`, ``"api"``\>  }, ``"api"``, ``"Sketch"``, typeof `coreModuleName` \| typeof `reactHooksModuleName`\>
+• `Const` **API**: `Api`\<`BaseQueryFn`\<`string` \| `FetchArgs`, `unknown`, `FetchBaseQueryError`, {}, `FetchBaseQueryMeta`\>, \{ `sketchCreate`: `MutationDefinition`\<[`RequestPostSketch`](../interfaces/api_types.RequestPostSketch.md), `BaseQueryFn`\<`string` \| `FetchArgs`, `unknown`, `FetchBaseQueryError`, {}, `FetchBaseQueryMeta`\>, `"Sketch"`, `void`, `"api"`\> ; `sketchDelete`: `MutationDefinition`\<`string`, `BaseQueryFn`\<`string` \| `FetchArgs`, `unknown`, `FetchBaseQueryError`, {}, `FetchBaseQueryMeta`\>, `"Sketch"`, `void`, `"api"`\> ; `sketchGetList`: `QueryDefinition`\<`void`, `BaseQueryFn`\<`string` \| `FetchArgs`, `unknown`, `FetchBaseQueryError`, {}, `FetchBaseQueryMeta`\>, `"Sketch"`, [`ResponseGetList`](../interfaces/api_types.ResponseGetList.md), `"api"`\> ; `sketchModify`: `MutationDefinition`\<`any`, `BaseQueryFn`\<`string` \| `FetchArgs`, `unknown`, `FetchBaseQueryError`, {}, `FetchBaseQueryMeta`\>, `"Sketch"`, `void`, `"api"`\> }, `"api"`, `"Sketch"`, typeof `coreModuleName` \| typeof `reactHooksModuleName`\>
 
 #### Defined in
 

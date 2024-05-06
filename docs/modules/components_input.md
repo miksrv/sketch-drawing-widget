@@ -6,30 +6,30 @@
 
 ### Namespaces
 
-- [default](components_input.default.md)
+-   [default](components_input.default.md)
 
 ### Functions
 
-- [default](components_input.md#default)
+-   [default](components_input.md#default)
 
 ## Functions
 
 ### default
 
-▸ **default**(`props`, `context?`): ``null`` \| `ReactElement`\<`any`, `any`\>
+▸ **default**(`props`, `context?`): `null` \| `ReactElement`\<`any`, `any`\>
 
 Input component for text input.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `props` | `InputProps` | The component props. |
-| `context?` | `any` | - |
+| Name       | Type         | Description          |
+| :--------- | :----------- | :------------------- |
+| `props`    | `InputProps` | The component props. |
+| `context?` | `any`        | -                    |
 
 #### Returns
 
-``null`` \| `ReactElement`\<`any`, `any`\>
+`null` \| `ReactElement`\<`any`, `any`\>
 
 The Input component.
 

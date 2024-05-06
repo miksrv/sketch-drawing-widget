@@ -8,11 +8,11 @@
 
 ### Properties
 
-- [firstPoint](components_sketch_form_types.FormProps.md#firstpoint)
-- [id](components_sketch_form_types.FormProps.md#id)
-- [lastPoint](components_sketch_form_types.FormProps.md#lastpoint)
-- [paintSide](components_sketch_form_types.FormProps.md#paintside)
-- [title](components_sketch_form_types.FormProps.md#title)
+-   [firstPoint](components_sketch_form_types.FormProps.md#firstpoint)
+-   [id](components_sketch_form_types.FormProps.md#id)
+-   [lastPoint](components_sketch_form_types.FormProps.md#lastpoint)
+-   [paintSide](components_sketch_form_types.FormProps.md#paintside)
+-   [title](components_sketch_form_types.FormProps.md#title)
 
 ## Properties
 
@@ -24,7 +24,7 @@
 
 [src/components/sketch-form/types.tsx:6](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/components/sketch-form/types.tsx#L6)
 
-___
+---
 
 ### id
 
@@ -34,7 +34,7 @@ ___
 
 [src/components/sketch-form/types.tsx:4](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/components/sketch-form/types.tsx#L4)
 
-___
+---
 
 ### lastPoint
 
@@ -44,7 +44,7 @@ ___
 
 [src/components/sketch-form/types.tsx:7](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/components/sketch-form/types.tsx#L7)
 
-___
+---
 
 ### paintSide
 
@@ -54,7 +54,7 @@ ___
 
 [src/components/sketch-form/types.tsx:8](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/components/sketch-form/types.tsx#L8)
 
-___
+---
 
 ### title
 

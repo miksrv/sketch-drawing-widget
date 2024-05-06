@@ -8,10 +8,10 @@
 
 ### References
 
-- [contextTypes](components_sketch_list.default.md#contexttypes)
-- [defaultProps](components_sketch_list.default.md#defaultprops)
-- [displayName](components_sketch_list.default.md#displayname)
-- [propTypes](components_sketch_list.default.md#proptypes)
+-   [contextTypes](components_sketch_list.default.md#contexttypes)
+-   [defaultProps](components_sketch_list.default.md#defaultprops)
+-   [displayName](components_sketch_list.default.md#displayname)
+-   [propTypes](components_sketch_list.default.md#proptypes)
 
 ## References
 
@@ -19,19 +19,19 @@
 
 Re-exports [contextTypes](components_sketch_form.default.md#contexttypes)
 
-___
+---
 
 ### defaultProps
 
 Re-exports [defaultProps](components_sketch_form.default.md#defaultprops)
 
-___
+---
 
 ### displayName
 
 Re-exports [displayName](components_sketch_form_components_message.default.md#displayname)
 
-___
+---
 
 ### propTypes
 

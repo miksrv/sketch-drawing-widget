@@ -8,12 +8,12 @@
 
 ### Properties
 
-- [firstPoint](components_sketch_form_types.SketchData.md#firstpoint)
-- [id](components_sketch_form_types.SketchData.md#id)
-- [lastPoint](components_sketch_form_types.SketchData.md#lastpoint)
-- [paintSide](components_sketch_form_types.SketchData.md#paintside)
-- [sketch](components_sketch_form_types.SketchData.md#sketch)
-- [title](components_sketch_form_types.SketchData.md#title)
+-   [firstPoint](components_sketch_form_types.SketchData.md#firstpoint)
+-   [id](components_sketch_form_types.SketchData.md#id)
+-   [lastPoint](components_sketch_form_types.SketchData.md#lastpoint)
+-   [paintSide](components_sketch_form_types.SketchData.md#paintside)
+-   [sketch](components_sketch_form_types.SketchData.md#sketch)
+-   [title](components_sketch_form_types.SketchData.md#title)
 
 ## Properties
 
@@ -25,7 +25,7 @@
 
 [src/components/sketch-form/types.tsx:14](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/components/sketch-form/types.tsx#L14)
 
-___
+---
 
 ### id
 
@@ -35,7 +35,7 @@ ___
 
 [src/components/sketch-form/types.tsx:12](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/components/sketch-form/types.tsx#L12)
 
-___
+---
 
 ### lastPoint
 
@@ -45,7 +45,7 @@ ___
 
 [src/components/sketch-form/types.tsx:15](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/components/sketch-form/types.tsx#L15)
 
-___
+---
 
 ### paintSide
 
@@ -55,7 +55,7 @@ ___
 
 [src/components/sketch-form/types.tsx:16](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/components/sketch-form/types.tsx#L16)
 
-___
+---
 
 ### sketch
 
@@ -65,7 +65,7 @@ ___
 
 [src/components/sketch-form/types.tsx:17](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/components/sketch-form/types.tsx#L17)
 
-___
+---
 
 ### title
 

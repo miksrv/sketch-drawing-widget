@@ -3,6 +3,7 @@
 .github
 *.json
 *.topojson
+*.md
 node_modules
 out
 coverage

@@ -8,13 +8,13 @@
 
 ### References
 
-- [displayName](components_sketch_form.default.md#displayname)
+-   [displayName](components_sketch_form.default.md#displayname)
 
 ### Variables
 
-- [contextTypes](components_sketch_form.default.md#contexttypes)
-- [defaultProps](components_sketch_form.default.md#defaultprops)
-- [propTypes](components_sketch_form.default.md#proptypes)
+-   [contextTypes](components_sketch_form.default.md#contexttypes)
+-   [defaultProps](components_sketch_form.default.md#defaultprops)
+-   [propTypes](components_sketch_form.default.md#proptypes)
 
 ## References
 
@@ -32,7 +32,7 @@ Re-exports [displayName](components_sketch_form_components_message.default.md#di
 
 node_modules/@types/react/ts5.0/index.d.ts:570
 
-___
+---
 
 ### defaultProps
 
@@ -42,7 +42,7 @@ ___
 
 node_modules/@types/react/ts5.0/index.d.ts:571
 
-___
+---
 
 ### propTypes
 
