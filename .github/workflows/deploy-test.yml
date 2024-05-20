@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy Test
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   ssh-deploy:
-    name: Production
+    name: Test
     runs-on: ubuntu-latest
 
     steps:
@@ -27,7 +27,6 @@ jobs:
           path: |
             node_modules
             ~/.npm
-            ${{ github.workspace }}/.next/cache
           key: ${{ runner.os }}-modules-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-modules-
