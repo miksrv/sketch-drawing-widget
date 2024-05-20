@@ -78,6 +78,13 @@ jobs:
       #- name: Send files
       #  run: rsync -avz -e ssh ./out/ vps:/var/www/asteroid.miksoft.pro
 
+      - name: Find and Rename Files
+        run: |
+          js_file=$(find build/static/js -name 'main.*.js')
+          css_file=$(find build/static/css -name 'main.*.css')
+          mv "$js_file" build/static/js/main.js
+          mv "$css_file" build/static/css/main.css
+
       - name: Install LFTP
         run: sudo apt install lftp
 
@@ -87,20 +94,9 @@ jobs:
       - name: Load Secrets
         run: echo "machine ${{ secrets.FTP_PRODUCTION_HOSTNAME }} login ${{ secrets.FTP_PRODUCTION_USERNAME }} password ${{ secrets.FTP_PRODUCTION_PASSWORD }}" > ~/.netrc
 
-
-      - name: Upload API Folder
+      - name: Upload Files
         run: |
           lftp -e "rm -r /api" ${{ secrets.FTP_PRODUCTION_HOSTNAME }}
           lftp -e "mirror --parallel=100 -R api/ api/" ${{ secrets.FTP_PRODUCTION_HOSTNAME }}
-
-      - name: Find and Rename Files
-        run: |
-          js_file=$(find build/static/js -name 'main.*.js')
-          css_file=$(find build/static/css -name 'main.*.css')
-          mv "$js_file" build/static/js/main.js
-          mv "$css_file" build/static/css/main.css
-
-      - name: Upload JS and CSS Files
-        run: |
-          lftp -e "put -O / build/static/js/main.js" -u ${{ secrets.FTP_PRODUCTION_HOSTNAME }}
-          lftp -e "put -O / build/static/css/main.css" -u ${{ secrets.FTP_PRODUCTION_HOSTNAME }}
+          lftp -e "put -O / build/static/js/main.js" ${{ secrets.FTP_PRODUCTION_HOSTNAME }}
+          lftp -e "put -O / build/static/css/main.css" ${{ secrets.FTP_PRODUCTION_HOSTNAME }}
