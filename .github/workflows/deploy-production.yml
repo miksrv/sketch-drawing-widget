@@ -22,31 +22,31 @@ jobs:
 
       - name: Cache node modules
         uses: actions/cache@v4
-        id: cache-npm
+        id: cache-production-npm
         with:
           path: |
             node_modules
             ~/.npm
           key: ${{ runner.os }}-modules-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-modules-
-            ${{ runner.os }}-
+            ${{ runner.os }}-production-modules-
+            ${{ runner.os }}-production
 
-      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+      - if: ${{ steps.cache-production-npm.outputs.cache-hit != 'true' }}
         name: Install dependencies
         run: yarn install
 
       - name: Cache UI build
         uses: actions/cache@v4
-        id: cache-build
+        id: cache-production-build
         with:
           path: build
-          key: ${{ runner.os }}-build-${{ hashFiles('**/*.ts', '**/*.tsx') }}
+          key: ${{ runner.os }}-production-build-${{ hashFiles('**/*.ts', '**/*.tsx') }}
           restore-keys: |
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+            ${{ runner.os }}-production-build-
+            ${{ runner.os }}-production
 
-      - if: ${{ steps.cache-build.outputs.cache-hit != 'true' }}
+      - if: ${{ steps.cache-production-build.outputs.cache-hit != 'true' }}
         name: Build UI
         run: |
           export dateNow=$(date +"%d.%m.%Y %H:%M")
