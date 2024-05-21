@@ -1,6 +1,7 @@
 ## Metal Construction Sketching Widget
 
-[![Deployment](https://github.com/miksrv/sketch-drawing-widget/actions/workflows/deploy.yml/badge.svg)](https://github.com/miksrv/sketch-drawing-widget/actions/workflows/deploy.yml)
+[![Deploy Test](https://github.com/miksrv/sketch-drawing-widget/actions/workflows/deploy-test.yml/badge.svg)](https://github.com/miksrv/sketch-drawing-widget/actions/workflows/deploy-test.yml)
+[![Deploy Production](https://github.com/miksrv/sketch-drawing-widget/actions/workflows/deploy-production.yml/badge.svg)](https://github.com/miksrv/sketch-drawing-widget/actions/workflows/deploy-production.yml)
 [![Quality Gate](https://github.com/miksrv/sketch-drawing-widget/actions/workflows/sonarcloud.yml/badge.svg)](https://github.com/miksrv/sketch-drawing-widget/actions/workflows/sonarcloud.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=miksrv_sketch-drawing-widget&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=miksrv_sketch-drawing-widget)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=miksrv_sketch-drawing-widget&metric=bugs)](https://sonarcloud.io/summary/new_code?id=miksrv_sketch-drawing-widget)

@@ -23,7 +23,7 @@ export const API = createApi({
             query: (data) => ({
                 body: data,
                 method: 'POST',
-                url: 'sketch'
+                url: '/'
             }),
             transformErrorResponse: (response) => response.data
         }),
@@ -31,13 +31,13 @@ export const API = createApi({
             invalidatesTags: () => [{ type: 'Sketch' }],
             query: (id) => ({
                 method: 'DELETE',
-                url: `sketch/${id}`
+                url: `/${id}`
             }),
             transformErrorResponse: (response) => response.data
         }),
         sketchGetList: builder.query<ApiType.ResponseGetList, void>({
             providesTags: ['Sketch'],
-            query: () => 'sketch'
+            query: () => '/'
         }),
         sketchModify: builder.mutation<void, any>({
             invalidatesTags: (res, err, arg) => [
@@ -46,7 +46,7 @@ export const API = createApi({
             query: (data) => ({
                 body: data,
                 method: 'PUT',
-                url: 'sketch'
+                url: '/'
             }),
             transformErrorResponse: (response) => response.data
         })
