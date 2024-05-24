@@ -46,14 +46,20 @@ jobs:
             ${{ runner.os }}-production-build-
             ${{ runner.os }}-production
 
-      - if: ${{ steps.cache-production-build.outputs.cache-hit != 'true' }}
-        name: Build UI
+      - name: Build UI
         run: |
           export dateNow=$(date +"%d.%m.%Y %H:%M")
           echo "export const update = '$dateNow'" > src/update.ts
           echo "REACT_APP_API_HOST = '${{ secrets.REACT_APP_API_PRODUCTION_HOST }}'
           GENERATE_SOURCEMAP = false" > .env
           yarn build
+
+      - name: Find and Rename Files
+        run: |
+          js_file=$(find build/static/js -name 'main.*.js')
+          css_file=$(find build/static/css -name 'main.*.css')
+          mv "$js_file" build/static/js/main.js
+          mv "$css_file" build/static/css/main.css
 
       # If for deployment we use SSH
       #- name: Configure SSH
@@ -77,13 +83,6 @@ jobs:
 
       #- name: Send files
       #  run: rsync -avz -e ssh ./out/ vps:/var/www/asteroid.miksoft.pro
-
-      - name: Find and Rename Files
-        run: |
-          js_file=$(find build/static/js -name 'main.*.js')
-          css_file=$(find build/static/css -name 'main.*.css')
-          mv "$js_file" build/static/js/main.js
-          mv "$css_file" build/static/css/main.css
 
       - name: Install LFTP
         run: sudo apt install lftp
