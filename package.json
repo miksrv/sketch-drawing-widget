@@ -1,6 +1,6 @@
 {
   "name": "sketch-drawing-widget",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "private": true,
   "dependencies": {
     "@react-three/drei": "^9.105.6",
