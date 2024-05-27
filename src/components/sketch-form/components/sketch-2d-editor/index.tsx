@@ -76,13 +76,14 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
         const canvas = document.getElementById(
             'Sketch2DEditor'
         ) as HTMLCanvasElement
+        const rect = canvas.getBoundingClientRect()
 
         const handleMouseDown = (
             e: React.MouseEvent<HTMLCanvasElement> | any
         ) => {
             const newPoint = {
-                x: e.clientX - canvas.offsetLeft,
-                y: e.clientY - canvas.offsetTop
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
             }
 
             if (!doLinesIntersect([...points, newPoint]) && drawing) {
@@ -96,8 +97,8 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
             e: React.MouseEvent<HTMLCanvasElement> | any
         ) => {
             const newPoint = {
-                x: e.clientX - canvas.offsetLeft,
-                y: e.clientY - canvas.offsetTop
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
             }
 
             if (!doLinesIntersect([...points, newPoint])) {
