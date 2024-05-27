@@ -1,13 +1,13 @@
 .component
-  border: 0
-  border-radius: 8px
+  border: 0 !important
+  border-radius: 8px !important
   box-sizing: border-box
   display: inline-block
   margin: 0
   max-width: 100%
   min-height: 32px
   min-width: 80px
-  padding: 0
+  padding: 0 10px !important
   position: relative
   text-decoration: none
   cursor: pointer
@@ -15,29 +15,29 @@
   transition: background-color .15s ease-out,opacity .15s ease-out
   text-align: center
   font-family: -apple-system, system-ui, "Helvetica Neue", Roboto, sans-serif
-  font-weight: 300
+  font-weight: 300 !important
 
   &.disabled
     opacity: .5
     cursor: default
 
   &.primary
-    background-color: #2688eb
+    background: #2688eb
     color: #fff
 
     &:hover
-      background-color: #2483e4
+      background: #2483e4
 
   &.negative
-    background-color: #f83939
+    background: #f83939
     color: #fff
 
     &:hover
-      background-color: #de3939
+      background: #de3939
 
   &.default
-    background-color: rgba(0,0,0,.04)
+    background: rgba(0,0,0,.04)
     color: #2688eb
 
     &:hover
-      background-color: rgba(0,0,0,.08)
+      background: rgba(0,0,0,.08)

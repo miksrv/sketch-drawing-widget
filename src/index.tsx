@@ -16,11 +16,11 @@ root.render(
     <React.StrictMode>
         <Provider store={store}>
             <div className={'wrapper'}>
-                <Container title={'Редактор профиля'}>
+                <Container title={'Редактирование'}>
                     <SketchForm />
                 </Container>
 
-                <Container title={'Список профилей'}>
+                <Container title={'Список'}>
                     <SketchList />
                 </Container>
             </div>
