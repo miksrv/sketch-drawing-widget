@@ -3,7 +3,7 @@
 // For local run: php -S localhost:8000
 
 // Устанавливаем заголовки для разрешения CORS
-header("Access-Control-Allow-Origin: http://localhost:3000"); // Замените на ваш домен, если он отличается
+header("Access-Control-Allow-Origin: *"); // Замените на ваш домен, если он отличается
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS"); // Добавьте другие методы, если необходимо
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
