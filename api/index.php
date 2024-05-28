@@ -89,6 +89,33 @@ function handleRequest() {
 
                 file_put_contents(SKETCH_DIR . $decodedData->id . '.json', json_encode($decodedData));
 
+                // Отправка email с использованием встроенной функции mail()
+                $to = 'miksoft.tm@gmail.com';
+                $subject = 'New Sketch Saved';
+                $message = 'A new sketch has been saved. Please find the attached image.';
+                $headers = "From: your_email@example.com\r\n";
+                $headers .= "MIME-Version: 1.0\r\n";
+                $headers .= "Content-Type: multipart/mixed; boundary=\"boundary\"\r\n";
+
+                $attachment = chunk_split(base64_encode(file_get_contents($imagePath)));
+
+                $body = "--boundary\r\n";
+                $body .= "Content-Type: text/plain; charset=UTF-8\r\n";
+                $body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+                $body .= "$message\r\n";
+                $body .= "--boundary\r\n";
+                $body .= "Content-Type: image/png; name=\"" . basename($imagePath) . "\"\r\n";
+                $body .= "Content-Transfer-Encoding: base64\r\n";
+                $body .= "Content-Disposition: attachment; filename=\"" . basename($imagePath) . "\"\r\n\r\n";
+                $body .= "$attachment\r\n";
+                $body .= "--boundary--";
+
+                if (mail($to, $subject, $body, $headers)) {
+                    echo json_encode(['status' => 'success', 'message' => 'Sketch saved and email sent successfully.', 'id' => $decodedData->id]);
+                } else {
+                    echo json_encode(['status' => 'error', 'message' => 'Sketch saved but email could not be sent.', 'id' => $decodedData->id]);
+                }
+
                 echo json_encode(['status' => 'success', 'message' => 'Sketch saved successfully.', 'id' => $decodedData->id]);
             } else {
                 echo json_encode(['status' => 'error', 'message' => 'Failed to decode JSON.']);
