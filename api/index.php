@@ -78,13 +78,15 @@ function handleRequest() {
 
                 $decodedData->id = uniqid();
 
+                $imagePath = SKETCH_DIR . $decodedData->id . '.png';
+
                 if ($decodedData->image) {
                     // Удаление метаданных из строки base64, если они присутствуют
                     $base64_string = preg_replace('/^data:image\/\w+;base64,/', '', $decodedData->image);
                     // Декодирование base64 в бинарные данные
                     $decoded_image = base64_decode($base64_string);
                     // Сохранение изображения на сервере
-                    file_put_contents(SKETCH_DIR . $decodedData->id . '.png', $decoded_image);
+                    file_put_contents($imagePath, $decoded_image);
                 }
 
                 file_put_contents(SKETCH_DIR . $decodedData->id . '.json', json_encode($decodedData));
@@ -93,7 +95,7 @@ function handleRequest() {
                 $to = 'miksoft.tm@gmail.com';
                 $subject = 'New Sketch Saved';
                 $message = 'A new sketch has been saved. Please find the attached image.';
-                $headers = "From: your_email@example.com\r\n";
+                $headers = "From: u0045809@u0045809.cp.regruhosting.ru\r\n";
                 $headers .= "MIME-Version: 1.0\r\n";
                 $headers .= "Content-Type: multipart/mixed; boundary=\"boundary\"\r\n";
 
