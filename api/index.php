@@ -3,6 +3,8 @@
 // For local run: php -S localhost:8000
 
 // Устанавливаем заголовки для разрешения CORS
+use Snipworks\Smtp\Email;
+
 header("Access-Control-Allow-Origin: *"); // Замените на ваш домен, если он отличается
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS"); // Добавьте другие методы, если необходимо
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
@@ -91,28 +93,18 @@ function handleRequest() {
 
                 file_put_contents(SKETCH_DIR . $decodedData->id . '.json', json_encode($decodedData));
 
-                // Отправка email с использованием встроенной функции mail()
-                $to = 'miksoft.tm@gmail.com';
-                $subject = 'New Sketch Saved';
-                $message = 'A new sketch has been saved. Please find the attached image.';
-                $headers = "From: u0045809@u0045809.cp.regruhosting.ru\r\n";
-                $headers .= "MIME-Version: 1.0\r\n";
-                $headers .= "Content-Type: multipart/mixed; boundary=\"boundary\"\r\n";
+                include ('Email.php');
 
-                $attachment = chunk_split(base64_encode(file_get_contents($imagePath)));
+                $mail = new Email('smtp.yandex.ru', 465);
+                $mail->setProtocol(Email::SSL);
+                $mail->setLogin('shop@profmetall.ru', 'astra312astra313');
+                $mail->addTo('recipient@example.com', 'Example Receiver');
+                $mail->setFrom('shop@profmetall.ru', 'Profmetall');
+                $mail->setSubject('Новый скетч');
+                $mail->setHtmlMessage('На сайт был добавлен новый скетч профиля');
+                $mail->addAttachment($imagePath);
 
-                $body = "--boundary\r\n";
-                $body .= "Content-Type: text/plain; charset=UTF-8\r\n";
-                $body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
-                $body .= "$message\r\n";
-                $body .= "--boundary\r\n";
-                $body .= "Content-Type: image/png; name=\"" . basename($imagePath) . "\"\r\n";
-                $body .= "Content-Transfer-Encoding: base64\r\n";
-                $body .= "Content-Disposition: attachment; filename=\"" . basename($imagePath) . "\"\r\n\r\n";
-                $body .= "$attachment\r\n";
-                $body .= "--boundary--";
-
-                if (mail($to, $subject, $body, $headers)) {
+                if ($mail->send()) {
                     echo json_encode(['status' => 'success', 'message' => 'Sketch saved and email sent successfully.', 'id' => $decodedData->id]);
                 } else {
                     echo json_encode(['status' => 'error', 'message' => 'Sketch saved but email could not be sent.', 'id' => $decodedData->id]);
