@@ -56,7 +56,8 @@ jobs:
 
       - name: Build API
         run: |
-          echo "const SMTP_HOST = '${{ secrets.SMTP_HOST }}';
+          echo "<?php
+          const SMTP_HOST = '${{ secrets.SMTP_HOST }}';
           const SMTP_PORT = ${{ secrets.SMTP_PORT }};
           const SMTP_LOGIN = '${{ secrets.SMTP_LOGIN }}';
           const SMTP_PASS = '${{ secrets.SMTP_PASS }}';

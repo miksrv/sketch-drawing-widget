@@ -103,7 +103,7 @@ function handleRequest() {
 
                 if (is_array(EMAIL_SENDERS)) {
                     foreach (EMAIL_SENDERS as $email) {
-                        $mail->addTo($email, 'Profmetall');
+                        $mail->addTo($email);
                     }
                 }
 
@@ -113,12 +113,13 @@ function handleRequest() {
 
                 if ($mail->send()) {
                     echo json_encode(['status' => 'success', 'message' => 'Sketch saved and email sent successfully.', 'id' => $decodedData->id]);
+                    break;
                 } else {
                     echo json_encode(['status' => 'error', 'message' => 'Sketch saved but email could not be sent.', 'id' => $decodedData->id]);
                     print_r($mail->getLogs());
+                    break;
                 }
 
-                echo json_encode(['status' => 'success', 'message' => 'Sketch saved successfully.', 'id' => $decodedData->id]);
             } else {
                 echo json_encode(['status' => 'error', 'message' => 'Failed to decode JSON.']);
             }
