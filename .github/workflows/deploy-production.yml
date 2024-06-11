@@ -60,7 +60,7 @@ jobs:
           const SMTP_PORT = ${{ secrets.SMTP_PORT }};
           const SMTP_LOGIN = '${{ secrets.SMTP_LOGIN }}';
           const SMTP_PASS = '${{ secrets.SMTP_PASS }}';
-          const EMAIL_SENDERS = [${{ secrets.EMAIL_SENDERS }}];" > /api/config.php
+          const EMAIL_SENDERS = [${{ secrets.EMAIL_SENDERS }}];" > api/config.php
 
       - name: Find and Rename Files
         run: |
