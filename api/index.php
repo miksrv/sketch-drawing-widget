@@ -20,8 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 const SKETCH_DIR = __DIR__ . '/data/';
 
-include 'config.php';
-
 function getJsonFiles() {
     if (!$dirHandle = opendir(SKETCH_DIR)) {
         return false;
@@ -95,6 +93,7 @@ function handleRequest() {
 
                 file_put_contents(SKETCH_DIR . $decodedData->id . '.json', json_encode($decodedData));
 
+                include ('config.php');
                 include ('Email.php');
 
                 $mail = new Email(SMTP_HOST, SMTP_PORT);
@@ -107,6 +106,7 @@ function handleRequest() {
                     }
                 }
 
+                $mail->setFrom(SMTP_LOGIN, 'Profmetall');
                 $mail->setSubject('Новый скетч');
                 $mail->setHtmlMessage('На сайт был добавлен новый скетч профиля');
                 $mail->addAttachment($imagePath);
@@ -120,9 +120,9 @@ function handleRequest() {
                     break;
                 }
 
-            } else {
-                echo json_encode(['status' => 'error', 'message' => 'Failed to decode JSON.']);
             }
+
+            echo json_encode(['status' => 'error', 'message' => 'Failed to decode JSON.']);
             break;
 
         case 'PUT':
