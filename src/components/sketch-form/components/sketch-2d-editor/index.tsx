@@ -148,6 +148,8 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
 
         if (ctx) {
             ctx.clearRect(0, 0, canvas.width, canvas.height)
+            ctx.fillStyle = 'white'
+            ctx.fillRect(0, 0, canvas.width, canvas.height)
         }
     }
 
@@ -169,6 +171,8 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
         }
 
         ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.fillStyle = 'white'
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
 
         // Draw dashed lines
         const dashLength = 4
