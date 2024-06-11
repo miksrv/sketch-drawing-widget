@@ -20,6 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 const SKETCH_DIR = __DIR__ . '/data/';
 
+include 'config.php';
+
 function getJsonFiles() {
     if (!$dirHandle = opendir(SKETCH_DIR)) {
         return false;
@@ -95,11 +97,16 @@ function handleRequest() {
 
                 include ('Email.php');
 
-                $mail = new Email('smtp.yandex.ru', 465);
+                $mail = new Email(SMTP_HOST, SMTP_PORT);
                 $mail->setProtocol(Email::SSL);
-                $mail->setLogin('shop@profmetall.ru', 'astra312astra313');
-                $mail->addTo('recipient@example.com', 'Example Receiver');
-                $mail->setFrom('shop@profmetall.ru', 'Profmetall');
+                $mail->setLogin(SMTP_LOGIN, SMTP_PASS);
+
+                if (is_array(EMAIL_SENDERS)) {
+                    foreach (EMAIL_SENDERS as $email) {
+                        $mail->addTo($email, 'Profmetall');
+                    }
+                }
+
                 $mail->setSubject('Новый скетч');
                 $mail->setHtmlMessage('На сайт был добавлен новый скетч профиля');
                 $mail->addAttachment($imagePath);
@@ -108,6 +115,7 @@ function handleRequest() {
                     echo json_encode(['status' => 'success', 'message' => 'Sketch saved and email sent successfully.', 'id' => $decodedData->id]);
                 } else {
                     echo json_encode(['status' => 'error', 'message' => 'Sketch saved but email could not be sent.', 'id' => $decodedData->id]);
+                    print_r($mail->getLogs());
                 }
 
                 echo json_encode(['status' => 'success', 'message' => 'Sketch saved successfully.', 'id' => $decodedData->id]);

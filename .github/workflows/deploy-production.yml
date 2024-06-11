@@ -54,6 +54,14 @@ jobs:
           GENERATE_SOURCEMAP = false" > .env
           yarn build
 
+      - name: Build API
+        run: |
+          echo "const SMTP_HOST = '${{ secrets.SMTP_HOST }}';
+          const SMTP_PORT = ${{ secrets.SMTP_PORT }};
+          const SMTP_LOGIN = '${{ secrets.SMTP_LOGIN }}';
+          const SMTP_PASS = '${{ secrets.SMTP_PASS }}';
+          const EMAIL_SENDERS = [${{ secrets.EMAIL_SENDERS }}];" > /api/config.php
+
       - name: Find and Rename Files
         run: |
           js_file=$(find build/static/js -name 'main.*.js')
