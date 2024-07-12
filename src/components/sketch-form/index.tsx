@@ -238,7 +238,10 @@ const SketchForm: React.FC = () => {
             </Tabs>
             <div className={styles.formEditor}>
                 {isSuccess && !formError?.length && !formSketch?.length && (
-                    <Message content={'Спасибо, ваш эскиз добавлен'} />
+                    <Message
+                        content={'Спасибо, ваш эскиз добавлен'}
+                        success={true}
+                    />
                 )}
 
                 <Message
