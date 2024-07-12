@@ -70,6 +70,7 @@ function handleRequest() {
             $data = file_get_contents('php://input');
             $decodedData = (object) json_decode($data, true);
 
+
             if (json_last_error() === JSON_ERROR_NONE) {
                 if (!file_exists(SKETCH_DIR)) {
                     mkdir(SKETCH_DIR, 0777, true);
@@ -103,19 +104,24 @@ function handleRequest() {
                     }
                 }
 
-//                $mail->setFrom(SMTP_LOGIN, 'Profmetall');
-//                $mail->setSubject('Новый скетч');
-//                $mail->setHtmlMessage('На сайт был добавлен новый скетч профиля');
-//                $mail->addAttachment($imagePath);
-//
-//                if ($mail->send()) {
-//                    echo json_encode(['status' => 'success', 'message' => 'Sketch saved and email sent successfully.', 'id' => $decodedData->id]);
-//                    break;
-//                } else {
-//                    echo json_encode(['status' => 'error', 'message' => 'Sketch saved but email could not be sent.', 'id' => $decodedData->id]);
-//                    print_r($mail->getLogs());
-//                    break;
-//                }
+                $mail->setFrom(SMTP_LOGIN, 'Profmetall');
+                $mail->setSubject('Новый скетч');
+                $mail->setHtmlMessage(
+                    '<div>На сайт был добавлен новый скетч профиля</div>' .
+                    '<div><b>Имя:</b> ' . $decodedData->name . '</div>' .
+                    '<div><b>Email:</b> ' . $decodedData->email . '</div>' .
+                    '<div><b>Email:</b> ' . $decodedData->email . '</div>' .
+                );
+                $mail->addAttachment($imagePath);
+
+                if ($mail->send()) {
+                    echo json_encode(['status' => 'success', 'message' => 'Sketch saved and email sent successfully.', 'id' => $decodedData->id]);
+                    break;
+                } else {
+                    echo json_encode(['status' => 'error', 'message' => 'Sketch saved but email could not be sent.', 'id' => $decodedData->id]);
+                    print_r($mail->getLogs());
+                    break;
+                }
 
             }
 

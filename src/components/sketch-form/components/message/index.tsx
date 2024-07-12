@@ -15,6 +15,7 @@ interface MessageProps {
      * The content/body of the message.
      */
     content?: string
+    error?: boolean
 }
 
 /**
@@ -26,9 +27,10 @@ interface MessageProps {
  */
 const Message: React.FC<MessageProps> = ({
     title,
-    content
+    content,
+    error
 }: MessageProps): JSX.Element => (
-    <div className={styles.message}>
+    <div className={styles.message + ' ' + (error ? styles.error : '')}>
         {/* Display the title if provided */}
         {title && <h4 className={styles.title}>{title}</h4>}
 
