@@ -27,9 +27,6 @@ function getJsonFiles() {
 
     $result = [];
 
-    // Открываем директорию
-    $dirHandle = opendir(SKETCH_DIR);
-
     // Читаем каждый элемент в директории
     while (($file = readdir($dirHandle)) !== false) {
         // Проверяем, что это JSON-файл
@@ -108,7 +105,13 @@ function handleRequest() {
 
                 $mail->setFrom(SMTP_LOGIN, 'Profmetall');
                 $mail->setSubject('Новый скетч');
-                $mail->setHtmlMessage('На сайт был добавлен новый скетч профиля');
+                $mail->setHtmlMessage(
+                    '<div>На сайт был добавлен новый скетч профиля</div><br />' .
+                    '<div><b>Имя:</b> ' . $decodedData->name . '</div>' .
+                    '<div><b>Email:</b> ' . $decodedData->email . '</div>' .
+                    '<div><b>ID эскиза:</b> ' . $decodedData->id . '</div>' .
+                    '<div><b>IP адрес:</b> ' . $_SERVER['REMOTE_ADDR'] . '</div><br /><br />'
+                );
                 $mail->addAttachment($imagePath);
 
                 if ($mail->send()) {

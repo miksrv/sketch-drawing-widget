@@ -1,4 +1,5 @@
 import { API } from 'api/api'
+import { editSketch } from 'api/applicationSlice'
 import { useAppDispatch, useAppSelector } from 'api/hooks'
 import { addHookPoints } from 'functions/geometry'
 import { Point2D } from 'functions/types'
@@ -6,7 +7,7 @@ import React, { useEffect, useState } from 'react'
 import { update } from 'update'
 
 import packageInfo from '../../../package.json'
-import { editSketch } from '../../api/applicationSlice'
+import Spinner from '../Spinner'
 import Button from '../button'
 import Tabs, { Tab } from '../tabs'
 import FormEditor from './components/form-editor'
@@ -23,6 +24,7 @@ const SketchForm: React.FC = () => {
         (state) => state.application.editSketch
     )
 
+    const [formError, setFormError] = useState<string>('')
     const [formState, setFormState] = useState<FormProps>({})
     const [formSketch, setFormSketch] = useState<Point2D[]>([])
     const [formImage, setFormImage] = useState<string>()
@@ -30,7 +32,7 @@ const SketchForm: React.FC = () => {
     const [firstPoints, setFirstPoints] = useState<Point2D[]>([])
     const [lastPoints, setLastPoints] = useState<Point2D[]>([])
 
-    const [createSketch, { isLoading: submitLoading }] =
+    const [createSketch, { isLoading: submitLoading, isSuccess }] =
         API.useSketchCreateMutation()
 
     const [deleteSketch, { isLoading: deleteLoading }] =
@@ -65,7 +67,13 @@ const SketchForm: React.FC = () => {
     }
 
     const handleFormSubmit = () => {
+        if (!formState?.title || !formState?.name || !formState?.email) {
+            setFormError('Пожалуйста, заполните обязательные поля')
+            return
+        }
+
         if (formState && formSketch) {
+            setFormError('')
             clearForm()
             createSketch({ ...formState, image: formImage, sketch: formSketch })
         }
@@ -111,6 +119,17 @@ const SketchForm: React.FC = () => {
             }
         }
     }, [formSketch, formState?.firstPoint])
+
+    useEffect(() => {
+        if (
+            !!formState?.title?.length &&
+            !!formState?.name?.length &&
+            !!formState?.email?.length &&
+            formError?.length
+        ) {
+            setFormError('')
+        }
+    }, [formState?.title, formState?.name, formState?.email, formError])
 
     useEffect(() => {
         if (!formState.lastPoint) {
@@ -175,6 +194,11 @@ const SketchForm: React.FC = () => {
 
     return (
         <div className={styles.section}>
+            {submitLoading && (
+                <div className={styles.loader}>
+                    <Spinner />
+                </div>
+            )}
             <Tabs>
                 <Tab label={'Эскиз'}>
                     <Sketch2DEditor
@@ -213,12 +237,22 @@ const SketchForm: React.FC = () => {
                 </Tab>
             </Tabs>
             <div className={styles.formEditor}>
+                {isSuccess && !formError?.length && !formSketch?.length && (
+                    <Message
+                        content={'Спасибо, ваш эскиз добавлен'}
+                        success={true}
+                    />
+                )}
+
                 <Message
                     content={
-                        drawing
-                            ? 'Режим редактирования (нажмите ESC)'
-                            : 'Режим просмотра'
+                        formError
+                            ? formError
+                            : drawing
+                              ? 'Режим рисования (нажмите ESC)'
+                              : 'Режим просмотра'
                     }
+                    error={!!formError?.length}
                 />
                 <FormEditor
                     drawing={drawing}

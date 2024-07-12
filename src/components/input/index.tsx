@@ -21,7 +21,12 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
  */
 const Input: React.FC<InputProps> = (props: InputProps): JSX.Element => (
     <div className={styles.component}>
-        {props.label && <label className={styles.label}>{props.label}</label>}
+        {props.label && (
+            <label className={styles.label}>
+                {props.label}
+                {props?.required && <span className={styles.required}>*</span>}
+            </label>
+        )}
         <span className={styles.formField}>
             <input
                 {...props}
