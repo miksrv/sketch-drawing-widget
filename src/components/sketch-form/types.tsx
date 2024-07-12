@@ -3,6 +3,8 @@ import { Point2D } from 'functions/types'
 export interface FormProps {
     id?: string
     title?: string
+    name?: string
+    email?: string
     firstPoint?: string
     lastPoint?: string
     paintSide?: string

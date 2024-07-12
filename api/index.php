@@ -27,9 +27,6 @@ function getJsonFiles() {
 
     $result = [];
 
-    // Открываем директорию
-    $dirHandle = opendir(SKETCH_DIR);
-
     // Читаем каждый элемент в директории
     while (($file = readdir($dirHandle)) !== false) {
         // Проверяем, что это JSON-файл
@@ -106,19 +103,19 @@ function handleRequest() {
                     }
                 }
 
-                $mail->setFrom(SMTP_LOGIN, 'Profmetall');
-                $mail->setSubject('Новый скетч');
-                $mail->setHtmlMessage('На сайт был добавлен новый скетч профиля');
-                $mail->addAttachment($imagePath);
-
-                if ($mail->send()) {
-                    echo json_encode(['status' => 'success', 'message' => 'Sketch saved and email sent successfully.', 'id' => $decodedData->id]);
-                    break;
-                } else {
-                    echo json_encode(['status' => 'error', 'message' => 'Sketch saved but email could not be sent.', 'id' => $decodedData->id]);
-                    print_r($mail->getLogs());
-                    break;
-                }
+//                $mail->setFrom(SMTP_LOGIN, 'Profmetall');
+//                $mail->setSubject('Новый скетч');
+//                $mail->setHtmlMessage('На сайт был добавлен новый скетч профиля');
+//                $mail->addAttachment($imagePath);
+//
+//                if ($mail->send()) {
+//                    echo json_encode(['status' => 'success', 'message' => 'Sketch saved and email sent successfully.', 'id' => $decodedData->id]);
+//                    break;
+//                } else {
+//                    echo json_encode(['status' => 'error', 'message' => 'Sketch saved but email could not be sent.', 'id' => $decodedData->id]);
+//                    print_r($mail->getLogs());
+//                    break;
+//                }
 
             }
 

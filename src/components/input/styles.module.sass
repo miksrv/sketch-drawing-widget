@@ -2,6 +2,9 @@
   display: block
   padding: 6px 16px 2px
 
+  @media only screen and (max-width: 768px)
+    padding: 6px 6px 2px
+
   .label
     display: block
     color: #6d7885
@@ -12,6 +15,11 @@
     white-space: nowrap
     font-size: 13px
     margin-bottom: 0
+
+    .required
+      content: '*'
+      padding-left: 5px
+      color: red
 
   .formField
     line-height: 20px

@@ -1,9 +1,8 @@
 import Dropdown from 'components/dropdown'
 import Input from 'components/input'
-import { encodeCoordinates } from 'functions/geometry'
+import { Point2D } from 'functions/types'
 import React from 'react'
 
-import { Point2D } from '../../../../functions/types'
 import { FormProps } from '../../types'
 import styles from './styles.module.sass'
 
@@ -50,6 +49,7 @@ const FormEditor: React.FC<FormEditorProps> = (
         <div className={styles.section}>
             {/* Input for the profile title */}
             <Input
+                required={true}
                 value={formState?.title || ''}
                 label={'Название профиля'}
                 placeholder={'Введите название профиля'}
@@ -58,36 +58,58 @@ const FormEditor: React.FC<FormEditorProps> = (
                 }}
             />
 
-            {/* Input for the encoded profile coordinates */}
             <Input
-                value={formSketch?.length ? encodeCoordinates(formSketch) : ''}
-                label={'Код профиля'}
-                readOnly={true}
+                required={true}
+                value={formState?.name || ''}
+                label={'Как вас зовут?'}
+                placeholder={'Пожалуйста, укажите ваше имя'}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    onChangeFormState?.('name', event.target.value)
+                }}
             />
 
-            <Dropdown
-                name={'firstPoint'}
-                label={'Законцовка в начале'}
-                disabled={drawing || !formSketch?.length}
-                value={formState?.firstPoint || ''}
-                options={pointOptions}
-                onSelect={handleSelect}
+            <Input
+                required={true}
+                value={formState?.email || ''}
+                label={'Ваш email'}
+                placeholder={'Пожалуйста, укажите email адрес'}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    onChangeFormState?.('email', event.target.value)
+                }}
             />
 
-            <Dropdown
-                name={'lastPoint'}
-                label={'Законцовка в конце'}
-                disabled={drawing || !formSketch?.length}
-                value={formState?.lastPoint || ''}
-                options={pointOptions}
-                onSelect={handleSelect}
-            />
+            {/* Input for the encoded profile coordinates */}
+            {/*<Input*/}
+            {/*    value={formSketch?.length ? encodeCoordinates(formSketch) : ''}*/}
+            {/*    label={'Код профиля'}*/}
+            {/*    readOnly={true}*/}
+            {/*/>*/}
+
+            <div className={styles.grid}>
+                <Dropdown
+                    name={'firstPoint'}
+                    label={'Законцовка в начале'}
+                    disabled={drawing || !formSketch?.length}
+                    value={formState?.firstPoint || pointOptions[0]}
+                    options={pointOptions}
+                    onSelect={handleSelect}
+                />
+
+                <Dropdown
+                    name={'lastPoint'}
+                    label={'Законцовка в конце'}
+                    disabled={drawing || !formSketch?.length}
+                    value={formState?.lastPoint || pointOptions[0]}
+                    options={pointOptions}
+                    onSelect={handleSelect}
+                />
+            </div>
 
             <Dropdown
                 name={'paintSide'}
                 label={'Сторона покраски'}
                 disabled={drawing}
-                value={formState?.paintSide || ''}
+                value={formState?.paintSide || paintSideOptions[0]}
                 options={paintSideOptions}
                 onSelect={handleSelect}
             />

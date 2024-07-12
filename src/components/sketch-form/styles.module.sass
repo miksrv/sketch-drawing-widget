@@ -1,6 +1,9 @@
 .section
   display: flex
 
+  @media only screen and (max-width: 768px)
+    flex-wrap: wrap
+
   .buttonsContainer
     margin: 12px 16px
     text-align: right
@@ -11,6 +14,10 @@
   .formEditor
     position: relative
     width: 100%
+
+    @media only screen and (max-width: 768px)
+      width: 100%
+      margin-top: 20px
 
     .footer
       font-size: 9px
