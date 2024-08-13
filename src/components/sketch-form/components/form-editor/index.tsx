@@ -68,15 +68,26 @@ const FormEditor: React.FC<FormEditorProps> = (
                 }}
             />
 
-            <Input
-                required={true}
-                value={formState?.email || ''}
-                label={'Ваш email'}
-                placeholder={'Пожалуйста, укажите email адрес'}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    onChangeFormState?.('email', event.target.value)
-                }}
-            />
+            <div className={styles.grid}>
+                <Input
+                    required={true}
+                    value={formState?.email || ''}
+                    label={'Ваш email'}
+                    placeholder={'Укажите email адрес'}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        onChangeFormState?.('email', event.target.value)
+                    }}
+                />
+
+                <Input
+                    value={formState?.phone || ''}
+                    label={'Телефон'}
+                    placeholder={'Укажите номер телефона'}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        onChangeFormState?.('phone', event.target.value)
+                    }}
+                />
+            </div>
 
             {/* Input for the encoded profile coordinates */}
             {/*<Input*/}

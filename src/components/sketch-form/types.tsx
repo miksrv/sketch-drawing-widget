@@ -5,6 +5,7 @@ export interface FormProps {
     title?: string
     name?: string
     email?: string
+    phone?: string
     firstPoint?: string
     lastPoint?: string
     paintSide?: string
