@@ -109,6 +109,7 @@ function handleRequest() {
                     '<div>На сайт был добавлен новый скетч профиля</div><br />' .
                     '<div><b>Имя:</b> ' . $decodedData->name . '</div>' .
                     '<div><b>Email:</b> ' . $decodedData->email . '</div>' .
+                    (!empty($decodedData->phone ? '<div><b>Телефон:</b> ' . $decodedData->phone . '</div>' : '') .
                     '<div><b>ID эскиза:</b> ' . $decodedData->id . '</div>' .
                     '<div><b>IP адрес:</b> ' . $_SERVER['REMOTE_ADDR'] . '</div><br /><br />'
                 );
