@@ -42,6 +42,8 @@ function getJsonFiles() {
 
             // Проверяем успешность декодирования и наличие параметра
             if (json_last_error() === JSON_ERROR_NONE && !empty($jsonData)) {
+                unset($jsonData['email'], $jsonData['phone']);
+
                 $result[] = $jsonData;
             }
         }
