@@ -3,7 +3,13 @@
   "version": "1.0.25",
   "private": false,
   "description": "A ReactJS-based widget for drawing metal constructions, 3D visualization, and reviewing unfolded sketch layouts.",
-  "keywords": ["metal constructions", "3D visualization", "canvas drawing", "ReactJS", "widget"],
+  "keywords": [
+    "metal constructions",
+    "3D visualization",
+    "canvas drawing",
+    "ReactJS",
+    "widget"
+  ],
   "author": "Misha Topchilo <miksoft.tm@gmail.com>",
   "license": "MIT",
   "repository": {
