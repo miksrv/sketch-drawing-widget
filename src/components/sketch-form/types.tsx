@@ -6,9 +6,12 @@ export interface FormProps {
     name?: string
     email?: string
     phone?: string
+    count?: string
+    length?: string
     firstPoint?: string
     lastPoint?: string
     paintSide?: string
+    paintColor?: string
 }
 
 export interface SketchData {

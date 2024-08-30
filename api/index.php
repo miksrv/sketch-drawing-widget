@@ -112,6 +112,12 @@ function handleRequest() {
                     '<div><b>Имя:</b> ' . $decodedData->name . '</div>' .
                     '<div><b>Email:</b> ' . $decodedData->email . '</div>' .
                     (!empty($decodedData->phone) ? '<div><b>Телефон:</b> ' . $decodedData->phone . '</div>' : '') .
+                    (!empty($decodedData->length) ? '<div><b>Длина:</b> ' . $decodedData->length . ' мм.</div>' : '') .
+                    (!empty($decodedData->count) ? '<div><b>Количество:</b> ' . $decodedData->count . ' шт.</div>' : '') .
+                    (!empty($decodedData->paintSide) ? '<div><b>Сторона покраски:</b> ' . $decodedData->paintSide . '</div>' : '') .
+                    (!empty($decodedData->paintColor) ? '<div><b>Цвет покраски:</b> ' . $decodedData->paintColor . '</div>' : '') .
+                    (!empty($decodedData->firstPoint) ? '<div><b>Законцовка в начале:</b> ' . $decodedData->firstPoint . '</div>' : '') .
+                    (!empty($decodedData->lastPoint) ? '<div><b>Законцовка в конце:</b> ' . $decodedData->lastPoint . '</div>' : '') .
                     '<div><b>ID эскиза:</b> ' . $decodedData->id . '</div>' .
                     '<div><b>IP адрес:</b> ' . $_SERVER['REMOTE_ADDR'] . '</div><br /><br />'
                 );

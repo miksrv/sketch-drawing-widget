@@ -35,8 +35,7 @@ const SketchForm: React.FC = () => {
     const [createSketch, { isLoading: submitLoading, isSuccess }] =
         API.useSketchCreateMutation()
 
-    const [deleteSketch, { isLoading: deleteLoading }] =
-        API.useSketchDeleteMutation()
+    // const [deleteSketch] = API.useSketchDeleteMutation() // { isLoading: deleteLoading }
 
     const handleSketchEdit = (sketch?: Point2D[]) => {
         setFormSketch(sketch || [])
@@ -46,12 +45,12 @@ const SketchForm: React.FC = () => {
         setFormState({ ...formState, [name]: value })
     }
 
-    const handleSketchDelete = () => {
-        if (editableSketch?.id) {
-            deleteSketch(editableSketch?.id)
-            clearForm()
-        }
-    }
+    // const handleSketchDelete = () => {
+    //     if (editableSketch?.id) {
+    //         deleteSketch(editableSketch?.id)
+    //         clearForm()
+    //     }
+    // }
 
     const clearForm = () => {
         dispatch(editSketch(undefined))
@@ -67,7 +66,13 @@ const SketchForm: React.FC = () => {
     }
 
     const handleFormSubmit = () => {
-        if (!formState?.title || !formState?.name || !formState?.email) {
+        if (
+            !formState?.title ||
+            !formState?.name ||
+            !formState?.email ||
+            !formState?.length ||
+            !formState?.count
+        ) {
             setFormError('Пожалуйста, заполните обязательные поля')
             return
         }
@@ -187,7 +192,11 @@ const SketchForm: React.FC = () => {
     useEffect(() => {
         if (editableSketch && editableSketch?.sketch) {
             setDrawing(false)
-            setFormState(editableSketch)
+            setFormState({
+                ...editableSketch,
+                email: '***************@***.**',
+                phone: '**********'
+            })
             setFormSketch(editableSketch.sketch)
         }
     }, [editableSketch])
@@ -261,18 +270,20 @@ const SketchForm: React.FC = () => {
                     onChangeFormState={handleFormChange}
                 />
                 <div className={styles.buttonsContainer}>
-                    {editableSketch?.id && (
-                        <Button
-                            variant={'negative'}
-                            disabled={deleteLoading}
-                            onClick={handleSketchDelete}
-                        >
-                            {'Удалить'}
-                        </Button>
-                    )}
+                    {/*{editableSketch?.id && (*/}
+                    {/*    <Button*/}
+                    {/*        variant={'negative'}*/}
+                    {/*        disabled={deleteLoading}*/}
+                    {/*        onClick={handleSketchDelete}*/}
+                    {/*    >*/}
+                    {/*        {'Удалить'}*/}
+                    {/*    </Button>*/}
+                    {/*)}*/}
                     <Button
                         variant={'primary'}
-                        disabled={submitLoading || drawing}
+                        disabled={
+                            submitLoading || drawing || !!formState?.id?.length
+                        }
                         onClick={handleFormSubmit}
                     >
                         {'Сохранить'}
