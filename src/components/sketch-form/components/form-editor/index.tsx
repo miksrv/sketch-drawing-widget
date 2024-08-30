@@ -28,6 +28,70 @@ interface FormEditorProps {
 
 const pointOptions = ['Нет', 'ᓓ', 'ᓗ']
 const paintSideOptions = ['Нет', 'Сверху', 'Снизу', 'Двухсторонняя']
+const paintColors = [
+    'Нет',
+    '3',
+    '1014 Слоновая кость',
+    '1015 Светлая слоновая кость',
+    '1018 Желтый цинк',
+    '1018 Яркий желтый',
+    '3003 Красный рубин',
+    '3005 Красное вино',
+    '3009 Красная окись',
+    '3011 коричнево-красный',
+    '5002 Ультрамарин',
+    '5021 Синяя вода',
+    '6002 Зеленый лист',
+    '6005 Зеленый мох',
+    '6026 Зеленый опал',
+    '6029 Зеленая мята',
+    '7004 Сигнальный серый',
+    '7005 Мышиный',
+    '7024 Серый графит',
+    '7024 Серый графит (матовый)',
+    '8004 Коричневая медь',
+    '8017 Шоколад',
+    '8019 Серо-коричневый',
+    '9003 Сигнально-белый',
+    '9004 Сигнально-черный',
+    '9005 Черный темный',
+    'Printech',
+    'Ral',
+    'Белый',
+    'В ассортименте',
+    'Дымка',
+    'Желтый',
+    'Зеленая листва',
+    'Зеленая мята',
+    'Зеленый мох',
+    'Зеленый опал',
+    'Коррида',
+    'Красное вино',
+    'Красный кирпич (Printech)',
+    'Медь (Printech)',
+    'Морская волна',
+    'Оцинкованный',
+    'Оцинковка',
+    'Пепси',
+    'Рваный камень (Printech)',
+    'Рубин',
+    'Светлая слоновая кость',
+    'Светло-синий',
+    'Светлое дерево (Printech)',
+    'Светлый алюминий',
+    'Серо-синий',
+    'Серо-синий (матовый)',
+    'Серый',
+    'Слоновая кость',
+    'Сосна (Printech)',
+    'Темная вишня',
+    'Темное дерево (Printech)',
+    'Темный шоколад',
+    'Шоколад',
+    'в ассортименте',
+    'на выбор',
+    'оцинковка'
+]
 
 /**
  * Component for editing form details.
@@ -48,25 +112,28 @@ const FormEditor: React.FC<FormEditorProps> = (
     return (
         <div className={styles.section}>
             {/* Input for the profile title */}
-            <Input
-                required={true}
-                value={formState?.title || ''}
-                label={'Название профиля'}
-                placeholder={'Введите название профиля'}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    onChangeFormState?.('title', event.target.value)
-                }}
-            />
 
-            <Input
-                required={true}
-                value={formState?.name || ''}
-                label={'Как вас зовут?'}
-                placeholder={'Пожалуйста, укажите ваше имя'}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    onChangeFormState?.('name', event.target.value)
-                }}
-            />
+            <div className={styles.grid}>
+                <Input
+                    required={true}
+                    value={formState?.title || ''}
+                    label={'Название профиля'}
+                    placeholder={'Введите название профиля'}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        onChangeFormState?.('title', event.target.value)
+                    }}
+                />
+
+                <Input
+                    required={true}
+                    value={formState?.name || ''}
+                    label={'Как вас зовут?'}
+                    placeholder={'Пожалуйста, укажите ваше имя'}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        onChangeFormState?.('name', event.target.value)
+                    }}
+                />
+            </div>
 
             <div className={styles.grid}>
                 <Input
@@ -97,6 +164,44 @@ const FormEditor: React.FC<FormEditorProps> = (
             {/*/>*/}
 
             <div className={styles.grid}>
+                <Input
+                    required={true}
+                    value={formState?.count || ''}
+                    label={'Количество заготовок'}
+                    placeholder={'Укажите необходимое количество заготовок'}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        let numericValue = event.target.value.replace(/\D/g, '')
+
+                        numericValue = numericValue.replace(/^0+/, '')
+
+                        if (numericValue && parseInt(numericValue) <= 5000) {
+                            onChangeFormState?.('count', numericValue)
+                        } else if (numericValue === '') {
+                            onChangeFormState?.('count', '')
+                        }
+                    }}
+                />
+
+                <Input
+                    required={true}
+                    value={formState?.length || ''}
+                    label={'Длина в мм (максимум 3000 мм)'}
+                    placeholder={'Укажите длину заготовки'}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        let numericValue = event.target.value.replace(/\D/g, '')
+
+                        numericValue = numericValue.replace(/^0+/, '')
+
+                        if (numericValue && parseInt(numericValue) <= 3000) {
+                            onChangeFormState?.('length', numericValue)
+                        } else if (numericValue === '') {
+                            onChangeFormState?.('length', '')
+                        }
+                    }}
+                />
+            </div>
+
+            <div className={styles.grid}>
                 <Dropdown
                     name={'firstPoint'}
                     label={'Законцовка в начале'}
@@ -116,14 +221,25 @@ const FormEditor: React.FC<FormEditorProps> = (
                 />
             </div>
 
-            <Dropdown
-                name={'paintSide'}
-                label={'Сторона покраски'}
-                disabled={drawing}
-                value={formState?.paintSide || paintSideOptions[0]}
-                options={paintSideOptions}
-                onSelect={handleSelect}
-            />
+            <div className={styles.grid}>
+                <Dropdown
+                    name={'paintSide'}
+                    label={'Сторона покраски'}
+                    disabled={drawing}
+                    value={formState?.paintSide || paintSideOptions[0]}
+                    options={paintSideOptions}
+                    onSelect={handleSelect}
+                />
+
+                <Dropdown
+                    name={'paintColor'}
+                    label={'Цвет покраски'}
+                    disabled={drawing}
+                    value={formState?.paintColor || paintSideOptions[0]}
+                    options={paintColors}
+                    onSelect={handleSelect}
+                />
+            </div>
         </div>
     )
 }
