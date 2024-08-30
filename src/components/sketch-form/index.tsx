@@ -35,8 +35,7 @@ const SketchForm: React.FC = () => {
     const [createSketch, { isLoading: submitLoading, isSuccess }] =
         API.useSketchCreateMutation()
 
-    const [deleteSketch, { isLoading: deleteLoading }] =
-        API.useSketchDeleteMutation()
+    // const [deleteSketch] = API.useSketchDeleteMutation() // { isLoading: deleteLoading }
 
     const handleSketchEdit = (sketch?: Point2D[]) => {
         setFormSketch(sketch || [])
@@ -46,12 +45,12 @@ const SketchForm: React.FC = () => {
         setFormState({ ...formState, [name]: value })
     }
 
-    const handleSketchDelete = () => {
-        if (editableSketch?.id) {
-            deleteSketch(editableSketch?.id)
-            clearForm()
-        }
-    }
+    // const handleSketchDelete = () => {
+    //     if (editableSketch?.id) {
+    //         deleteSketch(editableSketch?.id)
+    //         clearForm()
+    //     }
+    // }
 
     const clearForm = () => {
         dispatch(editSketch(undefined))
