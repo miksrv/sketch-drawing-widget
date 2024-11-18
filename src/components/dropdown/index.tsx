@@ -22,7 +22,7 @@ const Dropdown: React.FC<DropdownProps> = ({
 }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOption, setSelectedOption] = useState<string | null>(
-        value || null
+        value ?? null
     )
     const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -33,7 +33,7 @@ const Dropdown: React.FC<DropdownProps> = ({
     const handleSelect = (option: string) => {
         setSelectedOption(option)
         setIsOpen(false)
-        onSelect?.(name || '', option)
+        onSelect?.(name ?? '', option)
     }
 
     const handleClickOutside = (event: MouseEvent) => {
@@ -80,7 +80,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                     disabled={disabled}
                     className={selectedOption ? styles.selected : undefined}
                 >
-                    {selectedOption || 'Выберите опцию'}
+                    {selectedOption ?? 'Выберите опцию'}
                     <span className={styles.arrow}>
                         {isOpen ? (
                             <svg

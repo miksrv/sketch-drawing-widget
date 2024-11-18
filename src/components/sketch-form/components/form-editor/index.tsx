@@ -116,7 +116,7 @@ const FormEditor: React.FC<FormEditorProps> = (
             <div className={styles.grid}>
                 <Input
                     required={true}
-                    value={formState?.title || ''}
+                    value={formState?.title ?? ''}
                     label={'Название профиля'}
                     placeholder={'Введите название профиля'}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -126,7 +126,7 @@ const FormEditor: React.FC<FormEditorProps> = (
 
                 <Input
                     required={true}
-                    value={formState?.name || ''}
+                    value={formState?.name ?? ''}
                     label={'Как вас зовут?'}
                     placeholder={'Пожалуйста, укажите ваше имя'}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -138,7 +138,7 @@ const FormEditor: React.FC<FormEditorProps> = (
             <div className={styles.grid}>
                 <Input
                     required={true}
-                    value={formState?.email || ''}
+                    value={formState?.email ?? ''}
                     label={'Ваш email'}
                     placeholder={'Укажите email адрес'}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -147,7 +147,7 @@ const FormEditor: React.FC<FormEditorProps> = (
                 />
 
                 <Input
-                    value={formState?.phone || ''}
+                    value={formState?.phone ?? ''}
                     label={'Телефон'}
                     placeholder={'Укажите номер телефона'}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -166,7 +166,7 @@ const FormEditor: React.FC<FormEditorProps> = (
             <div className={styles.grid}>
                 <Input
                     required={true}
-                    value={formState?.count || ''}
+                    value={formState?.count ?? ''}
                     label={'Количество заготовок'}
                     placeholder={'Укажите необходимое количество заготовок'}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -184,7 +184,7 @@ const FormEditor: React.FC<FormEditorProps> = (
 
                 <Input
                     required={true}
-                    value={formState?.length || ''}
+                    value={formState?.length ?? ''}
                     label={'Длина в мм (максимум 3000 мм)'}
                     placeholder={'Укажите длину заготовки'}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -205,8 +205,8 @@ const FormEditor: React.FC<FormEditorProps> = (
                 <Dropdown
                     name={'firstPoint'}
                     label={'Законцовка в начале'}
-                    disabled={drawing || !formSketch?.length}
-                    value={formState?.firstPoint || pointOptions[0]}
+                    disabled={drawing ?? !formSketch?.length}
+                    value={formState?.firstPoint ?? pointOptions[0]}
                     options={pointOptions}
                     onSelect={handleSelect}
                 />
@@ -214,8 +214,8 @@ const FormEditor: React.FC<FormEditorProps> = (
                 <Dropdown
                     name={'lastPoint'}
                     label={'Законцовка в конце'}
-                    disabled={drawing || !formSketch?.length}
-                    value={formState?.lastPoint || pointOptions[0]}
+                    disabled={drawing ?? !formSketch?.length}
+                    value={formState?.lastPoint ?? pointOptions[0]}
                     options={pointOptions}
                     onSelect={handleSelect}
                 />
@@ -226,7 +226,7 @@ const FormEditor: React.FC<FormEditorProps> = (
                     name={'paintSide'}
                     label={'Сторона покраски'}
                     disabled={drawing}
-                    value={formState?.paintSide || paintSideOptions[0]}
+                    value={formState?.paintSide ?? paintSideOptions[0]}
                     options={paintSideOptions}
                     onSelect={handleSelect}
                 />
@@ -235,7 +235,7 @@ const FormEditor: React.FC<FormEditorProps> = (
                     name={'paintColor'}
                     label={'Цвет покраски'}
                     disabled={drawing}
-                    value={formState?.paintColor || paintSideOptions[0]}
+                    value={formState?.paintColor ?? paintSideOptions[0]}
                     options={paintColors}
                     onSelect={handleSelect}
                 />
