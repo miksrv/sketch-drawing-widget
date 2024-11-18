@@ -16,9 +16,9 @@ const Sketch2DScan: React.FC<Sketch2DScanProps> = ({
     const canvasRef = useRef<HTMLCanvasElement | null>(null)
 
     const fullSketch = [
-        ...(firstPoints || []),
-        ...(sketch || []),
-        ...(lastPoints || [])
+        ...(firstPoints ?? []),
+        ...(sketch ?? []),
+        ...(lastPoints ?? [])
     ]
 
     const isLastPoints = (i: number): boolean =>

@@ -60,7 +60,7 @@ const Sketch2DEditor: React.FC<Sketch2DEditorProps> = (props) => {
         onSketchEdit
     } = props
 
-    const [points, setPoints] = useState<Point2D[]>(sketch || [])
+    const [points, setPoints] = useState<Point2D[]>(sketch ?? [])
     const [tempPoint, setTempPoint] = useState<Point2D>({ x: 0, y: 0 })
 
     useEffect(() => {

@@ -1,93 +1,93 @@
 .component
-  display: block
-  padding: 6px 16px 2px
-
-  @media only screen and (max-width: 768px)
-    padding: 6px 6px 2px
-
-  .label
     display: block
-    color: #6d7885
-    overflow: hidden
-    padding-bottom: 6px
-    padding-top: 2px
-    text-overflow: ellipsis
-    white-space: nowrap
-    font-size: 13px
-    margin-bottom: 0
+    padding: 6px 16px 2px
 
-  .dropdown
-    position: relative
+    @media only screen and (max-width: 768px)
+        padding: 6px 6px 2px
 
-    button
-      width: 100%
-      font-size: 14px
-      line-height: 20px
-      position: relative
-      background: #f2f3f5
-      font-weight: 300
-      -webkit-tap-highlight-color: transparent
-      align-items: center
-      border-radius: 8px
-      box-sizing: border-box
-      font-family: -apple-system, system-ui, "Helvetica Neue", Roboto, sans-serif
-      border: 1px solid #e0e0e0
-      color: #6d7885
-      height: 36px
-      margin: 0
-      padding: 0 12px
-      cursor: pointer
-      display: flex
-      justify-content: space-between
-
-      &:hover
-        background: #f2f3f5
-        color: #000
-        border: 1px solid #e0e0e0
-
-      &.selected
-        color: #000
-
-      .arrow
+    .label
         display: block
-        margin-top: 4px
-
-    &.open
-      button
-        border-bottom-left-radius: 0
-        border-bottom-right-radius: 0
-
-    &.disabled
-      opacity: .5
-      cursor: default
-
-    .option
-      position: absolute
-      background: #FFFFFF
-      box-shadow: 0 0 2px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.08)
-      border: 1px solid #e0e0e0
-      list-style: none
-      padding: 0
-      width: 100%
-      z-index: 1
-      top: 34px
-      border-bottom-left-radius: 8px
-      border-bottom-right-radius: 8px
-      box-sizing: border-box
-      margin: 0
-      max-height: 400px
-      overflow-y: auto
-
-      li
-        padding: 6px 8px
+        color: #6d7885
+        overflow: hidden
+        padding-bottom: 6px
+        padding-top: 2px
+        text-overflow: ellipsis
+        white-space: nowrap
         font-size: 13px
-        cursor: pointer
+        margin-bottom: 0
 
-        &:hover
-          background: #f2f3f5
+    .dropdown
+        position: relative
 
-        &:last-of-type
-          border-bottom-left-radius: 8px
-          border-bottom-right-radius: 8px
+        button
+            width: 100%
+            font-size: 14px
+            line-height: 20px
+            position: relative
+            background: #f2f3f5
+            font-weight: 300
+            -webkit-tap-highlight-color: transparent
+            align-items: center
+            border-radius: 8px
+            box-sizing: border-box
+            font-family: -apple-system, system-ui, "Helvetica Neue", Roboto, sans-serif
+            border: 1px solid #e0e0e0
+            color: #6d7885
+            height: 36px
+            margin: 0
+            padding: 0 12px
+            cursor: pointer
+            display: flex
+            justify-content: space-between
+
+            &:hover
+                background: #f2f3f5
+                color: #000
+                border: 1px solid #e0e0e0
+
+            &.selected
+                color: #000
+
+            .arrow
+                display: block
+                margin-top: 4px
+
+        &.open
+            button
+                border-bottom-left-radius: 0
+                border-bottom-right-radius: 0
+
+        &.disabled
+            opacity: .5
+            cursor: default
+
+        .option
+            position: absolute
+            background: #FFFFFF
+            box-shadow: 0 0 2px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.08)
+            border: 1px solid #e0e0e0
+            list-style: none
+            padding: 0
+            width: 100%
+            z-index: 1
+            top: 34px
+            border-bottom-left-radius: 8px
+            border-bottom-right-radius: 8px
+            box-sizing: border-box
+            margin: 0
+            max-height: 400px
+            overflow-y: auto
+
+            li
+                padding: 6px 8px
+                font-size: 13px
+                cursor: pointer
+
+                &:hover
+                    background: #f2f3f5
+
+                &:last-of-type
+                    border-bottom-left-radius: 8px
+                    border-bottom-right-radius: 8px
 
 
