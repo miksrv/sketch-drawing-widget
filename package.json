@@ -1,6 +1,6 @@
 {
     "name": "sketch-drawing-widget",
-    "version": "1.0.32",
+    "version": "1.0.33",
     "private": false,
     "description": "A ReactJS-based widget for drawing metal constructions, 3D visualization, and reviewing unfolded sketch layouts.",
     "keywords": [
