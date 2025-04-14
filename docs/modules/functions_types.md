@@ -6,5 +6,5 @@
 
 ### Interfaces
 
--   [Line2D](../interfaces/functions_types.Line2D.md)
--   [Point2D](../interfaces/functions_types.Point2D.md)
+- [Line2D](../interfaces/functions_types.Line2D.md)
+- [Point2D](../interfaces/functions_types.Point2D.md)

@@ -4,32 +4,28 @@
 
 ## Table of contents
 
-### Namespaces
-
--   [default](components_sketch_form_components_form_editor.default.md)
-
 ### Functions
 
--   [default](components_sketch_form_components_form_editor.md#default)
+- [default](components_sketch_form_components_form_editor.md#default)
 
 ## Functions
 
 ### default
 
-▸ **default**(`props`, `context?`): `null` \| `ReactElement`\<`any`, `any`\>
+▸ **default**(`props`, `deprecatedLegacyContext?`): `ReactNode`
 
 Component for editing form details.
 
 #### Parameters
 
-| Name       | Type              | Description          |
-| :--------- | :---------------- | :------------------- |
-| `props`    | `FormEditorProps` | The component props. |
-| `context?` | `any`             | -                    |
+| Name                       | Type              | Description                                                                                                                           |
+| :------------------------- | :---------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+| `props`                    | `FormEditorProps` | The component props.                                                                                                                  |
+| `deprecatedLegacyContext?` | `any`             | **`Deprecated`** **`See`** [React Docs](https://legacy.reactjs.org/docs/legacy-context.html#referencing-context-in-lifecycle-methods) |
 
 #### Returns
 
-`null` \| `ReactElement`\<`any`, `any`\>
+`ReactNode`
 
 The FormEditor component.
 
@@ -37,4 +33,4 @@ The FormEditor component.
 
 #### Defined in
 
-node_modules/@types/react/ts5.0/index.d.ts:568
+[src/components/sketch-form/components/form-editor/index.tsx:103](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/components/sketch-form/components/form-editor/index.tsx#L103)

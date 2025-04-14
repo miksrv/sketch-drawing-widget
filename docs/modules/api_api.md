@@ -6,11 +6,11 @@
 
 ### Variables
 
--   [API](api_api.md#api)
+- [API](api_api.md#api)
 
 ### Functions
 
--   [getRunningQueriesThunk](api_api.md#getrunningqueriesthunk)
+- [getRunningQueriesThunk](api_api.md#getrunningqueriesthunk)
 
 ## Variables
 
@@ -20,13 +20,13 @@
 
 #### Defined in
 
-[src/api/api.ts:5](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/api/api.ts#L5)
+[src/api/api.ts:5](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/api/api.ts#L5)
 
 ## Functions
 
 ### getRunningQueriesThunk
 
-▸ **getRunningQueriesThunk**(): `ThunkWithReturnValue`\<`QueryActionCreatorResult`\<`any`\>[]\>
+▸ **getRunningQueriesThunk**(): `ThunkWithReturnValue`\<(`QueryActionCreatorResult`\<`any`\> \| `InfiniteQueryActionCreatorResult`\<`any`\>)[]\>
 
 A thunk that (if dispatched) will return all running queries.
 
@@ -37,8 +37,8 @@ See https://redux-toolkit.js.org/rtk-query/usage/server-side-rendering for detai
 
 #### Returns
 
-`ThunkWithReturnValue`\<`QueryActionCreatorResult`\<`any`\>[]\>
+`ThunkWithReturnValue`\<(`QueryActionCreatorResult`\<`any`\> \| `InfiniteQueryActionCreatorResult`\<`any`\>)[]\>
 
 #### Defined in
 
-node_modules/@reduxjs/toolkit/dist/query/core/module.d.ts:123
+[src/api/api.ts:49](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/api/api.ts#L49)

@@ -4,35 +4,31 @@
 
 ## Table of contents
 
-### Namespaces
-
--   [default](components_button.default.md)
-
 ### Functions
 
--   [default](components_button.md#default)
+- [default](components_button.md#default)
 
 ## Functions
 
 ### default
 
-▸ **default**(`props`, `context?`): `null` \| `ReactElement`\<`any`, `any`\>
+▸ **default**(`props`, `deprecatedLegacyContext?`): `ReactNode`
 
 A button component with optional properties and styling variants.
 
 #### Parameters
 
-| Name       | Type         | Description                              |
-| :--------- | :----------- | :--------------------------------------- |
-| `props`    | `InputProps` | The properties for the Button component. |
-| `context?` | `any`        | -                                        |
+| Name                       | Type         | Description                                                                                                                           |
+| :------------------------- | :----------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+| `props`                    | `InputProps` | The properties for the Button component.                                                                                              |
+| `deprecatedLegacyContext?` | `any`        | **`Deprecated`** **`See`** [React Docs](https://legacy.reactjs.org/docs/legacy-context.html#referencing-context-in-lifecycle-methods) |
 
 #### Returns
 
-`null` \| `ReactElement`\<`any`, `any`\>
+`ReactNode`
 
 Returns the rendered Button component.
 
 #### Defined in
 
-node_modules/@types/react/ts5.0/index.d.ts:568
+[src/components/button/index.tsx:25](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/components/button/index.tsx#L25)

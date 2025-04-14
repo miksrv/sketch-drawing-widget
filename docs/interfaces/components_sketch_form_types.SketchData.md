@@ -8,12 +8,12 @@
 
 ### Properties
 
--   [firstPoint](components_sketch_form_types.SketchData.md#firstpoint)
--   [id](components_sketch_form_types.SketchData.md#id)
--   [lastPoint](components_sketch_form_types.SketchData.md#lastpoint)
--   [paintSide](components_sketch_form_types.SketchData.md#paintside)
--   [sketch](components_sketch_form_types.SketchData.md#sketch)
--   [title](components_sketch_form_types.SketchData.md#title)
+- [firstPoint](components_sketch_form_types.SketchData.md#firstpoint)
+- [id](components_sketch_form_types.SketchData.md#id)
+- [lastPoint](components_sketch_form_types.SketchData.md#lastpoint)
+- [paintSide](components_sketch_form_types.SketchData.md#paintside)
+- [sketch](components_sketch_form_types.SketchData.md#sketch)
+- [title](components_sketch_form_types.SketchData.md#title)
 
 ## Properties
 
@@ -23,7 +23,7 @@
 
 #### Defined in
 
-[src/components/sketch-form/types.tsx:14](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/components/sketch-form/types.tsx#L14)
+[src/components/sketch-form/types.tsx:20](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/components/sketch-form/types.tsx#L20)
 
 ---
 
@@ -33,7 +33,7 @@
 
 #### Defined in
 
-[src/components/sketch-form/types.tsx:12](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/components/sketch-form/types.tsx#L12)
+[src/components/sketch-form/types.tsx:18](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/components/sketch-form/types.tsx#L18)
 
 ---
 
@@ -43,7 +43,7 @@
 
 #### Defined in
 
-[src/components/sketch-form/types.tsx:15](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/components/sketch-form/types.tsx#L15)
+[src/components/sketch-form/types.tsx:21](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/components/sketch-form/types.tsx#L21)
 
 ---
 
@@ -53,7 +53,7 @@
 
 #### Defined in
 
-[src/components/sketch-form/types.tsx:16](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/components/sketch-form/types.tsx#L16)
+[src/components/sketch-form/types.tsx:22](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/components/sketch-form/types.tsx#L22)
 
 ---
 
@@ -63,7 +63,7 @@
 
 #### Defined in
 
-[src/components/sketch-form/types.tsx:17](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/components/sketch-form/types.tsx#L17)
+[src/components/sketch-form/types.tsx:23](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/components/sketch-form/types.tsx#L23)
 
 ---
 
@@ -73,4 +73,4 @@
 
 #### Defined in
 
-[src/components/sketch-form/types.tsx:13](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/components/sketch-form/types.tsx#L13)
+[src/components/sketch-form/types.tsx:19](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/components/sketch-form/types.tsx#L19)

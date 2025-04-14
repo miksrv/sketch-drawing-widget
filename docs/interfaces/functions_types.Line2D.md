@@ -8,8 +8,8 @@
 
 ### Properties
 
--   [end](functions_types.Line2D.md#end)
--   [start](functions_types.Line2D.md#start)
+- [end](functions_types.Line2D.md#end)
+- [start](functions_types.Line2D.md#start)
 
 ## Properties
 
@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[src/functions/types.ts:17](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/functions/types.ts#L17)
+[src/functions/types.ts:17](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/functions/types.ts#L17)
 
 ---
 
@@ -29,4 +29,4 @@
 
 #### Defined in
 
-[src/functions/types.ts:18](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/functions/types.ts#L18)
+[src/functions/types.ts:18](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/functions/types.ts#L18)
