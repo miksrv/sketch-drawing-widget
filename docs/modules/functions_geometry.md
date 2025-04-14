@@ -6,12 +6,12 @@
 
 ### Functions
 
--   [addHookPoints](functions_geometry.md#addhookpoints)
--   [addShiftedPoints](functions_geometry.md#addshiftedpoints)
--   [calculateFirstVertical](functions_geometry.md#calculatefirstvertical)
--   [doLinesIntersect](functions_geometry.md#dolinesintersect)
--   [doSegmentsIntersect](functions_geometry.md#dosegmentsintersect)
--   [encodeCoordinates](functions_geometry.md#encodecoordinates)
+- [addHookPoints](functions_geometry.md#addhookpoints)
+- [addShiftedPoints](functions_geometry.md#addshiftedpoints)
+- [calculateFirstVertical](functions_geometry.md#calculatefirstvertical)
+- [doLinesIntersect](functions_geometry.md#dolinesintersect)
+- [doSegmentsIntersect](functions_geometry.md#dosegmentsintersect)
+- [encodeCoordinates](functions_geometry.md#encodecoordinates)
 
 ## Functions
 
@@ -34,7 +34,7 @@
 
 #### Defined in
 
-[src/functions/geometry.ts:92](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/functions/geometry.ts#L92)
+[src/functions/geometry.ts:92](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/functions/geometry.ts#L92)
 
 ---
 
@@ -54,7 +54,7 @@
 
 #### Defined in
 
-[src/functions/geometry.ts:155](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/functions/geometry.ts#L155)
+[src/functions/geometry.ts:155](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/functions/geometry.ts#L155)
 
 ---
 
@@ -74,7 +74,7 @@
 
 #### Defined in
 
-[src/functions/geometry.ts:121](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/functions/geometry.ts#L121)
+[src/functions/geometry.ts:121](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/functions/geometry.ts#L121)
 
 ---
 
@@ -98,7 +98,7 @@ Returns true if at least two lines intersect; otherwise, returns false.
 
 #### Defined in
 
-[src/functions/geometry.ts:9](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/functions/geometry.ts#L9)
+[src/functions/geometry.ts:9](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/functions/geometry.ts#L9)
 
 ---
 
@@ -125,7 +125,7 @@ Returns true if the line segments intersect; otherwise, returns false.
 
 #### Defined in
 
-[src/functions/geometry.ts:40](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/functions/geometry.ts#L40)
+[src/functions/geometry.ts:40](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/functions/geometry.ts#L40)
 
 ---
 
@@ -145,4 +145,4 @@ Returns true if the line segments intersect; otherwise, returns false.
 
 #### Defined in
 
-[src/functions/geometry.ts:76](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/functions/geometry.ts#L76)
+[src/functions/geometry.ts:76](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/functions/geometry.ts#L76)

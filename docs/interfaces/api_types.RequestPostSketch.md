@@ -8,12 +8,12 @@
 
 ### Properties
 
--   [firstPoint](api_types.RequestPostSketch.md#firstpoint)
--   [image](api_types.RequestPostSketch.md#image)
--   [lastPoint](api_types.RequestPostSketch.md#lastpoint)
--   [paintSide](api_types.RequestPostSketch.md#paintside)
--   [sketch](api_types.RequestPostSketch.md#sketch)
--   [title](api_types.RequestPostSketch.md#title)
+- [firstPoint](api_types.RequestPostSketch.md#firstpoint)
+- [image](api_types.RequestPostSketch.md#image)
+- [lastPoint](api_types.RequestPostSketch.md#lastpoint)
+- [paintSide](api_types.RequestPostSketch.md#paintside)
+- [sketch](api_types.RequestPostSketch.md#sketch)
+- [title](api_types.RequestPostSketch.md#title)
 
 ## Properties
 
@@ -23,7 +23,7 @@
 
 #### Defined in
 
-[src/api/types.ts:8](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/api/types.ts#L8)
+[src/api/types.ts:8](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/api/types.ts#L8)
 
 ---
 
@@ -33,7 +33,7 @@
 
 #### Defined in
 
-[src/api/types.ts:6](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/api/types.ts#L6)
+[src/api/types.ts:6](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/api/types.ts#L6)
 
 ---
 
@@ -43,7 +43,7 @@
 
 #### Defined in
 
-[src/api/types.ts:9](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/api/types.ts#L9)
+[src/api/types.ts:9](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/api/types.ts#L9)
 
 ---
 
@@ -53,7 +53,7 @@
 
 #### Defined in
 
-[src/api/types.ts:10](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/api/types.ts#L10)
+[src/api/types.ts:10](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/api/types.ts#L10)
 
 ---
 
@@ -63,7 +63,7 @@
 
 #### Defined in
 
-[src/api/types.ts:7](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/api/types.ts#L7)
+[src/api/types.ts:7](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/api/types.ts#L7)
 
 ---
 
@@ -73,4 +73,4 @@
 
 #### Defined in
 
-[src/api/types.ts:5](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/api/types.ts#L5)
+[src/api/types.ts:5](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/api/types.ts#L5)

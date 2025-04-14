@@ -1,11 +1,10 @@
 .next
 .vscode
 .github
-*.json
-*.topojson
-*.md
+.yarn
+*.css
+eslint.config.mjs
+site.webmanifest
 node_modules
 out
 coverage
-public
-jsdoc

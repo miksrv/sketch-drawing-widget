@@ -23,11 +23,11 @@ This project is a ReactJS-based widget designed specifically for drawing metal c
 
 ### Features
 
--   **Drawing Capabilities:** Users can sketch intricate metal structures directly on the canvas interface.
--   **3D Visualization:** Once a sketch is created, it can be visualized in a 3D format for a more immersive experience.
--   **Unfolded Sketch Review:** View the detailed layout of the sketch in an unfolded manner for better understanding and review.
--   **API Integration:** The widget integrates with an API, offering functionalities such as saving sketches, fetching a list of saved sketches, and deleting them when necessary.
--   **Embeddable:** The widget is designed to be easily embedded into any website using its JavaScript code.
+- **Drawing Capabilities:** Users can sketch intricate metal structures directly on the canvas interface.
+- **3D Visualization:** Once a sketch is created, it can be visualized in a 3D format for a more immersive experience.
+- **Unfolded Sketch Review:** View the detailed layout of the sketch in an unfolded manner for better understanding and review.
+- **API Integration:** The widget integrates with an API, offering functionalities such as saving sketches, fetching a list of saved sketches, and deleting them when necessary.
+- **Embeddable:** The widget is designed to be easily embedded into any website using its JavaScript code.
 
 ### Getting Started
 
@@ -73,8 +73,8 @@ For developers looking to integrate or extend functionalities, refer to the [API
 
 ### Additional Resources
 
--   [React Documentation](https://legacy.reactjs.org/docs/getting-started.html)
--   [Create React App Documentation](https://create-react-app.dev/docs/getting-started/)
+- [React Documentation](https://legacy.reactjs.org/docs/getting-started.html)
+- [Create React App Documentation](https://create-react-app.dev/docs/getting-started/)
 
 ### Contributing
 

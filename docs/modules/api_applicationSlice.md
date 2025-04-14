@@ -4,18 +4,14 @@
 
 ## Table of contents
 
-### Namespaces
-
--   [editSketch](api_applicationSlice.editSketch.md)
-
 ### Variables
 
--   [applicationSlice](api_applicationSlice.md#applicationslice)
+- [applicationSlice](api_applicationSlice.md#applicationslice)
 
 ### Functions
 
--   [default](api_applicationSlice.md#default)
--   [editSketch](api_applicationSlice.md#editsketch)
+- [default](api_applicationSlice.md#default)
+- [editSketch](api_applicationSlice.md#editsketch)
 
 ## Variables
 
@@ -25,33 +21,13 @@
 
 #### Defined in
 
-[src/api/applicationSlice.ts:12](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/api/applicationSlice.ts#L12)
+[src/api/applicationSlice.ts:12](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/api/applicationSlice.ts#L12)
 
 ## Functions
 
 ### default
 
 ▸ **default**(`state`, `action`): `applicationSliceType`
-
-A _reducer_ is a function that accepts
-an accumulation and a value and returns a new accumulation. They are used
-to reduce a collection of values down to a single value
-
-Reducers are not unique to Redux—they are a fundamental concept in
-functional programming. Even most non-functional languages, like
-JavaScript, have a built-in API for reducing. In JavaScript, it's
-`Array.prototype.reduce()`.
-
-In Redux, the accumulated value is the state object, and the values being
-accumulated are actions. Reducers calculate a new state given the previous
-state and an action. They must be _pure functions_—functions that return
-the exact same output for given inputs. They should also be free of
-side-effects. This is what enables exciting features like hot reloading and
-time travel.
-
-Reducers are the most important concept in Redux.
-
-_Do not put API calls into reducers._
 
 #### Parameters
 
@@ -66,7 +42,7 @@ _Do not put API calls into reducers._
 
 #### Defined in
 
-node_modules/redux/dist/redux.d.ts:91
+node_modules/@reduxjs/toolkit/dist/index.d.ts:1498
 
 ---
 
@@ -95,4 +71,4 @@ Calling it without an argument will return a PayloadAction with a payload of `un
 
 #### Defined in
 
-node_modules/@reduxjs/toolkit/dist/createAction.d.ts:94
+[src/api/applicationSlice.ts:22](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/api/applicationSlice.ts#L22)

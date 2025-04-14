@@ -4,31 +4,27 @@
 
 ## Table of contents
 
-### Namespaces
-
--   [default](components_container.default.md)
-
 ### Functions
 
--   [default](components_container.md#default)
+- [default](components_container.md#default)
 
 ## Functions
 
 ### default
 
-▸ **default**(`props`, `context?`): `null` \| `ReactElement`\<`any`, `any`\>
+▸ **default**(`props`, `deprecatedLegacyContext?`): `ReactNode`
 
 #### Parameters
 
-| Name       | Type             |
-| :--------- | :--------------- |
-| `props`    | `ContainerProps` |
-| `context?` | `any`            |
+| Name                       | Type             | Description                                                                                                                           |
+| :------------------------- | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+| `props`                    | `ContainerProps` | -                                                                                                                                     |
+| `deprecatedLegacyContext?` | `any`            | **`Deprecated`** **`See`** [React Docs](https://legacy.reactjs.org/docs/legacy-context.html#referencing-context-in-lifecycle-methods) |
 
 #### Returns
 
-`null` \| `ReactElement`\<`any`, `any`\>
+`ReactNode`
 
 #### Defined in
 
-node_modules/@types/react/ts5.0/index.d.ts:568
+[src/components/container/index.tsx:10](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/components/container/index.tsx#L10)

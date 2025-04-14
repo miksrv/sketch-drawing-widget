@@ -6,8 +6,8 @@
 
 ### Functions
 
--   [useAppDispatch](api_hooks.md#useappdispatch)
--   [useAppSelector](api_hooks.md#useappselector)
+- [useAppDispatch](api_hooks.md#useappdispatch)
+- [useAppSelector](api_hooks.md#useappselector)
 
 ## Functions
 
@@ -21,7 +21,7 @@
 
 #### Defined in
 
-[src/api/hooks.ts:6](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/api/hooks.ts#L6)
+[src/api/hooks.ts:5](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/api/hooks.ts#L5)
 
 ---
 
@@ -48,7 +48,7 @@
 
 #### Defined in
 
-node_modules/react-redux/dist/react-redux.d.ts:239
+[src/api/hooks.ts:6](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/api/hooks.ts#L6)
 
 ▸ **useAppSelector**\<`Selected`\>(`selector`, `options?`): `Selected`
 
@@ -71,4 +71,4 @@ node_modules/react-redux/dist/react-redux.d.ts:239
 
 #### Defined in
 
-node_modules/react-redux/dist/react-redux.d.ts:240
+[src/api/hooks.ts:6](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/api/hooks.ts#L6)

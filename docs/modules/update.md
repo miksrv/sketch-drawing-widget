@@ -6,14 +6,14 @@
 
 ### Variables
 
--   [update](update.md#update)
+- [update](update.md#update)
 
 ## Variables
 
 ### update
 
-• `Const` **update**: `"23.07.2023"`
+• `Const` **update**: `"16.06.2024"`
 
 #### Defined in
 
-[src/update.ts:1](https://github.com/miksrv/sketch-drawing-widget/blob/c680a9e/src/update.ts#L1)
+[src/update.ts:1](https://github.com/miksrv/sketch-drawing-widget/blob/05a5c65ac52878acf28f48ea54a925a1b67bf73f/src/update.ts#L1)
